@@ -1,55 +1,498 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AiScripto - Next-Generation AI-Driven Test Automation Orchestration Platform</title>
+    <meta name="description" content="AiScripto - The Intelligent Multimodal Agentic Layer for Autonomous Software Quality Engineering. Transform manual test cases into executable Playwright TypeScript suites with AI-powered self-healing capabilities.">
+    <meta name="keywords" content="AI testing, test automation, Playwright, TypeScript, Bedrock, Azure AI, Vertex AI, quality assurance">
+    <meta property="og:title" content="AiScripto - Autonomous Testing Platform">
+    <meta property="og:description" content="AI-powered end-to-end test automation platform with multi-cloud and multi-model support.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aiscripto.app">
+    
+    <title>AiScripto - Autonomous Testing Platform</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; color: #232f3e; max-width: 900px; margin: 0 auto; padding: 40px 20px; background-color: #f8f9fa; }
-        header { border-bottom: 3px solid #ff9900; padding-bottom: 24px; margin-bottom: 40px; }
-        h1 { color: #111111; margin-bottom: 8px; font-size: 2.5rem; }
-        .tagline { font-size: 1.25rem; color: #546e7a; margin-top: 0; }
-        .badge { background: #ff9900; color: #ffffff; padding: 6px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-bottom: 15px; }
-        section { background: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 30px; border-top: 4px solid #232f3e; }
-        h2 { color: #232f3e; margin-top: 0; font-size: 1.5rem; border-bottom: 1px solid #eaeaea; padding-bottom: 10px; }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 12px; }
-        .highlight { color: #ff9900; font-weight: bold; }
-        footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid #eaeaea; text-align: center; color: #78909c; font-size: 0.9rem; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .badge {
+            display: inline-block;
+            background-color: #ff9900;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            color: #a0a0a0;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        
+        .divider {
+            height: 3px;
+            background-color: #ff9900;
+            width: 200px;
+            margin: 30px auto;
+        }
+        
+        .divider-dark {
+            height: 2px;
+            background-color: #1a1a1a;
+            width: 100%;
+            margin: 40px 0;
+        }
+        
+        section {
+            background: white;
+            margin: 40px 0;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        h2 {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ff9900;
+            padding-bottom: 15px;
+        }
+        
+        h3 {
+            font-size: 20px;
+            color: #1a1a1a;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: #f5f5f5;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #ff9900;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .feature-card h4 {
+            color: #1a1a1a;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .feature-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .tech-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .tech-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .tech-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .tech-list strong {
+            color: #1a1a1a;
+            min-width: 180px;
+            font-weight: 600;
+        }
+        
+        .tech-list .description {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .service-badge {
+            display: inline-block;
+            background-color: #e8f4f8;
+            color: #0066cc;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1px solid #b3d9e8;
+        }
+        
+        .service-badge.aws {
+            background-color: #fff3cd;
+            color: #856404;
+            border-color: #ffeaa7;
+        }
+        
+        .service-badge.gcp {
+            background-color: #e3f2fd;
+            color: #1565c0;
+            border-color: #bbdefb;
+        }
+        
+        .service-badge.azure {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border-color: #c8e6c9;
+        }
+        
+        .flexibility-box {
+            background: #f0f7ff;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .flexibility-box h4 {
+            color: #0066cc;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .flexibility-box p {
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            background: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 30px;
+            font-size: 14px;
+            margin-top: 60px;
+        }
+        
+        .contact-link {
+            color: #ff9900;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            section {
+                padding: 25px;
+                margin: 30px 0;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-
     <header>
-        <div class="badge">STEALTH MODE STARTUP</div>
-        <h1>AiScripto</h1>
-        <p class="tagline">The Intelligent Multimodal Agentic Layer for Autonomous Software Quality Engineering.</p>
+        <div class="container">
+            <div class="badge">Stealth Mode Startup</div>
+            <h1>AiScripto</h1>
+            <p class="subtitle">The Intelligent Multimodal Agentic Layer for Autonomous Software Quality Engineering.</p>
+        </div>
     </header>
-
-    <section>
-        <h2>Enterprise Autonomous Testing Platform</h2>
-        <p>AiScripto is an enterprise-grade, AI-powered end-to-end test automation orchestration platform designed to eliminate the brittle coding and maintenance bottlenecks for Quality Assurance (QA) organizations. By translating human-written, plain-text manual test cases (Natural Language) into production-ready executable <strong>Playwright TypeScript</strong> test suites and reusable <strong>Page Object Models (POM)</strong>, AiScripto compresses software regression development cycles by over <span class="highlight">80%</span>.</p>
-    </section>
-
-    <section>
-        <h2>Core Technology Stack & Architecture</h2>
-        <ul>
-            <li><strong>Multi-Phase Agentic Pipeline:</strong> Driven by advanced foundation models via Model Context Protocol (MCP) to seamlessly ingest test cases from tools like Azure DevOps REST APIs and execute intelligent context analysis.</li>
-            <li><strong>Cross-Regional Inference Layer:</strong> Architected natively on AWS, leveraging <strong>Amazon Bedrock (Claude 3.5 Sonnet)</strong> for high-performance multi-turn reasoning and application-aware UI component discovery.</li>
-            <li><strong>AI Self-Healing Intelligence:</strong> Powered by a localized, persistent <strong>Memory Knowledge Graph</strong> that intercepts execution failures, automatically identifies updated element locators, and auto-repairs broken test specifications at runtime without manual intervention.</li>
-            <li><strong>Decoupled Serverless Telemetry:</strong> Integrates an HTTPS POST <code>/dev/log</code> pipeline through AWS API Gateway and AWS Lambda to asynchronously stream execution metadata into Amazon DynamoDB for real-time FinOps cost tracking, while archiving diagnostics into secure Amazon S3 buckets.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Security & Governance</h2>
-        <p>Built ground-up with a strict zero-data-retention philosophy, AiScripto enforces absolute multi-tenant environment isolation utilizing granular <strong>AWS IAM Role authorization</strong> and AWS STS temporary token management across all distributed compute clusters.</p>
-    </section>
-
+    
+    <div class="container">
+        <!-- Enterprise Autonomous Testing Platform -->
+        <section>
+            <div class="divider-dark"></div>
+            <h2>Enterprise Autonomous Testing Platform</h2>
+            <p>
+                AiScripto is an <strong>enterprise-grade, AI-powered end-to-end test automation orchestration platform</strong> designed to eliminate the brittle coding and maintenance bottlenecks for Quality Assurance (QA) organizations. By translating human-written, plain-text manual test cases (Natural Language) into production-ready executable <strong>Playwright TypeScript</strong> test suites and reusable <strong>Page Object Models (POM)</strong>, AiScripto compresses software regression development cycles by over <strong>80%</strong>.
+            </p>
+            <p style="margin-top: 15px; font-size: 14px; color: #666;">
+                Our platform is built on <strong>multi-cloud architecture</strong> with <strong>model-agnostic AI inference</strong>, ensuring you can choose the cloud provider and AI model provider that best fits your enterprise requirements.
+            </p>
+        </section>
+        
+        <!-- Core Technology Stack & Architecture -->
+        <section>
+            <h2>Core Technology Stack & Architecture</h2>
+            
+            <h3>🔄 Multi-Phase Agentic Pipeline</h3>
+            <p>Driven by advanced foundation models via <strong>Model Context Protocol (MCP)</strong> to seamlessly ingest test cases from tools like:</p>
+            <div class="badge-group">
+                <span class="service-badge aws">Azure DevOps</span>
+                <span class="service-badge">GitHub Issues</span>
+                <span class="service-badge azure">Jira</span>
+                <span class="service-badge gcp">Google Workspace Docs</span>
+                <span class="service-badge">Plain Text Files</span>
+                <span class="service-badge">REST APIs</span>
+            </div>
+            <p style="margin-top: 15px; font-size: 14px; color: #666;">Execute intelligent context analysis and generate optimized test specifications.</p>
+            
+            <h3>🧠 Cross-Regional Inference Layer (Multi-Model Support)</h3>
+            <p>Our architecture supports multiple AI model providers, allowing you to choose based on your compliance, cost, and latency requirements:</p>
+            <ul class="tech-list">
+                <li>
+                    <strong>AWS Ecosystem:</strong>
+                    <div class="description">
+                        <strong>Amazon Bedrock (Claude 3.5 Sonnet, Haiku)</strong> for high-performance multi-turn reasoning and application-aware UI component discovery.
+                        <div class="badge-group" style="margin-top: 8px;">
+                            <span class="service-badge aws">Bedrock</span>
+                            <span class="service-badge aws">SageMaker</span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Google Cloud:</strong>
+                    <div class="description">
+                        <strong>Vertex AI (Gemini Pro)</strong> with cross-regional inference for low-latency APAC deployments.
+                        <div class="badge-group" style="margin-top: 8px;">
+                            <span class="service-badge gcp">Vertex AI</span>
+                            <span class="service-badge gcp">Google AI Studio</span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Microsoft Azure:</strong>
+                    <div class="description">
+                        <strong>Azure AI Studio / Azure OpenAI Service</strong> for organizations requiring Azure-native governance and compliance.
+                        <div class="badge-group" style="margin-top: 8px;">
+                            <span class="service-badge azure">Azure AI Studio</span>
+                            <span class="service-badge azure">Azure OpenAI</span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Independent Model Providers:</strong>
+                    <div class="description">
+                        Support for OpenAI API, Anthropic Claude (direct), and custom model endpoints via LLM gateway abstraction.
+                        <div class="badge-group" style="margin-top: 8px;">
+                            <span class="service-badge">OpenAI API</span>
+                            <span class="service-badge">Anthropic API</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            
+            <div class="flexibility-box">
+                <h4>🔌 Flexible Model Switching</h4>
+                <p>Switch between model providers at runtime without code changes. Use cost-optimized models for routine analysis and premium models for complex reasoning.</p>
+            </div>
+            
+            <h3>🛠️ AI Self-Healing Intelligence</h3>
+            <p>Powered by a localized, persistent <strong>Memory Knowledge Graph</strong> that intercepts execution failures, automatically identifies updated element locators, and auto-repairs broken test specifications at runtime without manual intervention.</p>
+            
+            <h3>📊 Decoupled Serverless Telemetry (Multi-Cloud Data Storage)</h3>
+            <p>Integrates multiple serverless compute and storage options for maximum flexibility:</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🟨 AWS Solutions</h4>
+                    <ul class="tech-list" style="margin-top: 15px;">
+                        <li><strong>Compute:</strong> <span class="description">Lambda, Fargate</span></li>
+                        <li><strong>Messaging:</strong> <span class="description">SNS, SQS, EventBridge</span></li>
+                        <li><strong>Storage:</strong> <span class="description">S3, DynamoDB</span></li>
+                        <li><strong>Analytics:</strong> <span class="description">CloudWatch, X-Ray</span></li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🔵 Google Cloud Solutions</h4>
+                    <ul class="tech-list" style="margin-top: 15px;">
+                        <li><strong>Compute:</strong> <span class="description">Cloud Functions, Cloud Run</span></li>
+                        <li><strong>Messaging:</strong> <span class="description">Pub/Sub, Cloud Tasks</span></li>
+                        <li><strong>Storage:</strong> <span class="description">Cloud Storage, Firestore</span></li>
+                        <li><strong>Analytics:</strong> <span class="description">BigQuery, Cloud Logging</span></li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>💚 Azure Solutions</h4>
+                    <ul class="tech-list" style="margin-top: 15px;">
+                        <li><strong>Compute:</strong> <span class="description">Functions, Container Instances</span></li>
+                        <li><strong>Messaging:</strong> <span class="description">Service Bus, Event Grid</span></li>
+                        <li><strong>Storage:</strong> <span class="description">Blob Storage, Cosmos DB</span></li>
+                        <li><strong>Analytics:</strong> <span class="description">Application Insights, Azure Monitor</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <p style="margin-top: 20px; color: #666; font-size: 14px;">
+                <strong>Asynchronously stream execution metadata</strong> into your chosen data warehouse (DynamoDB, BigQuery, Cosmos DB, or PostgreSQL) for real-time FinOps cost tracking and diagnostics archival into your preferred cloud storage.
+            </p>
+        </section>
+        
+        <!-- CI/CD & DevOps Integration -->
+        <section>
+            <h2>🚀 CI/CD Pipeline Integration</h2>
+            <p>AiScripto seamlessly integrates with your existing DevOps infrastructure:</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Git-Based Platforms</h4>
+                    <ul class="tech-list" style="margin-top: 12px;">
+                        <li><span class="service-badge">GitHub Actions</span></li>
+                        <li><span class="service-badge">GitLab CI/CD</span></li>
+                        <li><span class="service-badge">Gitea CI</span></li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>Enterprise CI/CD</h4>
+                    <ul class="tech-list" style="margin-top: 12px;">
+                        <li><span class="service-badge azure">Azure Pipelines</span></li>
+                        <li><span class="service-badge">Jenkins</span></li>
+                        <li><span class="service-badge">HashiCorp Terraform</span></li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>Test Case Management</h4>
+                    <ul class="tech-list" style="margin-top: 12px;">
+                        <li><span class="service-badge aws">Azure DevOps Test Plans</span></li>
+                        <li><span class="service-badge">Jira XRay</span></li>
+                        <li><span class="service-badge">GitHub Issues</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Test Case Storage & Source Control -->
+        <section>
+            <h2>📁 Flexible Test Case Storage</h2>
+            <p>Store and version your test cases in any of these platforms:</p>
+            <ul class="tech-list">
+                <li>
+                    <strong>Cloud-Native Repositories:</strong>
+                    <div class="description">
+                        <span class="service-badge">GitHub</span>
+                        <span class="service-badge">GitLab</span>
+                        <span class="service-badge">Gitea</span>
+                    </div>
+                </li>
+                <li>
+                    <strong>Enterprise Test Management:</strong>
+                    <div class="description">
+                        <span class="service-badge aws">Azure DevOps</span>
+                        <span class="service-badge">Jira</span>
+                        <span class="service-badge">TestRail</span>
+                    </div>
+                </li>
+                <li>
+                    <strong>Cloud Storage:</strong>
+                    <div class="description">
+                        <span class="service-badge aws">AWS S3</span>
+                        <span class="service-badge gcp">Google Cloud Storage</span>
+                        <span class="service-badge azure">Azure Blob Storage</span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        
+        <!-- Security & Governance -->
+        <section>
+            <h2>Security & Governance</h2>
+            <p>
+                Built ground-up with a strict <strong>zero-data-retention philosophy</strong>, AiScripto enforces absolute <strong>multi-tenant environment isolation</strong> utilizing <strong>granular AWS IAM Role authorization, Azure RBAC, and Google Cloud IAM</strong> along with <strong>AWS STS temporary token management</strong> (or equivalent providers) across all distributed compute clusters.
+            </p>
+            <div class="flexibility-box">
+                <h4>🔐 Multi-Cloud Compliance</h4>
+                <p><strong>Data residency flexibility:</strong> Run inference and storage exclusively within a single cloud region to meet GDPR, CCPA, and industry-specific compliance requirements (HIPAA, PCI-DSS, SOC2).</p>
+            </div>
+        </section>
+        
+        <!-- Deployment Models -->
+        <section>
+            <h2>Deployment Models</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>SaaS (Recommended)</h4>
+                    <p>Fully managed platform with automatic updates, scaling, and multi-cloud failover.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Self-Hosted (Enterprise)</h4>
+                    <p>Deploy on your own Kubernetes cluster (EKS, GKE, AKS) with complete control over infrastructure and data.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Hybrid Mode</h4>
+                    <p>TUI client on-premise + serverless backend on your preferred cloud provider.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
     <footer>
         <p>&copy; 2026 AiScripto Project. Deployed and monitored natively on AWS Cloud Ecosystem.</p>
-        <p>Contact Corporate Relations: <strong style="color: #232f3e;">contact@aiscripto.app</strong></p>
+        <p>Multi-cloud support enables deployment on Azure, Google Cloud, and hybrid infrastructures.</p>
+        <p>Contact Corporate Relations: <a href="mailto:contact@aiscripto.app" class="contact-link">contact@aiscripto.app</a></p>
     </footer>
-
 </body>
 </html>
