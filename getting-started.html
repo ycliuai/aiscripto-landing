@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,7 @@
     
     <title>快速開始 - AiScripto</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="language.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -15,25 +16,26 @@
         <div class="container">
             <a href="index.html" class="logo">Ai<span>Scripto</span></a>
             <ul>
-                <li><a href="index.html">首頁</a></li>
-                <li><a href="features.html">功能</a></li>
-                <li><a href="workflow.html">工作流程</a></li>
-                <li><a href="architecture.html">架構</a></li>
-                <li><a href="use-cases.html">使用案例</a></li>
-                <li><a href="getting-started.html" class="active">快速開始</a></li>
-                <li><a href="contact.html">聯絡</a></li>
+                <li><a href="index.html" data-en="Home" data-zh="首頁">Home</a></li>
+                <li><a href="features.html" data-en="Features" data-zh="功能">Features</a></li>
+                <li><a href="workflow.html" data-en="Workflow" data-zh="工作流程">Workflow</a></li>
+                <li><a href="architecture.html" data-en="Architecture" data-zh="架構">Architecture</a></li>
+                <li><a href="use-cases.html" data-en="Use Cases" data-zh="使用案例">Use Cases</a></li>
+                <li><a href="getting-started.html" class="active" data-en="Getting Started" data-zh="快速開始">Getting Started</a></li>
+                <li><a href="contact.html" data-en="Contact" data-zh="聯絡">Contact</a></li>
             </ul>
+            <div class="language-switcher">
+                <button id="lang-en" class="active" onclick="setLanguage('en')">EN</button>
+                <button id="lang-zh" onclick="setLanguage('zh')">繁中</button>
+            </div>
         </div>
     </nav>
     
     <!-- Header -->
     <header>
         <div class="container">
-            <h1>🚀 快速開始</h1>
-            <p class="subtitle">5分鐘內啟動你的第一個自動化測試</p>
-        </div>
-    </header>
-    
+            <h1 data-en="🚀 Quick Start" data-zh="🚀 快速開始">🚀 Quick Start</h1>
+            <p class="subtitle" data-en="Launch your first automated test in 5 minutes" data-zh="5分鐘內啟動你的第一個自動化測試">Launch your first automated test in 5 minutes</p>
     <div class="container">
         
         <!-- Prerequisites -->
