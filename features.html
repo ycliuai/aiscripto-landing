@@ -25,7 +25,7 @@
             </ul>
             <div class="language-switcher">
                 <button id="lang-en" class="active" onclick="setLanguage('en')">EN</button>
-                <button id="lang-zh" onclick="setLanguage('zh')">繁中</button>
+                <button id="lang-zh" onclick="setLanguage('zh')">中文</button>
             </div>
         </div>
     </nav>
@@ -149,8 +149,8 @@
             </div>
             
             <div class="success-box">
-                <h4>✅ 測試穩定性提升</h4>
-                <p>減少浪費在維護脆弱選擇器上的時間，測試失敗率下降90%</p>
+                <h4>✅ Enhanced Test Stability</h4>
+                <p>Reduced time wasted on maintaining fragile selectors, leading to a 90% drop in test failure rates.</p>
             </div>
         </section>
         
@@ -163,42 +163,42 @@
             
             <div class="feature-grid">
                 <div class="feature-card">
-                    <h4>🎯 可訪問的定位器</h4>
-                    <p>優先使用ARIA角色和標籤，而非脆弱的CSS選擇器</p>
+                    <h4>🎯 Accessible Locators</h4>
+                    <p>Prioritize ARIA roles and attributes over brittle CSS selectors.</p>
                 </div>
                 <div class="feature-card">
-                    <h4>♻️ 可重用組件</h4>
-                    <p>生成的POM可在多個測試中重複使用</p>
+                    <h4>♻️ Reusable Components</h4>
+                    <p>Generated POMs can be reused across multiple tests.</p>
                 </div>
                 <div class="feature-card">
-                    <h4>🔍 定位器快取</h4>
-                    <p>建立知識庫，加速後續頁面的測試生成</p>
+                    <h4>🔍 Locator Caching</h4>
+                    <p>Builds a centralized knowledge base to accelerate test generation for subsequent pages.</p>
                 </div>
                 <div class="feature-card">
-                    <h4>📝 完整文檔</h4>
-                    <p>自動生成的代碼包含注釋和型別定義</p>
+                    <h4>📝 Comprehensive Documentation</h4>
+                    <p>Automatically generated code includes comments and type definitions.</p>
                 </div>
             </div>
             
-            <h3>範例：自動生成的頁面物件</h3>
+            <h3>Showcase: Automatically Generated Page Object Models (POM)</h3>
             <div style="background: #1a1a1a; color: #00ff00; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 12px;">
-<pre style="margin: 0;">// 自動生成的頁面物件模型
+<pre style="margin: 0;">// Auto-generated Page Object Model
 export class OrderPage {
   readonly page: Page;
   
   // 訂單編號欄位
   readonly orderNumberInput = this.page.getByRole(
-    'textbox', { name: /訂單編號/ }
+    'textbox', { name: /Order Number/ }
   );
   
   // 建立按鈕
   readonly createButton = this.page.getByRole(
-    'button', { name: /建立/ }
+    'button', { name: /Create/ }
   );
   
   // 訂單表格
   readonly orderTable = this.page.getByRole(
-    'table', { name: /訂單清單/ }
+    'table', { name: /Order List/ }
   );
   
   async fillOrderNumber(number: string) {
@@ -212,9 +212,9 @@ export class OrderPage {
             </div>
             
             <div style="margin-top: 20px;">
-                <span class="tag">TypeScript型別</span>
-                <span class="tag">業界最佳實踐</span>
-                <span class="tag">自動文檔</span>
+                <span class="tag">TypeScript Types</span>
+                <span class="tag">Industry Best Practices</span>
+                <span class="tag">Automatic Documentation</span>
             </div>
         </section>
         
@@ -292,7 +292,7 @@ export class OrderPage {
                     <div style="font-size: 32px; margin-bottom: 10px;">🟠</div>
                     <h4>AWS Bedrock</h4>
                     <p style="font-size: 13px; color: var(--text-secondary); margin-top: 10px;">
-                        支持 Claude、Llama、Mistral 等模型
+                        Support Claude、Llama、Mistral and more
                     </p>
                 </div>
                 <div class="stat-card">
@@ -315,15 +315,15 @@ export class OrderPage {
             <div class="feature-grid">
                 <div class="feature-card">
                     <h4>☁️ AWS</h4>
-                    <p>Lambda、EC2、ECS容器部署</p>
+                    <p>Deploy to Lambda, EC2, and ECS containers.</p>
                 </div>
                 <div class="feature-card">
                     <h4>☁️ Azure</h4>
-                    <p>App Service、Container Instances部署</p>
+                    <p>Deploy to App Service and Container Instances.</p>
                 </div>
                 <div class="feature-card">
                     <h4>☁️ Google Cloud</h4>
-                    <p>Cloud Run、GKE容器化部署</p>
+                    <p>Deploy to Cloud Run and GKE containerized environments.</p>
                 </div>
                 <div class="feature-card">
                     <h4>🏢 On-Premise</h4>
@@ -454,14 +454,6 @@ export class OrderPage {
                 </tbody>
             </table>
         </section>
-        
-        <!-- Call to Action -->
-        <section style="text-align: center; background: linear-gradient(135deg, #f0f7ff 0%, #fff8e8 100%); padding: 40px;">
-            <div style="margin-top: 0;">
-                <a href="contact.html" class="btn btn-outline">Contact Sales Team</a>
-            </div>
-        </section>
-        
     </div>
     
     <!-- Footer -->
