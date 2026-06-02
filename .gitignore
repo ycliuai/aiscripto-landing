@@ -1,0 +1,39 @@
+# 禁止上傳敏感文檔
+docs/
+
+# 依賴和構建文件
+node_modules/
+dist/
+build/
+.vscode/
+.DS_Store
+
+# 環境配置
+.env
+.env.local
+.env.*.local
+
+# IDE和編輯器
+*.swp
+*.swo
+*~
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# 日誌文件
+*.log
+logs/
+
+# 臨時文件
+*.tmp
+*.temp
+
+# OS特定文件
+Thumbs.db
+.DS_Store
+
+# 部署和配置
+.next/
+.nuxt/
+dist/
