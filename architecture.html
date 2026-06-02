@@ -43,46 +43,46 @@
         
         <!-- System Overview -->
         <section>
-            <h2 data-en="System Architecture Overview" data-zh="系統架構概觽">系統架構概觽</h2>
-            <p data-en="AiScripto is a layered microservices architecture that supports multiple AI model vendors, multiple cloud platform deployments, and flexible scalability." data-zh="AiScripto是一個分層的微服務架構，支持多個AI模型供應商、多個雲平台部署和靈活的擴展性。">AiScripto是一個分層的微服務架構，支持多個AI模型供應商、多個雲平台部署和靈活的擴展性。</p>
+            <h2 data-en="System Architecture Overview" data-zh="系統架構概觽">System Architecture Overview</h2>
+            <p data-en="AiScripto is a layered microservices architecture that supports multiple AI model vendors, multiple cloud platform deployments, and flexible scalability." data-zh="AiScripto是一個分層的微服務架構，支持多個AI模型供應商、多個雲平台部署和靈活的擴展性。">AiScripto is a layered microservices architecture that supports multiple AI model vendors, multiple cloud platform deployments, and flexible scalability.</p>
             
             <div class="diagram-container">
                 <div class="mermaid">
 graph TB
-    subgraph "用戶介面層"
+    subgraph "User Interface Layer"
         A["📱 Web UI<br/>React/Vue"]
         B["🖥️ CLI<br/>Python/Node"]
         C["📊 TUI<br/>Terminal App"]
     end
     
-    subgraph "API層"
+    subgraph "API Layer"
         D["🔌 REST API<br/>Node.js/Express"]
-        E["🌐 GraphQL API<br/>WebSocket支持"]
+        E["🌐 GraphQL API<br/>WebSocket Support"]
     end
     
-    subgraph "應用層"
-        F["🤖 Orchestration Engine<br/>多代理協調"]
-        G["🔍 UI Explorer<br/>瀏覽器自動化"]
-        H["⚙️ Code Generator<br/>Playwright合成"]
-        I["🔧 Test Healer<br/>自動修復"]
+    subgraph "Application Layer"
+        F["🤖 Orchestration Engine<br/>Multi-Agent Coordination"]
+        G["🔍 UI Explorer<br/>Browser Automation"]
+        H["⚙️ Code Generator<br/>Playwright Synthesis"]
+        I["🔧 Test Healer<br/>Auto-Repair"]
     end
     
-    subgraph "AI層"
+    subgraph "AI Layer"
         J["🧠 Claude API<br/>AWS/Anthropic"]
-        K["🤖 Bedrock<br/>AWS模型"]
+        K["🤖 Bedrock<br/>AWS Models"]
         L["💙 Azure AI<br/>GPT-4/Vision"]
         M["🔵 Vertex AI<br/>Google Gemini"]
     end
     
-    subgraph "存儲層"
+    subgraph "Storage Layer"
         N["📂 File Storage<br/>GCS/S3/Blob"]
         O["🗄️ Database<br/>PostgreSQL/DynamoDB"]
         P["💾 Cache<br/>Redis"]
     end
     
-    subgraph "執行層"
-        Q["🌐 Playwright<br/>瀏覽器控制"]
-        R["⚙️ Node.js Runtime<br/>測試執行"]
+    subgraph "Execution Layer"
+        Q["🌐 Playwright<br/>Browser Control"]
+        R["⚙️ Node.js Runtime<br/>Test Execution"]
         S["📊 Logging<br/>CloudWatch/Stackdriver"]
     end
     
@@ -125,46 +125,46 @@ graph TB
         
         <!-- Layer 1: User Interface -->
         <section>
-            <h2 data-en="Layer 1: User Interface" data-zh="第1层：用戶介面">第1层：用戶介面</h2>
+            <h2 data-en="Layer 1: User Interface" data-zh="第1层：用戶介面">Layer 1: User Interface</h2>
             <p>
-                AiScripto提供三種用戶介面選項，滿足不同團隊的使用習慣。
+                AiScripto provides three user interface options to suit different team preferences.
             </p>
             
             <div class="feature-grid">
                 <div class="feature-card">
-                    <h4>🌐 Web管理控制台</h4>
+                    <h4>🌐 Web Management Console</h4>
                     <p>
-                        直觀的Web介面用於項目管理、測試監控和報告分析。
-                        支持實時協作和歷史追蹤。
+                        Intuitive web interface for project management, test monitoring, and report analysis.
+                        Support real-time collaboration and historical tracking.
                     </p>
                     <div style="margin-top: 15px;">
                         <span class="tag">React/Vue</span>
                         <span class="tag">Responsive</span>
-                        <span class="tag">SSO集成</span>
+                        <span class="tag">SSO Integration</span>
                     </div>
                 </div>
                 <div class="feature-card">
-                    <h4>🖥️ CLI命令行工具</h4>
+                    <h4>🖥️ CLI Command-Line Tool</h4>
                     <p>
-                        強大的命令行介面，集成到CI/CD管道。
-                        支持本地開發、批量操作和腳本自動化。
+                        Powerful command-line interface integrated into CI/CD pipelines.
+                        Support local development, batch operations, and script automation.
                     </p>
                     <div style="margin-top: 15px;">
                         <span class="tag">Node.js</span>
-                        <span class="tag">Docker容器</span>
-                        <span class="tag">批量處理</span>
+                        <span class="tag">Docker Container</span>
+                        <span class="tag">Batch Processing</span>
                     </div>
                 </div>
                 <div class="feature-card">
-                    <h4>📊 TUI終端應用</h4>
+                    <h4>📊 TUI Terminal Application</h4>
                     <p>
-                        交互式終端用戶介面，適合本地開發和即時反饋。
-                        支持鍵盤導航和實時日誌流。
+                        Interactive terminal user interface suitable for local development and real-time feedback.
+                        Support keyboard navigation and real-time log streaming.
                     </p>
                     <div style="margin-top: 15px;">
                         <span class="tag">Textual</span>
                         <span class="tag">Python</span>
-                        <span class="tag">實時更新</span>
+                        <span class="tag">Real-time Updates</span>
                     </div>
                 </div>
             </div>
@@ -172,12 +172,12 @@ graph TB
         
         <!-- Layer 2: API -->
         <section>
-            <h2 data-en="Layer 2: API Gateway" data-zh="第2层：API網關">第2层：API網關</h2>
+            <h2 data-en="Layer 2: API Gateway" data-zh="第2层：API網關">Layer 2: API Gateway</h2>
             
             <h3>🔌 REST API</h3>
             <p>
-                RESTful API提供對所有AiScripto功能的編程訪問，
-                支持完整的CRUD操作和複雜的查詢。
+                RESTful API provides programmatic access to all AiScripto functionality,
+                supporting complete CRUD operations and complex queries.
             </p>
             
             <div style="background: var(--bg-lighter); padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -208,41 +208,41 @@ graph TB
             
             <h3>🌐 GraphQL API</h3>
             <p>
-                GraphQL API提供更靈活的數據查詢，支持WebSocket實時訂閱，
-                適合實時監控和儀表板應用。
+                GraphQL API provides more flexible data queries with WebSocket real-time subscriptions,
+                suitable for real-time monitoring and dashboard applications.
             </p>
             
             <div class="highlight-box">
-                <h4>API認證</h4>
+                <h4>API Authentication</h4>
                 <p>
-                    支持多種認證方式：JWT Token、OAuth 2.0、API Keys。
-                    所有API調用都通過TLS加密，支持RBAC和細粒度權限控制。
+                    Support multiple authentication methods: JWT Token, OAuth 2.0, API Keys.
+                    All API calls are encrypted via TLS, support RBAC and fine-grained permission control.
                 </p>
             </div>
         </section>
         
         <!-- Layer 3: Application -->
         <section>
-            <h2 data-en="Layer 3: Application Layer" data-zh="第3层：應用層">第3层：應用層</h2>
+            <h2 data-en="Layer 3: Application Layer" data-zh="第3层：應用層">Layer 3: Application Layer</h2>
             <p>
-                應用層包含所有核心的業務邏輯和AI集成。
+                The application layer contains all core business logic and AI integration.
             </p>
             
             <h3>🤖 Orchestration Engine</h3>
             <p>
-                多代理編排引擎是AiScripto的核心，負責協調各個AI代理完成複雜任務。
+                The multi-agent orchestration engine is the core of AiScripto, responsible for coordinating various AI agents to complete complex tasks.
             </p>
             
             <div class="diagram-container">
                 <div class="mermaid">
 graph LR
-    A["主代理<br/>Main Agent"]
-    B["📝 解析器<br/>Parser Agent"]
-    C["🔍 探索器<br/>Explorer Agent"]
-    D["⚙️ 生成器<br/>Generator Agent"]
-    E["▶️ 執行器<br/>Executor Agent"]
-    F["🔧 修復器<br/>Healing Agent"]
-    G["📊 分析器<br/>Analyzer Agent"]
+    A["Main Agent<br/>Coordinator"]
+    B["📝 Parser<br/>Parser Agent"]
+    C["🔍 Explorer<br/>Explorer Agent"]
+    D["⚙️ Generator<br/>Generator Agent"]
+    E["▶️ Executor<br/>Executor Agent"]
+    F["🔧 Healer<br/>Healing Agent"]
+    G["📊 Analyzer<br/>Analyzer Agent"]
     
     A -.->|協調| B
     A -.->|協調| C

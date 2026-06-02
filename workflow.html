@@ -480,7 +480,7 @@ await orderPage.fillCustomer(testData.customer);
                 </div>
             </div>
             
-            <h3 style="margin-top: 30px;">測試數據文件結構</h3>
+            <h3 style="margin-top: 30px;">Test Data File Structure</h3>
             <div style="background: #1a1a1a; color: #00ff00; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 11px;">
 <pre style="margin: 0;">// tests/data/order-creation.data.json
 {
@@ -512,71 +512,71 @@ await orderPage.fillCustomer(testData.customer);
             
             <div style="margin-top: 20px;">
                 <p style="color: var(--text-secondary);">
-                    <strong>結果：</strong> 1個測試 × 3個數據組合 = 3次完整的測試執行，
-                    覆蓋不同的業務場景
+                    <strong>Result:</strong> 1 test × 3 data combinations = 3 complete test executions,
+                    covering different business scenarios
                 </p>
             </div>
         </section>
         
         <!-- Workflow Commands -->
         <section>
-            <h2 data-en="📋 Workflow Command Reference" data-zh="📋 工作流程命令參考">📋 工作流程命令參考</h2>
+            <h2 data-en="📋 Workflow Command Reference" data-zh="📋 工作流程命令參考">📋 Workflow Command Reference</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>命令</th>
-                        <th>功能</th>
-                        <th>何時使用</th>
-                        <th>輸出</th>
+                        <th>Command</th>
+                        <th>Function</th>
+                        <th>When to Use</th>
+                        <th>Output</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><code>/import</code></td>
-                        <td>導入測試用例</td>
-                        <td>添加新的測試用例到系統</td>
+                        <td>Import test cases</td>
+                        <td>Add new test cases to system</td>
                         <td>imported-cases.json</td>
                     </tr>
                     <tr>
                         <td><code>/validate</code></td>
-                        <td>驗證測試格式</td>
-                        <td>檢查測試用例語法和完整性</td>
+                        <td>Validate test format</td>
+                        <td>Check test case syntax and completeness</td>
                         <td>validation-report.json</td>
                     </tr>
                     <tr>
                         <td><code>/explore</code></td>
-                        <td>探索UI並收集元素</td>
-                        <td>創建新測試或更新過時的定位器</td>
+                        <td>Explore UI and collect elements</td>
+                        <td>Create new tests or update stale locators</td>
                         <td>locators.json, screenshots/</td>
                     </tr>
                     <tr>
                         <td><code>/generate</code></td>
-                        <td>生成Playwright代碼</td>
-                        <td>從測試用例創建可執行測試</td>
+                        <td>Generate Playwright code</td>
+                        <td>Create executable tests from test cases</td>
                         <td>tests/TC-*.spec.ts, pages/</td>
                     </tr>
                     <tr>
                         <td><code>/execute</code></td>
-                        <td>運行測試</td>
-                        <td>驗證生成的測試是否通過</td>
+                        <td>Run tests</td>
+                        <td>Verify generated tests pass</td>
                         <td>test-results.json, traces/</td>
                     </tr>
                     <tr>
                         <td><code>/heal</code></td>
-                        <td>自動修復失敗測試</td>
-                        <td>修復測試失敗而不重新編寫</td>
+                        <td>Auto-repair failed tests</td>
+                        <td>Fix test failures without re-writing</td>
                         <td>healed-tests/, healing-report.json</td>
                     </tr>
                     <tr>
                         <td><code>/parameterize</code></td>
-                        <td>提取數據並參數化</td>
-                        <td>將硬編碼數據轉為數據驅動</td>
+                        <td>Extract and parameterize data</td>
+                        <td>Convert hard-coded data to data-driven</td>
                         <td>*.data.json, parameterized-tests/</td>
                     </tr>
                     <tr>
                         <td><code>/verify</code></td>
-                        <td>最終驗證</td>
-                        <td>使用所有數據組合重新執行</td>
+                        <td>Final verification</td>
+                        <td>Re-execute with all data combinations</td>
                         <td>final-verification-report.json</td>
                     </tr>
                 </tbody>
@@ -585,9 +585,9 @@ await orderPage.fillCustomer(testData.customer);
         
         <!-- Timeline Example -->
         <section>
-            <h2 data-en="⏱️ Typical Timeline" data-zh="⏱️ 典型時間線">⏱️ 典型時間線</h2>
+            <h2 data-en="⏱️ Typical Timeline" data-zh="⏱️ 典型時間線">⏱️ Typical Timeline</h2>
             <p>
-                以下是一個典型的AiScripto測試開發週期的時間預期：
+                Below is the typical time expectation for an AiScripto test development cycle:
             </p>
             
             <div style="margin-top: 30px;">
