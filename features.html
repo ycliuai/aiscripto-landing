@@ -186,17 +186,17 @@
 export class OrderPage {
   readonly page: Page;
   
-  // 訂單編號欄位
+  // Order number input field
   readonly orderNumberInput = this.page.getByRole(
     'textbox', { name: /Order Number/ }
   );
   
-  // 建立按鈕
+  // Create button
   readonly createButton = this.page.getByRole(
     'button', { name: /Create/ }
   );
   
-  // 訂單表格
+  // Order table
   readonly orderTable = this.page.getByRole(
     'table', { name: /Order List/ }
   );
