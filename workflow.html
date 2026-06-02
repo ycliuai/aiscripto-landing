@@ -43,20 +43,20 @@
         
         <!-- Main Workflow Diagram -->
         <section>
-            <h2 data-en="Complete Transformation Pipeline" data-zh="完整轉換管道">完整轉換管道</h2>
-            <p data-en="AiScripto transforms hand-written test cases into production-grade Playwright tests through multiple coordinated AI agents. The entire process is automated, traceable, and controllable." data-zh="AiScripto通過多個協調的AI代理將手宫的測試用例轉換為生產級的Playwright測試。整個過程自動化、可追蹤、可控制。">AiScripto通過多個協調的AI代理將手宫的測試用例轉換為生產級的Playwright測試。整個過程自動化、可追蹤、可控制。</p>
+            <h2 data-en="Complete Transformation Pipeline" data-zh="完整轉換管道">Complete Transformation Pipeline</h2>
+            <p data-en="AiScripto transforms hand-written test cases into production-grade Playwright tests through multiple coordinated AI agents. The entire process is automated, traceable, and controllable." data-zh="AiScripto通過多個協調的AI代理將手宫的測試用例轉換為生產級的Playwright測試。整個過程自動化、可追蹤、可控制。">AiScripto transforms hand-written test cases into production-grade Playwright tests through multiple coordinated AI agents. The entire process is automated, traceable, and controllable.</p>
             
             <div class="diagram-container">
                 <div class="mermaid">
 graph LR
-    A["📝 手寫測試用例<br/>Plain Text / Markdown"]
-    B["✅ 驗證<br/>/validate"]
-    C["🔍 探索<br/>/explore"]
-    D["⚙️ 生成<br/>/generate"]
-    E["▶️ 執行<br/>/execute"]
-    F["🔧 自我修復<br/>/heal"]
-    G["📦 輸出<br/>Playwright + POMs"]
-    H["📊 參數化<br/>/parameterize<br/>可選"]
+    A["📝 Hand-Written Test Cases<br/>Plain Text / Markdown"]
+    B["✅ Validate<br/>/validate"]
+    C["🔍 Explore<br/>/explore"]
+    D["⚙️ Generate<br/>/generate"]
+    E["▶️ Execute<br/>/execute"]
+    F["🔧 Self-Heal<br/>/heal"]
+    G["📦 Output<br/>Playwright + POMs"]
+    H["📊 Parameterize<br/>/parameterize<br/>Optional"]
     
     A --> B
     B --> C
@@ -78,54 +78,54 @@ graph LR
             </div>
             
             <div class="highlight-box">
-                <h4>💡 每個階段都是可選的</h4>
+                <h4>💡 Each Stage is Optional</h4>
                 <p>
-                    你可以跳過或重複任何階段。例如，如果測試通過驗證但失敗，
-                    可以直接進行修復而無需重新探索。
+                    You can skip or repeat any stage. For example, if a test passes validation but fails execution,
+                    you can proceed directly to healing without re-exploring.
                 </p>
             </div>
         </section>
         
         <!-- Phase 1: Import & Validation -->
         <section>
-            <h2 data-en="Phase 1: Import & Validation" data-zh="第1階段：導入與驗證">第1階段：導入與驗證</h2>
+            <h2 data-en="Phase 1: Import & Validation" data-zh="第1階段：導入與驗證">Phase 1: Import & Validation</h2>
             
             <div class="two-column">
                 <div class="two-column-text">
-                    <h3 data-en="📥 Test Case Import" data-zh="📥 測試用例導入">📥 測試用例導入</h3>
-                    <p data-en="AiScripto supports importing test cases from multiple sources:" data-zh="AiScripto支持從多個來源導入測試用例：">AiScripto支持從多個來源導入測試用例：</p>
+                    <h3 data-en="📥 Test Case Import" data-zh="📥 測試用例導入">📥 Test Case Import</h3>
+                    <p data-en="AiScripto supports importing test cases from multiple sources:" data-zh="AiScripto支持從多個來源導入測試用例：">AiScripto supports importing test cases from multiple sources:</p>
                     <ul class="tech-list" style="margin-top: 15px;">
                         <li>
-                            <strong>本地文件</strong>
-                            <div class="description">.txt, .md Markdown文檔</div>
+                            <strong>Local Files</strong>
+                            <div class="description">.txt, .md Markdown documents</div>
                         </li>
                         <li>
                             <strong>Azure DevOps</strong>
-                            <div class="description">直接從測試計劃讀取</div>
+                            <div class="description">Direct reading from test plans</div>
                         </li>
                         <li>
                             <strong>Jira / GitHub</strong>
-                            <div class="description">從Issue和Epic導入</div>
+                            <div class="description">Import from Issues and Epics</div>
                         </li>
                         <li>
                             <strong>Google Docs</strong>
-                            <div class="description">從協作文檔同步</div>
+                            <div class="description">Sync from collaborative documents</div>
                         </li>
                         <li>
                             <strong>REST API</strong>
-                            <div class="description">自定義資料源集成</div>
+                            <div class="description">Custom data source integration</div>
                         </li>
                     </ul>
                 </div>
                 <div class="two-column-visual">
-                    <h4 style="margin-bottom: 15px;">✅ 驗證檢查清單</h4>
+                    <h4 style="margin-bottom: 15px;">✅ Validation Checklist</h4>
                     <div style="text-align: left;">
-                        <p style="margin: 10px 0;"><strong>✓</strong> 語法驗證</p>
-                        <p style="margin: 10px 0;"><strong>✓</strong> 註釋檢查</p>
-                        <p style="margin: 10px 0;"><strong>✓</strong> 前置條件驗證</p>
-                        <p style="margin: 10px 0;"><strong>✓</strong> 格式規範化</p>
-                        <p style="margin: 10px 0;"><strong>✓</strong> 重複檢測</p>
-                        <p style="margin: 10px 0;"><strong>✓</strong> 相關性分析</p>
+                        <p style="margin: 10px 0;"><strong>✓</strong> Syntax validation</p>
+                        <p style="margin: 10px 0;"><strong>✓</strong> Comments check</p>
+                        <p style="margin: 10px 0;"><strong>✓</strong> Precondition validation</p>
+                        <p style="margin: 10px 0;"><strong>✓</strong> Format normalization</p>
+                        <p style="margin: 10px 0;"><strong>✓</strong> Duplication detection</p>
+                        <p style="margin: 10px 0;"><strong>✓</strong> Relevance analysis</p>
                     </div>
                 </div>
             </div>
@@ -167,41 +167,41 @@ Step 7: 點擊「提交」按鈕
         
         <!-- Phase 2: Exploration -->
         <section>
-            <h2 data-en="Phase 2: UI Exploration" data-zh="第2階段：UI探索">第2階段：UI探索</h2>
+            <h2 data-en="Phase 2: UI Exploration" data-zh="第2階段：UI探索">Phase 2: UI Exploration</h2>
             
-            <h3>🔭 實時瀏覽器探索</h3>
+            <h3>🔭 Real-time Browser Exploration</h3>
             <p>
-                驗證完成後，AiScripto會啟動一個真實的瀏覽器實例，
-                並按照測試用例的步驟進行實際操作，同時收集UI元素資訊。
+                After validation is complete, AiScripto launches a real browser instance
+                and follows the test case steps to perform actual operations while collecting UI element information.
             </p>
             
             <div class="feature-grid">
                 <div class="feature-card">
-                    <h4>🌐 實時瀏覽導航</h4>
+                    <h4>🌐 Real-time Browser Navigation</h4>
                     <p>
-                        AI按照測試步驟實際操作瀏覽器，
-                        與真實UI互動
+                        AI operates the browser according to test steps,
+                        interacting with real UI
                     </p>
                 </div>
                 <div class="feature-card">
-                    <h4>🎯 元素定位</h4>
+                    <h4>🎯 Element Localization</h4>
                     <p>
-                        捕獲每個互動元素的多個定位器選項，
-                        優先選擇可訪問的選擇器
+                        Capture multiple locator options for each interactive element,
+                        prioritizing accessible selectors
                     </p>
                 </div>
                 <div class="feature-card">
-                    <h4>📸 視覺分析</h4>
+                    <h4>📸 Visual Analysis</h4>
                     <p>
-                        使用AI視覺模型理解UI佈局、
-                        顏色、文本和圖標
+                        Use AI vision models to understand UI layout,
+                        colors, text and icons
                     </p>
                 </div>
                 <div class="feature-card">
-                    <h4>💾 知識積累</h4>
+                    <h4>💾 Knowledge Accumulation</h4>
                     <p>
-                        將已知的頁面和元素存儲在
-                        定位器快取中以加速未來的測試
+                        Store known pages and elements in
+                        locator cache to accelerate future tests
                     </p>
                 </div>
             </div>
@@ -209,15 +209,15 @@ Step 7: 點擊「提交」按鈕
             <div class="diagram-container">
                 <div class="mermaid">
 graph TB
-    A["🤖 AI代理<br/>開始探索"]
-    B["📖 讀取測試步驟<br/>第1步：導航到URL"]
-    C["🌐 開啟瀏覽器<br/>訪問應用"]
-    D["👁️ 視覺分析<br/>頁面內容"]
-    E["🔍 查找元素<br/>按鈕、字段等"]
-    F["📝 記錄定位器<br/>CSS、XPath、Role等"]
-    G["➡️ 執行下一步<br/>點擊、輸入、驗證"]
-    H["✅ 步驟完成"]
-    I["📦 生成定位器庫"]
+    A["🤖 AI Agent<br/>Start Exploration"]
+    B["📖 Read Test Steps<br/>Step 1: Navigate to URL"]
+    C["🌐 Launch Browser<br/>Access Application"]
+    D["👁️ Visual Analysis<br/>Page Content"]
+    E["🔍 Find Elements<br/>Buttons, Fields, etc"]
+    F["📝 Record Locators<br/>CSS, XPath, Role etc"]
+    G["➡️ Execute Next Step<br/>Click, Input, Verify"]
+    H["✅ Step Complete"]
+    I["📦 Generate Locator Library"]
     
     A --> B
     B --> C
@@ -226,8 +226,8 @@ graph TB
     E --> F
     F --> G
     G --> H
-    H -->|還有更多步驟| B
-    H -->|完成| I
+    H -->|More Steps| B
+    H -->|Complete| I
     
     style A fill:#ff9900,stroke:#333,stroke-width:2px,color:#fff
     style I fill:#4caf50,stroke:#333,stroke-width:2px,color:#fff
@@ -242,71 +242,71 @@ graph TB
         
         <!-- Phase 3: Code Generation -->
         <section>
-            <h2 data-en="Phase 3: Code Generation" data-zh="第3階段：代碼生成">第3階段：代碼生成</h2>
+            <h2 data-en="Phase 3: Code Generation" data-zh="第3階段：代碼生成">Phase 3: Code Generation</h2>
             
-            <h3>⚙️ 自動化代碼合成</h3>
+            <h3>⚙️ Automated Code Synthesis</h3>
             <p>
-                探索完成後，AiScripto使用收集的UI資訊生成
-                符合行業最佳實踐的Playwright TypeScript代碼。
+                After exploration is complete, AiScripto uses the collected UI information to generate
+                Playwright TypeScript code that follows industry best practices.
             </p>
             
             <div class="two-column">
                 <div class="two-column-visual">
-                    <h4 style="margin-bottom: 15px;">📦 生成輸出</h4>
+                    <h4 style="margin-bottom: 15px;">📦 Generated Output</h4>
                     <div style="text-align: left; font-size: 13px;">
                         <p style="margin: 8px 0;"><strong>📄 tests/TC-*.spec.ts</strong></p>
-                        <p style="margin: 8px 0; color: var(--text-secondary);">完整的Playwright測試規範</p>
+                        <p style="margin: 8px 0; color: var(--text-secondary);">Complete Playwright test specifications</p>
                         
                         <p style="margin: 15px 0 8px 0;"><strong>📚 src/pages/*.ts</strong></p>
-                        <p style="margin: 8px 0; color: var(--text-secondary);">頁面物件模型（POM）</p>
+                        <p style="margin: 8px 0; color: var(--text-secondary);">Page Object Models (POM)</p>
                         
                         <p style="margin: 15px 0 8px 0;"><strong>🔗 fixtures/*.ts</strong></p>
-                        <p style="margin: 8px 0; color: var(--text-secondary);">共享fixtures（登入、設置等）</p>
+                        <p style="margin: 8px 0; color: var(--text-secondary);">Shared fixtures (login, setup, etc)</p>
                         
                         <p style="margin: 15px 0 8px 0;"><strong>📊 *.data.json</strong></p>
-                        <p style="margin: 8px 0; color: var(--text-secondary);">參數化測試數據</p>
+                        <p style="margin: 8px 0; color: var(--text-secondary);">Parameterized test data</p>
                         
                         <p style="margin: 15px 0 8px 0;"><strong>📋 report.json</strong></p>
-                        <p style="margin: 8px 0; color: var(--text-secondary);">執行報告和分析</p>
+                        <p style="margin: 8px 0; color: var(--text-secondary);">Execution reports and analysis</p>
                     </div>
                 </div>
                 <div class="two-column-text">
-                    <h3>生成代碼的特點：</h3>
+                    <h3>Code Generation Features:</h3>
                     <ul class="tech-list">
                         <li>
-                            <strong>型別安全</strong>
-                            <div class="description">完整的TypeScript型別定義</div>
+                            <strong>Type Safe</strong>
+                            <div class="description">Complete TypeScript type definitions</div>
                         </li>
                         <li>
-                            <strong>可讀性高</strong>
-                            <div class="description">清晰的變數名和邏輯流程</div>
+                            <strong>High Readability</strong>
+                            <div class="description">Clear variable names and logic flow</div>
                         </li>
                         <li>
-                            <strong>可維護性</strong>
-                            <div class="description">遵循Playwright官方最佳實踐</div>
+                            <strong>Maintainability</strong>
+                            <div class="description">Follow official Playwright best practices</div>
                         </li>
                         <li>
-                            <strong>錯誤處理</strong>
-                            <div class="description">完善的異常捕獲和日誌</div>
+                            <strong>Error Handling</strong>
+                            <div class="description">Comprehensive exception handling and logging</div>
                         </li>
                         <li>
-                            <strong>性能優化</strong>
-                            <div class="description">智能等待和超時配置</div>
+                            <strong>Performance Optimization</strong>
+                            <div class="description">Smart wait and timeout configuration</div>
                         </li>
                         <li>
-                            <strong>可測試性</strong>
-                            <div class="description">可以直接運行和修改</div>
+                            <strong>Testability</strong>
+                            <div class="description">Can be directly run and modified</div>
                         </li>
                     </ul>
                 </div>
             </div>
             
-            <h3 style="margin-top: 30px;">生成的測試代碼示例</h3>
+            <h3 style="margin-top: 30px;">Generated Test Code Example</h3>
             <div style="background: #1a1a1a; color: #00ff00; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 11px;">
 <pre style="margin: 0;">import { test, expect } from '@playwright/test';
 import { OrderPage } from '../pages/OrderPage';
 
-test.describe('訂單管理測試組', () => {
+test.describe('Order Management Test Suite', () => {
   let page;
   let orderPage: OrderPage;
   
@@ -314,30 +314,30 @@ test.describe('訂單管理測試組', () => {
     page = p;
     orderPage = new OrderPage(page);
     
-    // 登入應用
+    // Login to application
     await page.goto('https://app.example.com/login');
-    await page.getByRole('textbox', { name: /用戶名/ }).fill('testuser');
-    await page.getByRole('textbox', { name: /密碼/ }).fill('password');
-    await page.getByRole('button', { name: /登入/ }).click();
+    await page.getByRole('textbox', { name: /Username/ }).fill('testuser');
+    await page.getByRole('textbox', { name: /Password/ }).fill('password');
+    await page.getByRole('button', { name: /Login/ }).click();
   });
   
-  test('TC-001: 建立新訂單', async () => {
-    // Step 1: 導航至訂單管理頁面
+  test('TC-001: Create New Order', async () => {
+    // Step 1: Navigate to Order Management page
     await page.goto('https://app.example.com/orders');
     await expect(page.getByRole('table')).toBeVisible();
     
-    // Step 2: 點擊建立新訂單按鈕
+    // Step 2: Click Create New Order button
     await orderPage.clickCreateButton();
     await expect(page.getByRole('dialog')).toBeVisible();
     
-    // Step 3-7: 填充表單並提交
+    // Step 3-7: Fill form and submit
     await orderPage.fillOrderNumber('ORD-2024-001');
     await orderPage.fillCustomerName('ABC Corporation');
-    // ... 更多步驟
+    // ... more steps
     
-    // 驗證結果
+    // Verify results
     await expect(
-      page.getByText(/訂單已成功建立/)
+      page.getByText(/Order created successfully/)
     ).toBeVisible();
   });
 });</pre>
@@ -346,36 +346,36 @@ test.describe('訂單管理測試組', () => {
         
         <!-- Phase 4: Execution & Healing -->
         <section>
-            <h2 data-en="Phase 4: Execution & Self-Healing" data-zh="第4階段：執行與自我修復">第4階段：執行與自我修復</h2>
+            <h2 data-en="Phase 4: Execution & Self-Healing" data-zh="第4階段：執行與自我修復">Phase 4: Execution & Self-Healing</h2>
             
-            <h3>▶️ 測試執行</h3>
+            <h3>▶️ Test Execution</h3>
             <p>
-                生成的測試使用Playwright測試運行器執行。
-                如果全部通過，恭喜！如果有失敗，AiScripto會自動進行修復。
+                Generated tests are executed using the Playwright test runner.
+                If all pass, congratulations! If any fail, AiScripto automatically performs repair.
             </p>
             
             <div class="diagram-container">
                 <div class="mermaid">
 graph LR
-    A["▶️ 執行測試"]
-    B{測試結果}
-    C["✅ 全部通過"]
-    D["❌ 測試失敗"]
-    E["📸 捕獲失敗狀態<br/>螢幕截圖 + Trace"]
-    F["🔍 AI分析<br/>識別變化原因"]
-    G["🔧 自動修復<br/>更新定位器/邏輯"]
-    H["▶️ 重新執行<br/>驗證修復"]
-    I["✅ 修復成功"]
-    J["⚠️ 需要人工介入"]
+    A["▶️ Execute Tests"]
+    B{Test Results}
+    C["✅ All Passed"]
+    D["❌ Tests Failed"]
+    E["📸 Capture Failure State<br/>Screenshots + Trace"]
+    F["🔍 AI Analysis<br/>Identify Changes"]
+    G["🔧 Auto Repair<br/>Update Locators/Logic"]
+    H["▶️ Re-Execute<br/>Verify Repair"]
+    I["✅ Repair Success"]
+    J["⚠️ Manual Intervention Needed"]
     
     A --> B
-    B -->|通過| C
-    B -->|失敗| E
+    B -->|Pass| C
+    B -->|Fail| E
     E --> F
     F --> G
     G --> H
-    H -->|成功| I
-    H -->|仍失敗| J
+    H -->|Success| I
+    H -->|Still Fails| J
     
     style A fill:#4caf50,stroke:#333,stroke-width:2px,color:#fff
     style C fill:#4caf50,stroke:#333,stroke-width:2px,color:#fff
@@ -385,60 +385,60 @@ graph LR
                 </div>
             </div>
             
-            <h3 style="margin-top: 30px;">🔧 自我修復的智能</h3>
+            <h3 style="margin-top: 30px;">🔧 Self-Healing Intelligence</h3>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <h4>📹 執行追蹤分析</h4>
+                    <h4>📹 Execution Trace Analysis</h4>
                     <p>
-                        分析Playwright的詳細執行日誌和截圖，
-                        精確定位失敗點
+                        Analyze detailed Playwright execution logs and screenshots,
+                        pinpoint failure precisely
                     </p>
                 </div>
                 <div class="feature-card">
-                    <h4>🤖 視覺推理</h4>
+                    <h4>🤖 Visual Reasoning</h4>
                     <p>
-                        使用AI視覺模型對比預期和實際UI，
-                        識別視覺變化
+                        Use AI vision models to compare expected and actual UI,
+                        identify visual changes
                     </p>
                 </div>
                 <div class="feature-card">
-                    <h4>🔄 定位器搜索</h4>
+                    <h4>🔄 Locator Search</h4>
                     <p>
-                        嘗試多個替代定位器，找到最穩健的選擇，
-                        提高修復成功率
+                        Try multiple alternative locators, find most robust choice,
+                        improve repair success rate
                     </p>
                 </div>
                 <div class="feature-card">
-                    <h4>📚 知識重用</h4>
+                    <h4>📚 Knowledge Reuse</h4>
                     <p>
-                        從定位器快取和先前的修復記錄中學習，
-                        加速修復過程
+                        Learn from locator cache and previous repair records,
+                        accelerate repair process
                     </p>
                 </div>
             </div>
             
             <div class="success-box">
-                <h4>✅ 修復成功率</h4>
+                <h4>✅ Repair Success Rate</h4>
                 <p>
-                    85-95% 的測試失敗可以通過自動修復解決，
-                    無需人工干預
+                    85-95% of test failures can be resolved through automatic repair,
+                    with no manual intervention needed
                 </p>
             </div>
         </section>
         
         <!-- Phase 5: Parameterization -->
         <section>
-            <h2 data-en="Phase 5: Parameterization (Optional)" data-zh="第5階段：參數化（可選）">第5階段：參數化（可選）</h2>
+            <h2 data-en="Phase 5: Parameterization (Optional)" data-zh="第5階段：參數化（可選）">Phase 5: Parameterization (Optional)</h2>
             
-            <h3>📊 數據驅動測試轉換</h3>
+            <h3>📊 Data-Driven Test Conversion</h3>
             <p>
-                完成基本測試後，可以選擇將硬編碼的測試數據提取到JSON文件，
-                使同一測試能用多組數據執行。
+                After completing basic tests, you can optionally extract hard-coded test data to JSON files,
+                allowing the same test to execute with multiple data sets.
             </p>
             
             <div class="two-column">
                 <div class="two-column-text">
-                    <h4>提取過程：</h4>
+                    <h4>Extraction Process:</h4>
                     <ul class="tech-list" style="margin-top: 15px;">
                         <li>
                             <strong>1. 識別數據</strong>
