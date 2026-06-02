@@ -282,9 +282,9 @@ aiscripto.app
 ## 📞 聯絡和支持
 
 ### 郵件地址
-- **一般查詢：** hello@aiscripto.app
-- **銷售：** sales@aiscripto.app
-- **技術支持：** support@aiscripto.app
+- **一般查詢：** contact@aiscripto.app
+- **銷售：** contact@aiscripto.app
+- **技術支持：** contact@aiscripto.app
 
 ### 社交媒體
 - GitHub: [aiscripto](https://github.com/aiscripto)
