@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AiScripto Features - Advanced capabilities for autonomous test automation">
+    <meta name="keywords" content="test automation, AI features, self-healing, page object models, data-driven testing">
+    
+    <title>Features - AiScripto</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">Ai<span>Scripto</span></a>
+            <ul>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="features.html" class="active">功能</a></li>
+                <li><a href="workflow.html">工作流程</a></li>
+                <li><a href="architecture.html">架構</a></li>
+                <li><a href="use-cases.html">使用案例</a></li>
+                <li><a href="getting-started.html">快速開始</a></li>
+                <li><a href="contact.html">聯絡</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>🚀 AiScripto 核心功能</h1>
+            <p class="subtitle">擁有業界領先的AI自動化測試能力</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        
+        <!-- Feature 1: Code-Free Test Creation -->
+        <section>
+            <h2>無需編碼的測試建立</h2>
+            <div class="two-column">
+                <div class="two-column-text">
+                    <h3>✍️ 純文字測試用例</h3>
+                    <p>
+                        QA工程師無需學習Playwright或TypeScript就能編寫測試。只需描述手動測試步驟，
+                        AiScripto的AI引擎會自動轉換為生產級的Playwright代碼。
+                    </p>
+                    <p style="margin-top: 20px; color: var(--text-primary); font-weight: 500;">
+                        <strong>範例：</strong><br>
+                        <code style="background: #f5f5f5; padding: 10px; display: block; margin-top: 10px;">
+                            Step 1: 導航至訂單管理頁面<br>
+                            Step 2: 點擊「建立訂單」按鈕<br>
+                            Step 3: 在訂單編號欄位輸入「ORD-001」<br>
+                            Step 4: 驗證訂單出現在表格中
+                        </code>
+                    </p>
+                    <div style="margin-top: 20px;">
+                        <span class="tag">自然語言處理</span>
+                        <span class="tag">AI驅動</span>
+                        <span class="tag">無需編碼</span>
+                    </div>
+                </div>
+                <div class="two-column-visual">
+                    <div style="text-align: center;">
+                        <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
+                        <h4>測試用例</h4>
+                        <p style="font-size: 13px; color: var(--text-secondary);">↓</p>
+                        <div style="font-size: 48px; margin-bottom: 15px;">🤖</div>
+                        <h4>AI轉換</h4>
+                        <p style="font-size: 13px; color: var(--text-secondary);">↓</p>
+                        <div style="font-size: 48px;">⚙️</div>
+                        <h4>可執行代碼</h4>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>💡 節省時間</h4>
+                <p>傳統Playwright開發需要2-3小時；AiScripto只需15-20分鐘</p>
+            </div>
+        </section>
+        
+        <!-- Feature 2: Self-Healing Tests -->
+        <section>
+            <h2>自我修復測試</h2>
+            <div class="two-column">
+                <div class="two-column-visual">
+                    <svg width="100%" height="300" viewBox="0 0 300 300">
+                        <!-- Test fails -->
+                        <circle cx="50" cy="150" r="30" fill="#ff6b6b" stroke="#333" stroke-width="2"/>
+                        <text x="50" y="155" text-anchor="middle" font-size="14" font-weight="bold" fill="white">失敗</text>
+                        
+                        <!-- Arrow -->
+                        <line x1="90" y1="150" x2="130" y2="150" stroke="#ff9900" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- AI Analysis -->
+                        <circle cx="170" cy="150" r="30" fill="#ffa500" stroke="#333" stroke-width="2"/>
+                        <text x="170" y="155" text-anchor="middle" font-size="12" font-weight="bold" fill="white">分析</text>
+                        
+                        <!-- Arrow -->
+                        <line x1="210" y1="150" x2="250" y2="150" stroke="#ff9900" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Fixed -->
+                        <circle cx="270" cy="150" r="30" fill="#4caf50" stroke="#333" stroke-width="2"/>
+                        <text x="270" y="155" text-anchor="middle" font-size="12" font-weight="bold" fill="white">✓ 修復</text>
+                        
+                        <!-- Arrow markers -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+                                <polygon points="0 0, 10 5, 0 10" fill="#ff9900"/>
+                            </marker>
+                        </defs>
+                        
+                        <!-- Steps below -->
+                        <text x="50" y="200" text-anchor="middle" font-size="12" fill="#333">1. UI變更</text>
+                        <text x="170" y="200" text-anchor="middle" font-size="12" fill="#333">2. 偵測失敗</text>
+                        <text x="270" y="200" text-anchor="middle" font-size="12" fill="#333">3. 自動修復</text>
+                    </svg>
+                </div>
+                <div class="two-column-text">
+                    <h3>🔧 自動識別和修復</h3>
+                    <p>
+                        當UI發生變化導致測試失敗時，AiScripto會自動：
+                    </p>
+                    <ul class="tech-list" style="margin-top: 20px;">
+                        <li>
+                            <strong>1. 捕獲失敗狀態</strong>
+                            <div class="description">收集螢幕截圖和Playwright trace日誌</div>
+                        </li>
+                        <li>
+                            <strong>2. 分析變化</strong>
+                            <div class="description">AI理解新的UI結構和元素定位</div>
+                        </li>
+                        <li>
+                            <strong>3. 更新定位器</strong>
+                            <div class="description">找到替代的頁面元素選擇器</div>
+                        </li>
+                        <li>
+                            <strong>4. 驗證修復</strong>
+                            <div class="description">重新執行測試以確保修復成功</div>
+                        </li>
+                    </ul>
+                    <div style="margin-top: 20px;">
+                        <span class="tag">自動修復</span>
+                        <span class="tag">AI視覺</span>
+                        <span class="tag">零停機</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="success-box">
+                <h4>✅ 測試穩定性提升</h4>
+                <p>減少浪費在維護脆弱選擇器上的時間，測試失敗率下降90%</p>
+            </div>
+        </section>
+        
+        <!-- Feature 3: Page Object Models -->
+        <section>
+            <h2>自動化頁面物件模型生成</h2>
+            
+            <h3>📚 業界最佳實踐</h3>
+            <p>
+                AiScripto自動生成遵循Playwright官方最佳實踐的頁面物件模型（POM）。
+                無需手動編寫和維護元素選擇器。
+            </p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🎯 可訪問的定位器</h4>
+                    <p>優先使用ARIA角色和標籤，而非脆弱的CSS選擇器</p>
+                </div>
+                <div class="feature-card">
+                    <h4>♻️ 可重用組件</h4>
+                    <p>生成的POM可在多個測試中重複使用</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔍 定位器快取</h4>
+                    <p>建立知識庫，加速後續頁面的測試生成</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📝 完整文檔</h4>
+                    <p>自動生成的代碼包含注釋和型別定義</p>
+                </div>
+            </div>
+            
+            <h3>範例：自動生成的頁面物件</h3>
+            <div style="background: #1a1a1a; color: #00ff00; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 12px;">
+<pre style="margin: 0;">// 自動生成的頁面物件模型
+export class OrderPage {
+  readonly page: Page;
+  
+  // 訂單編號欄位
+  readonly orderNumberInput = this.page.getByRole(
+    'textbox', { name: /訂單編號/ }
+  );
+  
+  // 建立按鈕
+  readonly createButton = this.page.getByRole(
+    'button', { name: /建立/ }
+  );
+  
+  // 訂單表格
+  readonly orderTable = this.page.getByRole(
+    'table', { name: /訂單清單/ }
+  );
+  
+  async fillOrderNumber(number: string) {
+    await this.orderNumberInput.fill(number);
+  }
+  
+  async clickCreate() {
+    await this.createButton.click();
+  }
+}</pre>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <span class="tag">TypeScript型別</span>
+                <span class="tag">業界最佳實踐</span>
+                <span class="tag">自動文檔</span>
+            </div>
+        </section>
+        
+        <!-- Feature 4: Data-Driven Testing -->
+        <section>
+            <h2>數據驅動測試</h2>
+            <div class="two-column">
+                <div class="two-column-text">
+                    <h3>📊 外部化測試數據</h3>
+                    <p>
+                        AiScripto可以自動識別硬編碼的測試數據，並將其提取到JSON文件中。
+                        這使得同一測試可以用不同的數據組合執行。
+                    </p>
+                    <h4 style="margin-top: 25px;">功能優勢：</h4>
+                    <ul class="tech-list">
+                        <li>
+                            <strong>多數據組合</strong>
+                            <div class="description">單一測試用例執行多組數據</div>
+                        </li>
+                        <li>
+                            <strong>易於管理</strong>
+                            <div class="description">集中管理所有測試數據</div>
+                        </li>
+                        <li>
+                            <strong>批量執行</strong>
+                            <div class="description">並行執行相同的測試流程</div>
+                        </li>
+                        <li>
+                            <strong>易於更新</strong>
+                            <div class="description">無需修改代碼即可更新數據</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="two-column-visual">
+                    <div style="text-align: left;">
+                        <p style="font-weight: 600; margin-bottom: 10px;">test-data.json</p>
+                        <div style="background: #1a1a1a; color: #00ff00; padding: 15px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 11px;">
+<pre style="margin: 0;">[
+  {
+    "orderId": "ORD-001",
+    "customer": "ABC Corp",
+    "amount": 5000
+  },
+  {
+    "orderId": "ORD-002",
+    "customer": "XYZ Ltd",
+    "amount": 8500
+  },
+  {
+    "orderId": "ORD-003",
+    "customer": "QRS Inc",
+    "amount": 12000
+  }
+]</pre>
+                        </div>
+                        <p style="font-size: 12px; color: var(--text-secondary); margin-top: 10px;">
+                            3個數據組合 = 3次完整測試執行
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Feature 5: Multi-Cloud & Multi-Model -->
+        <section>
+            <h2>🌍 多雲與多模型支持</h2>
+            <p>
+                AiScripto設計為供應商中立，支持多個AI模型供應商和雲平台的組合。
+                選擇最適合你企業需求的配置。
+            </p>
+            
+            <h3>支持的AI模型供應商</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div style="font-size: 32px; margin-bottom: 10px;">🟠</div>
+                    <h4>AWS Bedrock</h4>
+                    <p style="font-size: 13px; color: var(--text-secondary); margin-top: 10px;">
+                        支持 Claude、Llama、Mistral 等模型
+                    </p>
+                </div>
+                <div class="stat-card">
+                    <div style="font-size: 32px; margin-bottom: 10px;">🔵</div>
+                    <h4>Azure AI Services</h4>
+                    <p style="font-size: 13px; color: var(--text-secondary); margin-top: 10px;">
+                        支持 GPT-4、GPT-4 Vision 等
+                    </p>
+                </div>
+                <div class="stat-card">
+                    <div style="font-size: 32px; margin-bottom: 10px;">🟡</div>
+                    <h4>Google Vertex AI</h4>
+                    <p style="font-size: 13px; color: var(--text-secondary); margin-top: 10px;">
+                        支持 Gemini、PaLM 等模型
+                    </p>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 30px;">支持的雲部署</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>☁️ AWS</h4>
+                    <p>Lambda、EC2、ECS容器部署</p>
+                </div>
+                <div class="feature-card">
+                    <h4>☁️ Azure</h4>
+                    <p>App Service、Container Instances部署</p>
+                </div>
+                <div class="feature-card">
+                    <h4>☁️ Google Cloud</h4>
+                    <p>Cloud Run、GKE容器化部署</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🏢 本地部署</h4>
+                    <p>Docker、Kubernetes自管理</p>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>💼 供應商獨立</h4>
+                <p>
+                    不被單一供應商鎖定。輕鬆在不同的AI模型和雲平台之間切換，
+                    以獲得最佳的成本效益和性能。
+                </p>
+            </div>
+        </section>
+        
+        <!-- Feature 6: Advanced Logging & Insights -->
+        <section>
+            <h2>🔍 高級日誌與洞察</h2>
+            <p>
+                每次測試執行都會生成詳細的日誌和執行追蹤，用於分析和改進。
+            </p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📸 螢幕截圖追蹤</h4>
+                    <p>每個測試步驟的完整視覺記錄</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔗 元素互動日誌</h4>
+                    <p>記錄所有DOM互動和選擇器查詢</p>
+                </div>
+                <div class="feature-card">
+                    <h4>⏱️ 性能指標</h4>
+                    <p>載入時間、互動延遲等關鍵指標</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📊 測試報告</h4>
+                    <p>詳細的通過/失敗分析和趨勢報告</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Feature 7: Integration & Extensibility -->
+        <section>
+            <h2>🔌 集成與擴展性</h2>
+            <p>
+                AiScripto與您現有的開發工作流程無縫集成。
+            </p>
+            
+            <h3>開箱即用的集成</h3>
+            <div class="badge-group">
+                <span class="service-badge">GitHub</span>
+                <span class="service-badge">GitHub Actions</span>
+                <span class="service-badge azure">Azure DevOps</span>
+                <span class="service-badge">GitLab CI/CD</span>
+                <span class="service-badge">Jenkins</span>
+                <span class="service-badge gcp">Jira</span>
+                <span class="service-badge">Slack</span>
+                <span class="service-badge">Microsoft Teams</span>
+            </div>
+            
+            <h3 style="margin-top: 25px;">Model Context Protocol (MCP)</h3>
+            <p>
+                通過MCP標準接口支持從多個來源提取測試用例：
+            </p>
+            <ul class="tech-list">
+                <li>
+                    <strong>Excel / CSV</strong>
+                    <div class="description">直接從試算表導入測試用例</div>
+                </li>
+                <li>
+                    <strong>Google Docs</strong>
+                    <div class="description">協作編輯和實時同步</div>
+                </li>
+                <li>
+                    <strong>REST API</strong>
+                    <div class="description">自定義集成和資料源</div>
+                </li>
+                <li>
+                    <strong>Markdown文件</strong>
+                    <div class="description">Git版本控制和代碼審查</div>
+                </li>
+            </ul>
+        </section>
+        
+        <!-- Performance Comparison -->
+        <section>
+            <h2>⚡ 性能對比</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>指標</th>
+                        <th>手動Playwright開發</th>
+                        <th>AiScripto</th>
+                        <th>改進</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>單個測試開發時間</strong></td>
+                        <td>2-3小時</td>
+                        <td>15-20分鐘</td>
+                        <td><span style="color: #4caf50; font-weight: 600;">8-10倍更快</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>頁面物件建立時間</strong></td>
+                        <td>1-2小時</td>
+                        <td>5-10分鐘</td>
+                        <td><span style="color: #4caf50; font-weight: 600;">10-12倍更快</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>測試失敗恢復時間</strong></td>
+                        <td>30-60分鐘</td>
+                        <td>自動修復</td>
+                        <td><span style="color: #4caf50; font-weight: 600;">100%自動化</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>需要的工程師技能</strong></td>
+                        <td>高級TypeScript/Playwright</td>
+                        <td>基礎QA技能</td>
+                        <td><span style="color: #4caf50; font-weight: 600;">無需編碼</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>測試維護成本年度</strong></td>
+                        <td>$150K-250K</td>
+                        <td>$20K-40K</td>
+                        <td><span style="color: #4caf50; font-weight: 600;">節省75-85%</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <!-- Call to Action -->
+        <section style="text-align: center; background: linear-gradient(135deg, #f0f7ff 0%, #fff8e8 100%);">
+            <h2 style="border-bottom: none; padding-bottom: 0;">準備好體驗AiScripto嗎？</h2>
+            <p style="font-size: 16px; color: var(--text-secondary); margin: 20px 0;">
+                開始您的自動化測試轉型之旅
+            </p>
+            <div style="margin-top: 30px;">
+                <a href="getting-started.html" class="btn btn-primary" style="margin-right: 15px;">開始免費試用</a>
+                <a href="contact.html" class="btn btn-outline">聯絡銷售團隊</a>
+            </div>
+        </section>
+        
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>產品</h3>
+                    <ul>
+                        <li><a href="features.html">功能</a></li>
+                        <li><a href="architecture.html">架構</a></li>
+                        <li><a href="use-cases.html">使用案例</a></li>
+                        <li><a href="pricing.html">定價</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>資源</h3>
+                    <ul>
+                        <li><a href="docs/getting-started-guide.md">文檔</a></li>
+                        <li><a href="docs/test-case-authoring-guide.md">編寫指南</a></li>
+                        <li><a href="docs/architecture_spec/">架構規範</a></li>
+                        <li><a href="#">API參考</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>公司</h3>
+                    <ul>
+                        <li><a href="contact.html">關於我們</a></li>
+                        <li><a href="contact.html">聯絡我們</a></li>
+                        <li><a href="#">隱私政策</a></li>
+                        <li><a href="#">條款服務</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>社交媒體</h3>
+                    <ul>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Discord</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024-2026 AiScripto Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

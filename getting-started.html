@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AiScripto Getting Started - Quick start guide and installation">
+    <meta name="keywords" content="getting started, installation, tutorial, quick start">
+    
+    <title>快速開始 - AiScripto</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">Ai<span>Scripto</span></a>
+            <ul>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="features.html">功能</a></li>
+                <li><a href="workflow.html">工作流程</a></li>
+                <li><a href="architecture.html">架構</a></li>
+                <li><a href="use-cases.html">使用案例</a></li>
+                <li><a href="getting-started.html" class="active">快速開始</a></li>
+                <li><a href="contact.html">聯絡</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>🚀 快速開始</h1>
+            <p class="subtitle">5分鐘內啟動你的第一個自動化測試</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        
+        <!-- Prerequisites -->
+        <section>
+            <h2>📋 前置要求</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>💻 系統要求</h4>
+                    <ul class="tech-list">
+                        <li>
+                            <strong>Node.js 22+</strong>
+                            <div class="description">JavaScript運行時</div>
+                        </li>
+                        <li>
+                            <strong>Python 3.11+</strong>
+                            <div class="description">TUI應用（可選）</div>
+                        </li>
+                        <li>
+                            <strong>Docker</strong>
+                            <div class="description">容器化部署</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🔑 API密鑰</h4>
+                    <ul class="tech-list">
+                        <li>
+                            <strong>Claude API密鑰</strong>
+                            <div class="description">從 <code>https://console.anthropic.com</code></div>
+                        </li>
+                        <li>
+                            <strong>應用URL</strong>
+                            <div class="description">要測試的應用地址</div>
+                        </li>
+                        <li>
+                            <strong>認證憑證</strong>
+                            <div class="description">登入用戶名和密碼</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Step 1: Installation -->
+        <section>
+            <h2>第 1 步：安裝 AiScripto</h2>
+            
+            <h3>🐳 使用 Docker（推薦）</h3>
+            <p>最快的方式開始使用AiScripto：</p>
+            
+            <div style="background: #1a1a1a; color: #00ff00; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 12px; margin: 20px 0;">
+<pre style="margin: 0;"># 拉取最新的Docker鏡像
+docker pull aiscripto/aiscripto:latest
+
+# 運行容器
+docker run -it --rm \
+  -e CLAUDE_API_KEY=your_api_key_here \
+  -v $(pwd)/tests:/app/tests \
+  -v $(pwd)/pages:/app/pages \
+  aiscripto/aiscripto:latest
+
+# 驗證安裝
+docker run aiscripto/aiscripto:latest --version
+# 輸出：AiScripto v2.0.0</pre>
+            </div>
+            
+            <h3 style="margin-top: 30px;">📦 使用 npm</h3>
+            <p>如果你更喜歡直接安裝：</p>
+            
+            <div style="background: #1a1a1a; color: #00ff00; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 12px; margin: 20px 0;">
+<pre style="margin: 0;"># 使用npm安裝
+npm install -g aiscripto
+
+# 或使用yarn
+yarn global add aiscripto
+
+# 驗證安裝
+aiscripto --version</pre>
+            </div>
+        </section>
+        
+        <!-- Step 2: Configuration -->
+        <section>
+            <h2>第 2 步：配置環境</h2>
+            
+            <h3>📝 創建 .env 文件</h3>
+            <p>在你的項目目錄創建 <code>.env</code> 文件：</p>
+            
+            <div style="background: #1a1a1a; color: #00ff00; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 12px; margin: 20px 0;">
+<pre style="margin: 0;"># Claude API配置
+CLAUDE_API_KEY=sk-ant-xxxxxxxxxxxxx
+CLAUDE_MODEL=claude-3-5-sonnet-20241022
+
+# 應用配置
+APP_URL=https://app.example.com
+APP_LOGIN_URL=https://app.example.com/login
+APP_USERNAME=testuser@example.com
+APP_PASSWORD=your_secure_password
+
+# Playwright配置
+PLAYWRIGHT_HEADLESS=true
+PLAYWRIGHT_TIMEOUT=30000
+
+# 日誌配置
+LOG_LEVEL=info
+DEBUG=false</pre>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>💡 安全提示</h4>
+                <p>
+                    <strong>不要</strong>將 <code>.env</code> 文件提交到Git版本控制。
+                    添加它到 <code>.gitignore</code> 並在團隊中安全共享配置。
+                </p>
+            </div>
+        </section>
+        
+        <!-- Step 3: Create First Test Case -->
+        <section>
+            <h2>第 3 步：編寫第一個測試用例</h2>
+            
+            <h3>📝 創建測試用例文件</h3>
+            <p>創建 <code>tests/TC-001-login.txt</code>：</p>
+            
+            <div style="background: #1a1a1a; color: #00ff00; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 12px; margin: 20px 0;">
+<pre style="margin: 0;">@TC_ID: TC-001
+@Title: 用戶登入成功流程
+@Author: QA Team
+@Tags: authentication, smoke
+
+**前置條件：**
+- 用戶未登入系統
+- 應用可訪問
+
+**步驟：**
+
+Step 1: 導航至登入頁面
+  Expected: 顯示用戶名和密碼欄位
+
+Step 2: 在用戶名欄位輸入有效的電子郵件地址
+  Input: testuser@example.com
+  Expected: 電子郵件在欄位中顯示
+
+Step 3: 在密碼欄位輸入密碼
+  Input: SecurePassword123
+  Expected: 密碼以點狀符號顯示
+
+Step 4: 點擊「登入」按鈕
+  Expected: 載入動畫出現
+
+Step 5: 等待頁面加載完成
+  Expected: 重定向到儀表板主頁
+           顯示歡迎訊息「Welcome, Test User」
+
+Step 6: 驗證用戶名在導航欄中顯示
+  Expected: 右上角顯示「Test User」</pre>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <span class="tag">自然語言</span>
+                <span class="tag">明確的期望結果</span>
+                <span class="tag">可重現的步驟</span>
+            </div>
+        </section>
+        
+        <!-- Step 4: Generate Test -->
+        <section>
+            <h2>第 4 步：生成自動化測試</h2>
+            
+            <h3>🚀 使用CLI命令</h3>
+            <p>運行以下命令生成測試：</p>
+            
+            <div style="background: #1a1a1a; color: #00ff00; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 12px; margin: 20px 0;">
+<pre style="margin: 0;"># 完整的轉換管道
+aiscripto convert tests/TC-001-login.txt
+
+# 或運行單個階段
+aiscripto validate tests/TC-001-login.txt
+aiscripto explore tests/TC-001-login.txt
+aiscripto generate tests/TC-001-login.txt
+aiscripto execute tests/TC-001-login.spec.ts</pre>
+            </div>
+            
+            <h3 style="margin-top: 30px;">⏱️ 預期時間：1-3 分鐘</h3>
+            <p style="color: var(--text-secondary);">
+                AiScripto將：<br>
+                1️⃣ 驗證你的測試用例格式<br>
+                2️⃣ 啟動瀏覽器並探索應用<br>
+                3️⃣ 生成Playwright TypeScript代碼<br>
+                4️⃣ 執行測試並驗證成功
+            </p>
+        </section>
+        
+        <!-- Step 5: Review Generated Code -->
+        <section>
+            <h2>第 5 步：查看生成的代碼</h2>
+            
+            <h3>📂 生成的文件結構</h3>
+            <div style="background: var(--bg-lighter); padding: 20px; border-radius: 8px; margin: 20px 0; font-family: 'Courier New', monospace; font-size: 12px;">
+<pre style="margin: 0;">project/
+├── tests/
+│   └── TC-001/
+│       ├── login.spec.ts           # 生成的測試規範
+│       └── login.data.json          # 測試數據（如有）
+├── src/
+│   └── pages/
+│       └── LoginPage.ts             # 頁面物件模型
+├── fixtures/
+│   └── auth.ts                      # 認證fixtures
+└── reports/
+    └── TC-001-results.json          # 執行結果</pre>
+            </div>
+            
+            <h3>查看生成的測試</h3>
+            <div style="background: #1a1a1a; color: #00ff00; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 11px; margin: 20px 0;">
+<pre style="margin: 0;">cat tests/TC-001/login.spec.ts</pre>
+            </div>
+            
+            <p style="margin-top: 15px; color: var(--text-secondary);">
+                你會看到完全自動生成的、型別安全的Playwright測試代碼，
+                遵循所有最佳實踐。
+            </p>
+        </section>
+        
+        <!-- Step 6: Run Tests -->
+        <section>
+            <h2>第 6 步：執行測試</h2>
+            
+            <h3>▶️ 運行生成的測試</h3>
+            <div style="background: #1a1a1a; color: #00ff00; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 12px; margin: 20px 0;">
+<pre style="margin: 0;"># 運行單個測試
+npx playwright test tests/TC-001/login.spec.ts
+
+# 運行所有測試
+npx playwright test
+
+# 以調試模式運行（帶GUI）
+npx playwright test --debug
+
+# 生成HTML報告
+npx playwright test --reporter=html</pre>
+            </div>
+            
+            <h3 style="margin-top: 30px;">📊 查看測試報告</h3>
+            <div style="background: #1a1a1a; color: #00ff00; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 12px;">
+<pre style="margin: 0;"># 打開HTML報告
+npx playwright show-report</pre>
+            </div>
+        </section>
+        
+        <!-- Best Practices -->
+        <section>
+            <h2>✨ 最佳實踐</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🎯 編寫清晰的測試用例</h4>
+                    <p>
+                        使用清晰的語言，包括具體的步驟、輸入和預期結果。
+                        避免歧義和複雜的邏輯。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔒 使用測試帳戶</h4>
+                    <p>
+                        創建專用的測試帳戶，不要使用真實用戶數據。
+                        定期重置測試數據以保持一致性。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h4>📊 組織測試</h4>
+                    <p>
+                        按功能區域或工作流程組織測試。
+                        使用有意義的文件名和標籤。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔄 版本控制</h4>
+                    <p>
+                        提交測試用例和生成的代碼到Git。
+                        跟蹤測試歷史和變更。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h4>🚀 CI/CD集成</h4>
+                    <p>
+                        在GitHub Actions、GitLab CI或Jenkins中集成測試。
+                        每個提交都自動運行測試。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h4>📈 監控和優化</h4>
+                    <p>
+                        監控測試性能和失敗率。
+                        定期優化慢速測試。
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Common Issues -->
+        <section>
+            <h2>🔧 常見問題解決</h2>
+            
+            <h3>❌ 問題：「API密鑰無效」</h3>
+            <div style="background: var(--bg-lighter); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <p><strong>解決方案：</strong></p>
+                <ol style="margin-top: 10px;">
+                    <li>檢查 .env 文件中的 CLAUDE_API_KEY</li>
+                    <li>訪問 <a href="https://console.anthropic.com" target="_blank">Anthropic控制台</a> 生成新密鑰</li>
+                    <li>確保密鑰格式正確（應以 sk-ant- 開頭）</li>
+                    <li>重新啟動AiScripto進程</li>
+                </ol>
+            </div>
+            
+            <h3>❌ 問題：「無法連接到應用」</h3>
+            <div style="background: var(--bg-lighter); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <p><strong>解決方案：</strong></p>
+                <ol style="margin-top: 10px;">
+                    <li>驗證 APP_URL 在 .env 中是正確的</li>
+                    <li>檢查應用是否在線且可訪問</li>
+                    <li>檢查防火牆和代理設置</li>
+                    <li>嘗試手動導航到URL以測試連接</li>
+                </ol>
+            </div>
+            
+            <h3>❌ 問題：「測試生成超時」</h3>
+            <div style="background: var(--bg-lighter); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <p><strong>解決方案：</strong></p>
+                <ol style="margin-top: 10px;">
+                    <li>簡化測試用例（分成更小的步驟）</li>
+                    <li>增加 .env 中的超時值</li>
+                    <li>檢查應用的響應速度</li>
+                    <li>查看日誌中的詳細錯誤信息</li>
+                </ol>
+            </div>
+        </section>
+        
+        <!-- Next Steps -->
+        <section style="background: #f0f7ff; border-left: 4px solid #0066cc; padding: 40px;">
+            <h2 style="border-bottom: none; padding-bottom: 0; color: #0066cc;">📚 後續步驟</h2>
+            
+            <div style="margin-top: 30px;">
+                <div style="margin: 20px 0;">
+                    <h4 style="color: #0066cc;">1. 深入學習</h4>
+                    <p style="color: var(--text-secondary); margin-top: 10px;">
+                        查看 <a href="docs/test-case-authoring-guide.md">測試用例編寫指南</a>
+                        了解更多編寫技巧和最佳實踐。
+                    </p>
+                </div>
+                
+                <div style="margin: 20px 0;">
+                    <h4 style="color: #0066cc;">2. 探索進階功能</h4>
+                    <p style="color: var(--text-secondary); margin-top: 10px;">
+                        學習數據驅動測試、自定義fixtures和参數化。
+                        參見 <a href="docs/architecture_spec/">架構文檔</a>。
+                    </p>
+                </div>
+                
+                <div style="margin: 20px 0;">
+                    <h4 style="color: #0066cc;">3. 加入社區</h4>
+                    <p style="color: var(--text-secondary); margin-top: 10px;">
+                        加入我們的 <a href="#">Discord社區</a> 與其他用戶交流、
+                        提問並分享最佳實踐。
+                    </p>
+                </div>
+                
+                <div style="margin: 20px 0;">
+                    <h4 style="color: #0066cc;">4. 獲得幫助</h4>
+                    <p style="color: var(--text-secondary); margin-top: 10px;">
+                        需要幫助？<a href="contact.html">聯絡我們的支持團隊</a>
+                        或查看 <a href="#">常見問題</a>。
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Call to Action -->
+        <section style="text-align: center; background: linear-gradient(135deg, #fff8e8 0%, #f0f7ff 100%);">
+            <h2 style="border-bottom: none; padding-bottom: 0;">準備好開始了嗎？</h2>
+            <p style="font-size: 16px; color: var(--text-secondary); margin: 20px 0;">
+                現在就開始你的30天免費試用
+            </p>
+            <div style="margin-top: 30px;">
+                <a href="contact.html" class="btn btn-primary" style="margin-right: 15px;">開始免費試用</a>
+                <a href="contact.html" class="btn btn-outline">聯絡銷售</a>
+            </div>
+        </section>
+        
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>產品</h3>
+                    <ul>
+                        <li><a href="features.html">功能</a></li>
+                        <li><a href="architecture.html">架構</a></li>
+                        <li><a href="use-cases.html">使用案例</a></li>
+                        <li><a href="pricing.html">定價</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>資源</h3>
+                    <ul>
+                        <li><a href="docs/getting-started-guide.md">文檔</a></li>
+                        <li><a href="docs/test-case-authoring-guide.md">編寫指南</a></li>
+                        <li><a href="docs/architecture_spec/">架構規範</a></li>
+                        <li><a href="#">API參考</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>公司</h3>
+                    <ul>
+                        <li><a href="contact.html">關於我們</a></li>
+                        <li><a href="contact.html">聯絡我們</a></li>
+                        <li><a href="#">隱私政策</a></li>
+                        <li><a href="#">條款服務</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>社交媒體</h3>
+                    <ul>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Discord</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024-2026 AiScripto Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

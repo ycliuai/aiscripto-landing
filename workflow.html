@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AiScripto Workflow - From manual test cases to automated testing">
+    <meta name="keywords" content="test automation workflow, pipeline, orchestration, testing process">
+    
+    <title>工作流程 - AiScripto</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">Ai<span>Scripto</span></a>
+            <ul>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="features.html">功能</a></li>
+                <li><a href="workflow.html" class="active">工作流程</a></li>
+                <li><a href="architecture.html">架構</a></li>
+                <li><a href="use-cases.html">使用案例</a></li>
+                <li><a href="getting-started.html">快速開始</a></li>
+                <li><a href="contact.html">聯絡</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>📊 AiScripto 工作流程</h1>
+            <p class="subtitle">從手寫測試用例到可執行的自動化測試</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        
+        <!-- Main Workflow Diagram -->
+        <section>
+            <h2>完整轉換管道</h2>
+            <p>
+                AiScripto通過多個協調的AI代理將手寫的測試用例轉換為生產級的Playwright測試。
+                整個過程自動化、可追蹤、可控制。
+            </p>
+            
+            <div class="diagram-container">
+                <div class="mermaid">
+graph LR
+    A["📝 手寫測試用例<br/>Plain Text / Markdown"]
+    B["✅ 驗證<br/>/validate"]
+    C["🔍 探索<br/>/explore"]
+    D["⚙️ 生成<br/>/generate"]
+    E["▶️ 執行<br/>/execute"]
+    F["🔧 自我修復<br/>/heal"]
+    G["📦 輸出<br/>Playwright + POMs"]
+    H["📊 參數化<br/>/parameterize<br/>可選"]
+    
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    
+    style A fill:#ff9900,stroke:#333,stroke-width:2px,color:#fff
+    style B fill:#0066cc,stroke:#333,stroke-width:2px,color:#fff
+    style C fill:#4caf50,stroke:#333,stroke-width:2px,color:#fff
+    style D fill:#2196F3,stroke:#333,stroke-width:2px,color:#fff
+    style E fill:#f44336,stroke:#333,stroke-width:2px,color:#fff
+    style F fill:#ff5722,stroke:#333,stroke-width:2px,color:#fff
+    style G fill:#673ab7,stroke:#333,stroke-width:2px,color:#fff
+    style H fill:#00bcd4,stroke:#333,stroke-width:2px,color:#fff
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>💡 每個階段都是可選的</h4>
+                <p>
+                    你可以跳過或重複任何階段。例如，如果測試通過驗證但失敗，
+                    可以直接進行修復而無需重新探索。
+                </p>
+            </div>
+        </section>
+        
+        <!-- Phase 1: Import & Validation -->
+        <section>
+            <h2>第1階段：導入與驗證</h2>
+            
+            <div class="two-column">
+                <div class="two-column-text">
+                    <h3>📥 測試用例導入</h3>
+                    <p>
+                        AiScripto支持從多個來源導入測試用例：
+                    </p>
+                    <ul class="tech-list" style="margin-top: 15px;">
+                        <li>
+                            <strong>本地文件</strong>
+                            <div class="description">.txt, .md Markdown文檔</div>
+                        </li>
+                        <li>
+                            <strong>Azure DevOps</strong>
+                            <div class="description">直接從測試計劃讀取</div>
+                        </li>
+                        <li>
+                            <strong>Jira / GitHub</strong>
+                            <div class="description">從Issue和Epic導入</div>
+                        </li>
+                        <li>
+                            <strong>Google Docs</strong>
+                            <div class="description">從協作文檔同步</div>
+                        </li>
+                        <li>
+                            <strong>REST API</strong>
+                            <div class="description">自定義資料源集成</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="two-column-visual">
+                    <h4 style="margin-bottom: 15px;">✅ 驗證檢查清單</h4>
+                    <div style="text-align: left;">
+                        <p style="margin: 10px 0;"><strong>✓</strong> 語法驗證</p>
+                        <p style="margin: 10px 0;"><strong>✓</strong> 註釋檢查</p>
+                        <p style="margin: 10px 0;"><strong>✓</strong> 前置條件驗證</p>
+                        <p style="margin: 10px 0;"><strong>✓</strong> 格式規範化</p>
+                        <p style="margin: 10px 0;"><strong>✓</strong> 重複檢測</p>
+                        <p style="margin: 10px 0;"><strong>✓</strong> 相關性分析</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 30px;">測試用例格式示例</h3>
+            <div style="background: #1a1a1a; color: #00ff00; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 12px;">
+<pre style="margin: 0;">@TC_ID: TC-001
+@Title: 建立新訂單
+@Author: QA Team
+@Tags: smoke, order-creation
+
+**前置條件：**
+- 用戶已登入系統
+- 用戶具有訂單建立權限
+
+**步驟：**
+Step 1: 導航至訂單管理頁面
+  Expected: 顯示訂單列表
+
+Step 2: 點擊「建立新訂單」按鈕
+  Expected: 打開訂單建立對話框
+
+Step 3: 在「訂單編號」欄位輸入「ORD-2024-001」
+  Expected: 編號在欄位中顯示
+
+Step 4: 在「客戶名稱」欄位輸入「ABC Corporation」
+  Expected: 客戶名稱自動完成顯示建議
+
+Step 5: 選擇第一個建議的客戶
+  Expected: 客戶資訊自動填充
+
+Step 6: 設定訂單金額為 $10,000
+  Expected: 金額正確顯示
+
+Step 7: 點擊「提交」按鈕
+  Expected: 訂單成功建立，返回訂單列表</pre>
+            </div>
+        </section>
+        
+        <!-- Phase 2: Exploration -->
+        <section>
+            <h2>第2階段：UI探索</h2>
+            
+            <h3>🔭 實時瀏覽器探索</h3>
+            <p>
+                驗證完成後，AiScripto會啟動一個真實的瀏覽器實例，
+                並按照測試用例的步驟進行實際操作，同時收集UI元素資訊。
+            </p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🌐 實時瀏覽導航</h4>
+                    <p>
+                        AI按照測試步驟實際操作瀏覽器，
+                        與真實UI互動
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h4>🎯 元素定位</h4>
+                    <p>
+                        捕獲每個互動元素的多個定位器選項，
+                        優先選擇可訪問的選擇器
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h4>📸 視覺分析</h4>
+                    <p>
+                        使用AI視覺模型理解UI佈局、
+                        顏色、文本和圖標
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h4>💾 知識積累</h4>
+                    <p>
+                        將已知的頁面和元素存儲在
+                        定位器快取中以加速未來的測試
+                    </p>
+                </div>
+            </div>
+            
+            <div class="diagram-container">
+                <div class="mermaid">
+graph TB
+    A["🤖 AI代理<br/>開始探索"]
+    B["📖 讀取測試步驟<br/>第1步：導航到URL"]
+    C["🌐 開啟瀏覽器<br/>訪問應用"]
+    D["👁️ 視覺分析<br/>頁面內容"]
+    E["🔍 查找元素<br/>按鈕、字段等"]
+    F["📝 記錄定位器<br/>CSS、XPath、Role等"]
+    G["➡️ 執行下一步<br/>點擊、輸入、驗證"]
+    H["✅ 步驟完成"]
+    I["📦 生成定位器庫"]
+    
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    H -->|還有更多步驟| B
+    H -->|完成| I
+    
+    style A fill:#ff9900,stroke:#333,stroke-width:2px,color:#fff
+    style I fill:#4caf50,stroke:#333,stroke-width:2px,color:#fff
+    style B fill:#0066cc,stroke:#333,stroke-width:2px,color:#fff
+    style C fill:#2196F3,stroke:#333,stroke-width:2px,color:#fff
+    style D fill:#9C27B0,stroke:#333,stroke-width:2px,color:#fff
+    style E fill:#f44336,stroke:#333,stroke-width:2px,color:#fff
+    style F fill:#ff5722,stroke:#333,stroke-width:2px,color:#fff
+                </div>
+            </div>
+        </section>
+        
+        <!-- Phase 3: Code Generation -->
+        <section>
+            <h2>第3階段：代碼生成</h2>
+            
+            <h3>⚙️ 自動化代碼合成</h3>
+            <p>
+                探索完成後，AiScripto使用收集的UI資訊生成
+                符合行業最佳實踐的Playwright TypeScript代碼。
+            </p>
+            
+            <div class="two-column">
+                <div class="two-column-visual">
+                    <h4 style="margin-bottom: 15px;">📦 生成輸出</h4>
+                    <div style="text-align: left; font-size: 13px;">
+                        <p style="margin: 8px 0;"><strong>📄 tests/TC-*.spec.ts</strong></p>
+                        <p style="margin: 8px 0; color: var(--text-secondary);">完整的Playwright測試規範</p>
+                        
+                        <p style="margin: 15px 0 8px 0;"><strong>📚 src/pages/*.ts</strong></p>
+                        <p style="margin: 8px 0; color: var(--text-secondary);">頁面物件模型（POM）</p>
+                        
+                        <p style="margin: 15px 0 8px 0;"><strong>🔗 fixtures/*.ts</strong></p>
+                        <p style="margin: 8px 0; color: var(--text-secondary);">共享fixtures（登入、設置等）</p>
+                        
+                        <p style="margin: 15px 0 8px 0;"><strong>📊 *.data.json</strong></p>
+                        <p style="margin: 8px 0; color: var(--text-secondary);">參數化測試數據</p>
+                        
+                        <p style="margin: 15px 0 8px 0;"><strong>📋 report.json</strong></p>
+                        <p style="margin: 8px 0; color: var(--text-secondary);">執行報告和分析</p>
+                    </div>
+                </div>
+                <div class="two-column-text">
+                    <h3>生成代碼的特點：</h3>
+                    <ul class="tech-list">
+                        <li>
+                            <strong>型別安全</strong>
+                            <div class="description">完整的TypeScript型別定義</div>
+                        </li>
+                        <li>
+                            <strong>可讀性高</strong>
+                            <div class="description">清晰的變數名和邏輯流程</div>
+                        </li>
+                        <li>
+                            <strong>可維護性</strong>
+                            <div class="description">遵循Playwright官方最佳實踐</div>
+                        </li>
+                        <li>
+                            <strong>錯誤處理</strong>
+                            <div class="description">完善的異常捕獲和日誌</div>
+                        </li>
+                        <li>
+                            <strong>性能優化</strong>
+                            <div class="description">智能等待和超時配置</div>
+                        </li>
+                        <li>
+                            <strong>可測試性</strong>
+                            <div class="description">可以直接運行和修改</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 30px;">生成的測試代碼示例</h3>
+            <div style="background: #1a1a1a; color: #00ff00; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 11px;">
+<pre style="margin: 0;">import { test, expect } from '@playwright/test';
+import { OrderPage } from '../pages/OrderPage';
+
+test.describe('訂單管理測試組', () => {
+  let page;
+  let orderPage: OrderPage;
+  
+  test.beforeEach(async ({ page: p }) => {
+    page = p;
+    orderPage = new OrderPage(page);
+    
+    // 登入應用
+    await page.goto('https://app.example.com/login');
+    await page.getByRole('textbox', { name: /用戶名/ }).fill('testuser');
+    await page.getByRole('textbox', { name: /密碼/ }).fill('password');
+    await page.getByRole('button', { name: /登入/ }).click();
+  });
+  
+  test('TC-001: 建立新訂單', async () => {
+    // Step 1: 導航至訂單管理頁面
+    await page.goto('https://app.example.com/orders');
+    await expect(page.getByRole('table')).toBeVisible();
+    
+    // Step 2: 點擊建立新訂單按鈕
+    await orderPage.clickCreateButton();
+    await expect(page.getByRole('dialog')).toBeVisible();
+    
+    // Step 3-7: 填充表單並提交
+    await orderPage.fillOrderNumber('ORD-2024-001');
+    await orderPage.fillCustomerName('ABC Corporation');
+    // ... 更多步驟
+    
+    // 驗證結果
+    await expect(
+      page.getByText(/訂單已成功建立/)
+    ).toBeVisible();
+  });
+});</pre>
+            </div>
+        </section>
+        
+        <!-- Phase 4: Execution & Healing -->
+        <section>
+            <h2>第4階段：執行與自我修復</h2>
+            
+            <h3>▶️ 測試執行</h3>
+            <p>
+                生成的測試使用Playwright測試運行器執行。
+                如果全部通過，恭喜！如果有失敗，AiScripto會自動進行修復。
+            </p>
+            
+            <div class="diagram-container">
+                <div class="mermaid">
+graph LR
+    A["▶️ 執行測試"]
+    B{測試結果}
+    C["✅ 全部通過"]
+    D["❌ 測試失敗"]
+    E["📸 捕獲失敗狀態<br/>螢幕截圖 + Trace"]
+    F["🔍 AI分析<br/>識別變化原因"]
+    G["🔧 自動修復<br/>更新定位器/邏輯"]
+    H["▶️ 重新執行<br/>驗證修復"]
+    I["✅ 修復成功"]
+    J["⚠️ 需要人工介入"]
+    
+    A --> B
+    B -->|通過| C
+    B -->|失敗| E
+    E --> F
+    F --> G
+    G --> H
+    H -->|成功| I
+    H -->|仍失敗| J
+    
+    style A fill:#4caf50,stroke:#333,stroke-width:2px,color:#fff
+    style C fill:#4caf50,stroke:#333,stroke-width:2px,color:#fff
+    style I fill:#4caf50,stroke:#333,stroke-width:2px,color:#fff
+    style E fill:#f44336,stroke:#333,stroke-width:2px,color:#fff
+    style J fill:#ff9900,stroke:#333,stroke-width:2px,color:#fff
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 30px;">🔧 自我修復的智能</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📹 執行追蹤分析</h4>
+                    <p>
+                        分析Playwright的詳細執行日誌和截圖，
+                        精確定位失敗點
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h4>🤖 視覺推理</h4>
+                    <p>
+                        使用AI視覺模型對比預期和實際UI，
+                        識別視覺變化
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔄 定位器搜索</h4>
+                    <p>
+                        嘗試多個替代定位器，找到最穩健的選擇，
+                        提高修復成功率
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h4>📚 知識重用</h4>
+                    <p>
+                        從定位器快取和先前的修復記錄中學習，
+                        加速修復過程
+                    </p>
+                </div>
+            </div>
+            
+            <div class="success-box">
+                <h4>✅ 修復成功率</h4>
+                <p>
+                    85-95% 的測試失敗可以通過自動修復解決，
+                    無需人工干預
+                </p>
+            </div>
+        </section>
+        
+        <!-- Phase 5: Parameterization -->
+        <section>
+            <h2>第5階段：參數化（可選）</h2>
+            
+            <h3>📊 數據驅動測試轉換</h3>
+            <p>
+                完成基本測試後，可以選擇將硬編碼的測試數據提取到JSON文件，
+                使同一測試能用多組數據執行。
+            </p>
+            
+            <div class="two-column">
+                <div class="two-column-text">
+                    <h4>提取過程：</h4>
+                    <ul class="tech-list" style="margin-top: 15px;">
+                        <li>
+                            <strong>1. 識別數據</strong>
+                            <div class="description">AI掃描代碼找出所有硬編碼值</div>
+                        </li>
+                        <li>
+                            <strong>2. 分類數據</strong>
+                            <div class="description">按類型分組（訂單、客戶、金額等）</div>
+                        </li>
+                        <li>
+                            <strong>3. 生成數據文件</strong>
+                            <div class="description">創建JSON結構化數據</div>
+                        </li>
+                        <li>
+                            <strong>4. 參數化代碼</strong>
+                            <div class="description">用變數替換硬編碼值</div>
+                        </li>
+                        <li>
+                            <strong>5. 驗證執行</strong>
+                            <div class="description">用所有數據組合執行測試</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="two-column-visual">
+                    <h4 style="margin-bottom: 15px;">轉換示例</h4>
+                    <p style="font-weight: 600; font-size: 12px;">Before (硬編碼)：</p>
+                    <div style="background: #fff3cd; padding: 10px; border-radius: 4px; margin-bottom: 15px; font-family: monospace; font-size: 11px;">
+await orderPage.fillOrderNumber('ORD-001');<br>
+await orderPage.fillAmount(5000);<br>
+await orderPage.fillCustomer('ABC Corp');
+                    </div>
+                    
+                    <p style="font-weight: 600; font-size: 12px;">After (參數化)：</p>
+                    <div style="background: #e8f5e9; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 11px;">
+await orderPage.fillOrderNumber(testData.orderId);<br>
+await orderPage.fillAmount(testData.amount);<br>
+await orderPage.fillCustomer(testData.customer);
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 30px;">測試數據文件結構</h3>
+            <div style="background: #1a1a1a; color: #00ff00; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 11px;">
+<pre style="margin: 0;">// tests/data/order-creation.data.json
+{
+  "testCases": [
+    {
+      "id": "ORD-001",
+      "orderId": "ORD-2024-001",
+      "customer": "ABC Corporation",
+      "amount": 5000,
+      "expectedStatus": "成功建立"
+    },
+    {
+      "id": "ORD-002",
+      "orderId": "ORD-2024-002",
+      "customer": "XYZ Limited",
+      "amount": 15000,
+      "expectedStatus": "成功建立"
+    },
+    {
+      "id": "ORD-003",
+      "orderId": "ORD-2024-003",
+      "customer": "QRS Industries",
+      "amount": 8500,
+      "expectedStatus": "成功建立"
+    }
+  ]
+}</pre>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <p style="color: var(--text-secondary);">
+                    <strong>結果：</strong> 1個測試 × 3個數據組合 = 3次完整的測試執行，
+                    覆蓋不同的業務場景
+                </p>
+            </div>
+        </section>
+        
+        <!-- Workflow Commands -->
+        <section>
+            <h2>📋 工作流程命令參考</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>命令</th>
+                        <th>功能</th>
+                        <th>何時使用</th>
+                        <th>輸出</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>/import</code></td>
+                        <td>導入測試用例</td>
+                        <td>添加新的測試用例到系統</td>
+                        <td>imported-cases.json</td>
+                    </tr>
+                    <tr>
+                        <td><code>/validate</code></td>
+                        <td>驗證測試格式</td>
+                        <td>檢查測試用例語法和完整性</td>
+                        <td>validation-report.json</td>
+                    </tr>
+                    <tr>
+                        <td><code>/explore</code></td>
+                        <td>探索UI並收集元素</td>
+                        <td>創建新測試或更新過時的定位器</td>
+                        <td>locators.json, screenshots/</td>
+                    </tr>
+                    <tr>
+                        <td><code>/generate</code></td>
+                        <td>生成Playwright代碼</td>
+                        <td>從測試用例創建可執行測試</td>
+                        <td>tests/TC-*.spec.ts, pages/</td>
+                    </tr>
+                    <tr>
+                        <td><code>/execute</code></td>
+                        <td>運行測試</td>
+                        <td>驗證生成的測試是否通過</td>
+                        <td>test-results.json, traces/</td>
+                    </tr>
+                    <tr>
+                        <td><code>/heal</code></td>
+                        <td>自動修復失敗測試</td>
+                        <td>修復測試失敗而不重新編寫</td>
+                        <td>healed-tests/, healing-report.json</td>
+                    </tr>
+                    <tr>
+                        <td><code>/parameterize</code></td>
+                        <td>提取數據並參數化</td>
+                        <td>將硬編碼數據轉為數據驅動</td>
+                        <td>*.data.json, parameterized-tests/</td>
+                    </tr>
+                    <tr>
+                        <td><code>/verify</code></td>
+                        <td>最終驗證</td>
+                        <td>使用所有數據組合重新執行</td>
+                        <td>final-verification-report.json</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <!-- Timeline Example -->
+        <section>
+            <h2>⏱️ 典型時間線</h2>
+            <p>
+                以下是一個典型的AiScripto測試開發週期的時間預期：
+            </p>
+            
+            <div style="margin-top: 30px;">
+                <div style="display: grid; gap: 20px;">
+                    <div style="display: flex; gap: 20px; align-items: start;">
+                        <div style="min-width: 120px; background: #ff9900; color: white; padding: 15px; border-radius: 4px; text-align: center; font-weight: 600;">
+                            1-2 分鐘
+                        </div>
+                        <div style="flex: 1;">
+                            <h4>編寫測試用例</h4>
+                            <p style="color: var(--text-secondary);">使用自然語言描述測試步驟</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 20px; align-items: start;">
+                        <div style="min-width: 120px; background: #0066cc; color: white; padding: 15px; border-radius: 4px; text-align: center; font-weight: 600;">
+                            30-45 秒
+                        </div>
+                        <div style="flex: 1;">
+                            <h4>驗證與探索</h4>
+                            <p style="color: var(--text-secondary);">AI檢查格式並在實時應用中探索UI</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 20px; align-items: start;">
+                        <div style="min-width: 120px; background: #2196F3; color: white; padding: 15px; border-radius: 4px; text-align: center; font-weight: 600;">
+                            1-2 分鐘
+                        </div>
+                        <div style="flex: 1;">
+                            <h4>代碼生成與執行</h4>
+                            <p style="color: var(--text-secondary);">生成測試代碼並立即執行驗證</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 20px; align-items: start;">
+                        <div style="min-width: 120px; background: #4caf50; color: white; padding: 15px; border-radius: 4px; text-align: center; font-weight: 600;">
+                            立即完成
+                        </div>
+                        <div style="flex: 1;">
+                            <h4>自動修復（如需要）</h4>
+                            <p style="color: var(--text-secondary);">如果失敗，AI自動修復並重新執行</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 20px; align-items: start;">
+                        <div style="min-width: 120px; background: #00bcd4; color: white; padding: 15px; border-radius: 4px; text-align: center; font-weight: 600;">
+                            可選：1 分鐘
+                        </div>
+                        <div style="flex: 1;">
+                            <h4>參數化</h4>
+                            <p style="color: var(--text-secondary);">如需要，提取數據並創建多個測試場景</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px; padding: 20px; background: #f0f7ff; border-left: 4px solid #0066cc; border-radius: 4px;">
+                    <h4 style="color: #0066cc; margin-bottom: 10px;">⏱️ 總時間：3-5 分鐘</h4>
+                    <p style="color: var(--text-secondary);">
+                        <strong>傳統方法：</strong> 2-3 小時（編寫 + 調試 + 測試）<br>
+                        <strong>AiScripto：</strong> 3-5 分鐘<br>
+                        <strong>節省時間：</strong> <span style="color: #4caf50; font-weight: 600;">90% ⚡</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Call to Action -->
+        <section style="text-align: center; background: linear-gradient(135deg, #f0f7ff 0%, #fff8e8 100%);">
+            <h2 style="border-bottom: none; padding-bottom: 0;">開始你的自動化之旅</h2>
+            <p style="font-size: 16px; color: var(--text-secondary); margin: 20px 0;">
+                立即體驗AiScripto的完整工作流程
+            </p>
+            <div style="margin-top: 30px;">
+                <a href="getting-started.html" class="btn btn-primary" style="margin-right: 15px;">免費試用</a>
+                <a href="contact.html" class="btn btn-outline">聯絡我們</a>
+            </div>
+        </section>
+        
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>產品</h3>
+                    <ul>
+                        <li><a href="features.html">功能</a></li>
+                        <li><a href="architecture.html">架構</a></li>
+                        <li><a href="use-cases.html">使用案例</a></li>
+                        <li><a href="pricing.html">定價</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>資源</h3>
+                    <ul>
+                        <li><a href="docs/getting-started-guide.md">文檔</a></li>
+                        <li><a href="docs/test-case-authoring-guide.md">編寫指南</a></li>
+                        <li><a href="docs/architecture_spec/">架構規範</a></li>
+                        <li><a href="#">API參考</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>公司</h3>
+                    <ul>
+                        <li><a href="contact.html">關於我們</a></li>
+                        <li><a href="contact.html">聯絡我們</a></li>
+                        <li><a href="#">隱私政策</a></li>
+                        <li><a href="#">條款服務</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>社交媒體</h3>
+                    <ul>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Discord</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024-2026 AiScripto Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+        mermaid.contentLoaded();
+    </script>
+</body>
+</html>
