@@ -46,9 +46,10 @@
             <h2 data-en="Complete Transformation Pipeline" data-zh="完整轉換管道">Complete Transformation Pipeline</h2>
             <p data-en="AiScripto transforms hand-written test cases into production-grade Playwright tests through multiple coordinated AI agents. The entire process is automated, traceable, and controllable." data-zh="AiScripto通過多個協調的AI代理將手宫的測試用例轉換為生產級的Playwright測試。整個過程自動化、可追蹤、可控制。">AiScripto transforms hand-written test cases into production-grade Playwright tests through multiple coordinated AI agents. The entire process is automated, traceable, and controllable.</p>
             
-            <div class="diagram-container" style="width: 100%; max-width: 1200px; margin: 0 auto;">
+            <div class="diagram-container">
                 <div class="mermaid">
-graph LR
+%%{init: {'flowchart': {'htmlLabels': true}, 'theme': 'default', 'themeVariables': {'fontSize': '16px', 'fontFamily': 'arial'}}}%%
+graph TB
     A["📝 Hand-Written Test Cases<br/>Plain Text / Markdown"]
     B["✅ Validate<br/>/validate"]
     C["🔍 Explore<br/>/explore"]
@@ -66,14 +67,14 @@ graph LR
     F --> G
     G --> H
     
-    style A fill:#ff9900,stroke:#333,stroke-width:2px,color:#fff
-    style B fill:#0066cc,stroke:#333,stroke-width:2px,color:#fff
-    style C fill:#4caf50,stroke:#333,stroke-width:2px,color:#fff
-    style D fill:#2196F3,stroke:#333,stroke-width:2px,color:#fff
-    style E fill:#f44336,stroke:#333,stroke-width:2px,color:#fff
-    style F fill:#ff5722,stroke:#333,stroke-width:2px,color:#fff
-    style G fill:#673ab7,stroke:#333,stroke-width:2px,color:#fff
-    style H fill:#00bcd4,stroke:#333,stroke-width:2px,color:#fff
+    style A fill:#ff9900,stroke:#333,stroke-width:3px,color:#fff,font-size:14px
+    style B fill:#0066cc,stroke:#333,stroke-width:3px,color:#fff,font-size:14px
+    style C fill:#4caf50,stroke:#333,stroke-width:3px,color:#fff,font-size:14px
+    style D fill:#2196F3,stroke:#333,stroke-width:3px,color:#fff,font-size:14px
+    style E fill:#f44336,stroke:#333,stroke-width:3px,color:#fff,font-size:14px
+    style F fill:#ff5722,stroke:#333,stroke-width:3px,color:#fff,font-size:14px
+    style G fill:#673ab7,stroke:#333,stroke-width:3px,color:#fff,font-size:14px
+    style H fill:#00bcd4,stroke:#333,stroke-width:3px,color:#fff,font-size:14px
                 </div>
             </div>
             
@@ -206,8 +207,8 @@ Step 7: Click the "Submit" button
                 </div>
             </div>
             
-            <div class="diagram-container" style="min-height: 600px;">
-                <div class="mermaid" style="transform: scale(1.2); transform-origin: top center; margin-bottom: 100px;">
+            <div class="diagram-container">
+                <div class="mermaid">
 graph TB
     A["🤖 AI Agent<br/>Start Exploration"]
     B["📖 Read Test Steps<br/>Step 1: Navigate to URL"]
@@ -354,8 +355,8 @@ test.describe('Order Management Test Suite', () => {
                 If all pass, congratulations! If any fail, AiScripto automatically performs repair.
             </p>
             
-            <div class="diagram-container" style="min-height: 600px;">
-                <div class="mermaid" style="transform: scale(1.2); transform-origin: top center; margin-bottom: 100px;">
+            <div class="diagram-container">
+                <div class="mermaid">
 graph LR
     A["▶️ Execute Tests"]
     B{Test Results}
