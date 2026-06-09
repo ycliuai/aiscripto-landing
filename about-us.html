@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About AiScripto.APP - Enterprise-grade AI-driven test automation orchestration platform">
+    <meta name="keywords" content="about AiScripto, team, mission, company overview, test automation platform">
+    
+    <title>About Us - AiScripto</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="language.js"></script>
+    <style>
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .team-card {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-orange);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .team-card h3 {
+            color: var(--accent-orange);
+            margin-top: 0;
+        }
+
+        .team-card .role {
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .team-card p {
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .team-card a {
+            display: inline-block;
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .team-card a:hover {
+            text-decoration: underline;
+        }
+
+        .mission-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .mission-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mission-item {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        .mission-item h4 {
+            color: var(--accent-orange);
+            margin-top: 0;
+        }
+
+        .mission-item p {
+            margin: 10px 0 0 0;
+            color: var(--text-secondary);
+        }
+
+        .capability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .capability-card {
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 8px;
+            border-top: 3px solid var(--accent-orange);
+        }
+
+        .capability-card h4 {
+            color: var(--text-primary);
+            margin-top: 0;
+            font-size: 16px;
+        }
+
+        .capability-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .timeline {
+            background: var(--bg-light);
+            padding: 40px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: var(--accent-orange);
+            border-radius: 50%;
+            border: 3px solid var(--bg-white);
+        }
+
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 16px;
+            width: 0;
+            height: 30px;
+            border-left: 2px solid var(--accent-orange);
+        }
+
+        .timeline-content h4 {
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+
+        .timeline-content p {
+            color: var(--text-secondary);
+            margin: 5px 0 0 0;
+        }
+
+        .value-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .value-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .value-icon {
+            font-size: 32px;
+            min-width: 40px;
+        }
+
+        .value-text h4 {
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+
+        .value-text p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin: 5px 0 0 0;
+        }
+
+        @media (max-width: 768px) {
+            .mission-container {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                padding-left: 40px;
+            }
+
+            .timeline-item::before {
+                left: 12px;
+            }
+
+            .timeline-item::after {
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">Ai<span>Scripto</span></a>
+            <ul>
+                <li><a href="index.html" data-en="Home" data-zh="首頁">Home</a></li>
+                <li><a href="features.html" data-en="Features" data-zh="功能">Features</a></li>
+                <li><a href="workflow.html" data-en="Workflow" data-zh="工作流程">Workflow</a></li>
+                <li style="display: none;"><a href="architecture.html" data-en="Architecture" data-zh="架構">Architecture</a></li>
+                <li style="display: none;"><a href="getting-started.html" data-en="Getting Started" data-zh="快速開始">Getting Started</a></li>
+                <li style="display: none;"><a href="contact.html" data-en="Contact" data-zh="聯絡">Contact</a></li>
+                <li><a href="about-us.html" class="active" data-en="About Us" data-zh="關於我們">About Us</a></li>
+            </ul>
+            <div class="language-switcher">
+                <button id="lang-en" class="active" onclick="setLanguage('en')">EN</button>
+                <button id="lang-zh" onclick="setLanguage('zh')">中文</button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1 data-en="🌟 About AiScripto.APP" data-zh="🌟 關於 AiScripto.APP">🌟 About AiScripto.APP</h1>
+            <p class="subtitle" data-en="Enterprise-grade AI-driven test automation orchestration platform" data-zh="企業級 AI 驅動自動化測試編排平台">Enterprise-grade AI-driven test automation orchestration platform</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        
+        <!-- Our Mission Section -->
+        <section>
+            <h2 data-en="Our Mission" data-zh="我們的使命">Our Mission</h2>
+            <div class="mission-container">
+                <div class="mission-content">
+                    <p data-en="AiScripto is an enterprise-grade AI-driven test automation orchestration platform designed to eliminate the manual coding barrier for global manufacturing, software quality assurance (QA), and enterprise DevOps organizations." data-zh="AiScripto 是一個企業級的 AI 驅動自動化測試編排平台，旨在為全球製造業、軟體品質保證（QA）和企業級 DevOps 團隊消除手動撰寫測試程式碼的技術壁壘。">AiScripto is an enterprise-grade AI-driven test automation orchestration platform designed to eliminate the manual coding barrier for global manufacturing, software quality assurance (QA), and enterprise DevOps organizations.</p>
+                    <p data-en="We empower teams to focus on testing strategy and quality outcomes, rather than spending valuable time on script maintenance and technical debt." data-zh="我們賦能團隊專注於測試策略和品質成果，而非花費寶貴時間在腳本維護和技術債務上。">We empower teams to focus on testing strategy and quality outcomes, rather than spending valuable time on script maintenance and technical debt.</p>
+                </div>
+                <div class="value-list">
+                    <div class="value-item">
+                        <div class="value-icon">🎯</div>
+                        <div class="value-text">
+                            <h4 data-en="Eliminate Coding Barriers" data-zh="消除編碼壁壘">Eliminate Coding Barriers</h4>
+                            <p data-en="No TypeScript/Playwright expertise required" data-zh="無需 TypeScript/Playwright 專業知識">No TypeScript/Playwright expertise required</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">⚡</div>
+                        <div class="value-text">
+                            <h4 data-en="Accelerate Time-to-Test" data-zh="加快測試上線時間">Accelerate Time-to-Test</h4>
+                            <p data-en="Convert manual cases to executable tests in minutes" data-zh="在幾分鐘內將手動測試轉換為可執行測試">Convert manual cases to executable tests in minutes</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">🔧</div>
+                        <div class="value-text">
+                            <h4 data-en="Reduce Technical Debt" data-zh="減少技術債務">Reduce Technical Debt</h4>
+                            <p data-en="Self-healing automation minimizes maintenance overhead" data-zh="自癒式自動化最小化維護開銷">Self-healing automation minimizes maintenance overhead</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">🚀</div>
+                        <div class="value-text">
+                            <h4 data-en="Enterprise-Ready" data-zh="企業級就緒">Enterprise-Ready</h4>
+                            <p data-en="Multi-cloud support, production-grade quality" data-zh="多雲支持、生產級品質">Multi-cloud support, production-grade quality</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Problem We Solve -->
+        <section>
+            <h2 data-en="The Problem We Solve" data-zh="我們解決的問題">The Problem We Solve</h2>
+            <p data-en="Modern enterprise web-based applications or Manufacturing Execution Systems (MES) face critical testing challenges:" data-zh="現代企業Web-based應用程式或製造執行系統（MES）面臨嚴峻的測試挑戰：">Modern enterprise applications and Manufacturing Execution Systems (MES) face critical testing challenges:</p>
+            
+            <div class="value-list">
+                <div class="value-item">
+                    <div class="value-icon">🔄</div>
+                    <div class="value-text">
+                        <h4 data-en="Fragmented Updates" data-zh="頻繁的系統更新">Fragmented Updates</h4>
+                        <p data-en="Constant UI/UX changes break existing test scripts, requiring continuous maintenance" data-zh="不斷的 UI/UX 變化導致現有測試腳本失效，需要持續維護">Constant UI/UX changes break existing test scripts, requiring continuous maintenance</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🎨</div>
+                    <div class="value-text">
+                        <h4 data-en="Complex Components" data-zh="複雜的組件">Complex Components</h4>
+                        <p data-en="Modern frameworks (Angular, React, PrimeNG) require advanced selector strategies" data-zh="現代框架（Angular、React、PrimeNG）需要進階的選擇器策略">Modern frameworks (Angular, React, PrimeNG) require advanced selector strategies</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🐌</div>
+                    <div class="value-text">
+                        <h4 data-en="Regression Testing Bottleneck" data-zh="迴歸測試瓶頸">Regression Testing Bottleneck</h4>
+                        <p data-en="High-cost manual testing delays release cycles by weeks" data-zh="高成本的手動測試延誤產品上線週期數週">High-cost manual testing delays release cycles by weeks</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">💸</div>
+                    <div class="value-text">
+                        <h4 data-en="Technical Debt" data-zh="技術債務">Technical Debt</h4>
+                        <p data-en="Manual script maintenance consumes 40-50% of QA team's time" data-zh="手動腳本維護佔 QA 團隊時間的 40-50%">Manual script maintenance consumes 40-50% of QA team's time</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Solution -->
+        <section>
+            <h2 data-en="Our Solution & Approach" data-zh="我們的解決方案與方法">Our Solution & Approach</h2>
+            <p data-en="AiScripto leverages foundational large language models (LLMs) and advanced Model Context Protocol (MCP) to provide a comprehensive solution:" data-zh="AiScripto 藉由頂尖的大語言模型（LLMs）與先進的模型上下文協定（MCP）提供綜合解決方案：">AiScripto leverages foundational large language models (LLMs) and advanced Model Context Protocol (MCP) to provide a comprehensive solution:</p>
+            
+            <div class="capability-grid">
+                <div class="capability-card">
+                    <h4 data-en="🧠 Multi-Stage Agent Pipeline" data-zh="🧠 多階段智能代理管道">🧠 Multi-Stage Agent Pipeline</h4>
+                    <p data-en="Orchestrates multi-model intelligent agents to break down comprehensive manual test cases into actionable, deterministic execution nodes." data-zh="編排多模型智能代理，將複雜的人工測試案例拆解為可執行的確定性節點。">Orchestrates multi-model intelligent agents to break down comprehensive manual test cases into actionable, deterministic execution nodes.</p>
+                </div>
+                <div class="capability-card">
+                    <h4 data-en="🌐 Autonomous DOM & UI Exploration" data-zh="🌐 自主探索 DOM 與 UI">🌐 Autonomous DOM & UI Exploration</h4>
+                    <p data-en="Intelligently interacts with complex enterprise front-end frameworks (e.g., Angular, PrimeNG) without predefined locators." data-zh="智能互動並探索複雜的企業端前端框架，無需預先定義元素定位器。">Intelligently interacts with complex enterprise front-end frameworks (e.g., Angular, PrimeNG) without predefined locators.</p>
+                </div>
+                <div class="capability-card">
+                    <h4 data-en="⚙️ Production-Ready Generation" data-zh="⚙️ 生產級程式碼生成">⚙️ Production-Ready Generation</h4>
+                    <p data-en="Automatically produces modular Playwright TypeScript specifications adhering to clean-code Page Object Models (POMs)." data-zh="自動生成符合乾淨程式碼規範的模組化 Playwright TypeScript 腳本與頁面對象模型。">Automatically produces modular Playwright TypeScript specifications adhering to clean-code Page Object Models (POMs).</p>
+                </div>
+                <div class="capability-card">
+                    <h4 data-en="🔧 Self-Healing Runtime Memory" data-zh="🔧 自癒式執行時記憶">🔧 Self-Healing Runtime Memory</h4>
+                    <p data-en="Features a robust closed-loop debugging system that reads live execution stack traces to dynamically heal broken elements." data-zh="具備強大的閉環除錯系統，讀取運行時堆疊軌跡以動態修復失效元素。">Features a robust closed-loop debugging system that reads live execution stack traces to dynamically heal broken elements.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Target Audience -->
+        <section>
+            <h2 data-en="Who We Serve" data-zh="我們的目標受眾">Who We Serve</h2>
+            <p data-en="AiScripto is built for organizations that demand enterprise-grade quality and operational efficiency:" data-zh="AiScripto 為要求企業級品質和營運效率的組織而構建：">AiScripto is built for organizations that demand enterprise-grade quality and operational efficiency:</p>
+            
+            <div class="capability-grid">
+                <div class="capability-card">
+                    <h4 data-en="🏭 Manufacturing IT Departments" data-zh="🏭 製造業 QA 部門">🏭 Manufacturing QA Departments</h4>
+                    <p data-en="Automating MES and factory floor application testing to reduce downtime and accelerate new releases." data-zh="自動化 MES 和工廠應用測試，減少停機時間並加快新版本上線。">Automating MES and factory floor application testing to reduce downtime and accelerate new releases.</p>
+                </div>
+                <div class="capability-card">
+                    <h4 data-en="👥 Enterprise Software QA Teams" data-zh="👥 企業級軟體 IT 團隊">👥 Enterprise Software IT Teams</h4>
+                    <p data-en="Scaling test coverage without proportional increases in testing headcount and skill requirements." data-zh="在不成比例增加測試人力和技能要求的情況下擴展測試覆蓋範圍。">Scaling test coverage without proportional increases in testing headcount and skill requirements.</p>
+                </div>
+                <div class="capability-card">
+                    <h4 data-en="⚡ Industry Focus" data-zh="⚡ 所屬產業">⚡ Industry Focus</h4>
+                    <p data-en="Enterprise Software-as-a-Service (SaaS) / Artificial Intelligence / DevOps & QA Automation" data-zh="企業軟體即服務（SaaS）/ 人工智能 / DevOps 與 QA 自動化">Enterprise Software-as-a-Service (SaaS) / Artificial Intelligence / DevOps & QA Automation</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership Team -->
+        <section>
+            <h2 data-en="Our Leadership Team" data-zh="我們的領導團隊">Our Leadership Team</h2>
+            <p data-en="Meet the visionary behind AiScripto's innovation and strategy:" data-zh="認識 AiScripto 創新與策略背後的推動者：">Meet the visionary behind AiScripto's innovation and strategy:</p>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <h3>YC Liu</h3>
+                    <div class="role" data-en="Founder & Chief Product Officer at AiScripto.App" data-zh="創辦人兼首席產品官">Founder & Chief Product Officer</div>
+                    <p data-en="YC leads product strategy, multi-agent architecture design, and core algorithm development at AiScripto." data-zh="YC 領導 AiScripto 的產品策略、多代理架構設計和核心算法開發。">YC leads product strategy, multi-agent architecture design, and core algorithm development at AiScripto.</p>
+                    
+                    <h4 style="margin-top: 20px; color: var(--text-primary);" data-en="Background" data-zh="背景">Background</h4>
+                    <p data-en="An IT Lead with extensive experience in enterprise-level software quality and performance testing. YC has led the development of MES testing strategies, standardized processes, and global cross-site implementations for major manufacturing organizations." data-zh="擁有豐富企業級軟體品質和性能測試經驗的 IT 主管。YC 主導了主要製造組織的 MES 測試策略、標準化流程和全球跨地點實施的開發。">An IT Lead with extensive experience in enterprise-level software quality and performance testing. YC has led the development of MES testing strategies, standardized processes, and global cross-site implementations for major manufacturing organizations.</p>
+                    
+                    <p data-en="Skilled at combining automation and AI technologies to improve testing efficiency and scalability, enhance system quality, and reduce operational costs. An experienced software innovator and AI engineer with a proven track record in developing complex system automation, low-code orchestration frameworks, and enterprise-grade cross-platform integrations." data-zh="擅於結合自動化和 AI 技術來提高測試效率和可擴展性、增強系統品質並降低營運成本。經驗豐富的軟體創新者和 AI 工程師，在開發複雜系統自動化、低代碼編排框架和企業級跨平台集成方面有著良好的成績。">Skilled at combining automation and AI technologies to improve testing efficiency and scalability, enhance system quality, and reduce operational costs. An experienced software innovator and AI engineer with a proven track record in developing complex system automation, low-code orchestration frameworks, and enterprise-grade cross-platform integrations.</p>
+
+                    <p data-en="Currently serving as a Global IT Lead at Jabil and awarded 3rd Place in Jabil Global IT's Ideas & Innovations Hub competition for his innovative contributions to enterprise automation and testing excellence." data-zh="目前在 Jabil 擔任全球 IT 領導職位，並因其在企業自動化和測試卓越方面的創新貢獻，榮獲 Jabil 全球 IT 創意與創新中心競賽第三名。">Currently serving as a Global IT Lead at Jabil and awarded 3rd Place in Jabil Global IT's Ideas & Innovations Hub competition for his innovative contributions to enterprise automation and testing excellence.</p>
+                    
+                    <a href="https://www.linkedin.com/in/yc-liu-2b0b741a3/" target="_blank" data-en="View LinkedIn Profile" data-zh="查看 LinkedIn 檔案">View LinkedIn Profile</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Status -->
+        <section>
+            <h2 data-en="Product Status & Timeline" data-zh="產品狀態與時間表">Product Status & Timeline</h2>
+            <p data-en="AiScripto is currently in the Beta / MVP (Minimum Viable Product) phase, with core engine capabilities actively being verified against complex enterprise UI testing scenarios." data-zh="AiScripto 目前處於 Beta / MVP（最低可行性產品） 階段，核心引擎功能正針對複雜的企業級 UI 測試場景進行密集的實證與迭代。">AiScripto is currently in the Beta / MVP (Minimum Viable Product) phase, with core engine capabilities actively being verified against complex enterprise UI testing scenarios.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4 data-en="🎯 Current Phase: Beta / MVP" data-zh="🎯 當前階段：Beta / MVP">🎯 Current Phase: Beta / MVP</h4>
+                        <p data-en="Core engine capabilities under active verification and iteration" data-zh="核心引擎功能正在積極驗證和迭代">Core engine capabilities under active verification and iteration</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4 data-en="✨ Multi-Stage Agent Pipeline" data-zh="✨ 多階段智能代理管道">✨ Multi-Stage Agent Pipeline</h4>
+                        <p data-en="Advanced intelligent agents orchestration for complex test case analysis" data-zh="進階智能代理編排以進行複雜測試案例分析">Advanced intelligent agents orchestration for complex test case analysis</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4 data-en="🔍 Autonomous DOM Exploration" data-zh="🔍 自主 DOM 探索">🔍 Autonomous DOM Exploration</h4>
+                        <p data-en="Intelligent interaction with enterprise UI frameworks without predefined locators" data-zh="與企業 UI 框架的智能交互，無需預先定義的定位器">Intelligent interaction with enterprise UI frameworks without predefined locators</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4 data-en="🧬 Self-Healing Runtime Memory" data-zh="🧬 自癒式執行時記憶">🧬 Self-Healing Runtime Memory</h4>
+                        <p data-en="Closed-loop debugging system for dynamic element healing" data-zh="閉環除錯系統，用於動態元素修復">Closed-loop debugging system for dynamic element healing</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vision & Values -->
+        <section>
+            <h2 data-en="Our Vision & Values" data-zh="我們的願景與價值">Our Vision & Values</h2>
+            
+            <h3 data-en="Long-Term Vision" data-zh="長期願景">Long-Term Vision</h3>
+            <p data-en="We envision a future where enterprise teams can confidently automate any test scenario, regardless of technological complexity, without requiring deep coding expertise. By making test automation accessible and maintainable, we aim to transform how organizations approach quality assurance and accelerate their digital transformation journeys." data-zh="我們願景是一個未來，企業團隊能自信地自動化任何測試場景，無論技術複雜性如何，而無需深厚的編碼專業知識。通過使測試自動化易於訪問和可維護，我們旨在改變組織對品質保證的方式，並加快他們的數位轉型之旅。">We envision a future where enterprise teams can confidently automate any test scenario, regardless of technological complexity, without requiring deep coding expertise. By making test automation accessible and maintainable, we aim to transform how organizations approach quality assurance and accelerate their digital transformation journeys.</p>
+
+            <h3 data-en="Core Values" data-zh="核心價值">Core Values</h3>
+            <div class="value-list">
+                <div class="value-item">
+                    <div class="value-icon">🎯</div>
+                    <div class="value-text">
+                        <h4 data-en="Accessibility" data-zh="可訪問性">Accessibility</h4>
+                        <p data-en="Technology should empower, not exclude. We design for teams of all technical backgrounds." data-zh="技術應該賦能，而不是排斥。我們為各種技術背景的團隊而設計。">Technology should empower, not exclude. We design for teams of all technical backgrounds.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🔄</div>
+                    <div class="value-text">
+                        <h4 data-en="Reliability" data-zh="可靠性">Reliability</h4>
+                        <p data-en="Enterprise-grade quality in every aspect—from code generation to runtime execution." data-zh="在每個方面都提供企業級品質——從程式碼生成到運行時執行。">Enterprise-grade quality in every aspect—from code generation to runtime execution.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">💡</div>
+                    <div class="value-text">
+                        <h4 data-en="Innovation" data-zh="創新">Innovation</h4>
+                        <p data-en="We continuously push the boundaries of what's possible in AI-driven automation." data-zh="我們不斷突破 AI 驅動自動化的可能邊界。">We continuously push the boundaries of what's possible in AI-driven automation.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🤝</div>
+                    <div class="value-text">
+                        <h4 data-en="Partnership" data-zh="夥伴關係">Partnership</h4>
+                        <p data-en="We succeed when our customers succeed. Your challenges drive our innovation roadmap." data-zh="當我們的客戶成功時，我們才會成功。您的挑戰推動我們的創新路線圖。">We succeed when our customers succeed. Your challenges drive our innovation roadmap.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="container">
+        
+        <!-- Contact Methods -->
+        <section>
+            <h2 data-en="Get in Touch" data-zh="快速聯絡">Get in Touch</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 30px;">
+                <div style="background: var(--bg-lighter); padding: 30px; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 15px;">📧</div>
+                    <h3 style="margin-bottom: 15px;" data-en="Email" data-zh="電子郵件">Email</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;" data-en="We typically respond within 24 hours" data-zh="我們通常在24小時內回復">
+                        We typically respond within 24 hours
+                    </p>
+                    <a href="mailto:contact@aiscripto.app" style="color: var(--accent-orange); font-weight: 600; text-decoration: none;">
+                        contact@aiscripto.app
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer style="background: var(--primary-dark); color: white; text-align: center; padding: 30px 0; margin-top: 40px;">
+        <div class="container">
+            <p style="color: var(--text-light); margin-bottom: 10px;">© 2026 AiScripto.App All rights reserved.</p>
+            <p style="color: var(--text-light); font-size: 14px;" data-en="Intelligent Multimodal Agentic Layer for Autonomous Software Quality Engineering" data-zh="智能多模態代理層，用於自主軟體品質工程">Intelligent Multimodal Agentic Layer for Autonomous Software Quality Engineering</p>
+        </div>
+    </footer>
+</body>
+</html>
