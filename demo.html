@@ -1494,7 +1494,8 @@
                     <div class="form-group" style="margin-bottom: 10px;">
                         <label style="margin-bottom: 5px;">Server URL</label>
                         <input type="text" id="serverUrl" placeholder="http://localhost:8080" value="http://localhost:8080">
-                        <span class="help-text">e.g., http://localhost:8080 or http://192.168.1.100:8080</span>
+
+                        <span class="help-text">e.g., http://localhost:8080 or http://192.168.1.100:8080 (if page is HTTPS, HTTP URLs will be converted to HTTPS)</span>
                     </div>
                     <div class="server-status">
                         <span class="status-indicator loading" id="statusIndicator"></span>
@@ -1914,14 +1915,40 @@
                         <h2 style="color: var(--primary);">🐛 Troubleshooting</h2>
 
                         <h3 style="color: #555; margin-top: 20px;">Connection Issues</h3>
-                        <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; margin-top: 10px;">
-                            <strong style="color: var(--primary);">❌ "Connection Failed" message</strong>
-                            <ol style="color: #666; font-size: 13px; margin-top: 10px;">
+                        <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; margin-top: 10px; margin-bottom: 15px;">
+                            <strong style="color: var(--primary);">❌ "Connection Failed: Failed to fetch" message</strong>
+                            <p style="color: #666; font-size: 13px; margin: 10px 0;">This error typically appears when the browser cannot communicate with the server. It often indicates a certificate trust issue with HTTPS connections.</p>
+                            
+                            <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; border-radius: 4px; margin: 15px 0; font-size: 13px; color: #664d03;">
+                                <strong>🔍 Debug Information:</strong>
+                                <p style="margin: 8px 0; font-family: monospace; font-size: 11px;">If you see in Debug Info: "net::ERR_CERT_AUTHORITY_INVALID"</p>
+                                <p style="margin: 8px 0;"><strong>Problem:</strong> Browser doesn't trust your self-signed certificate</p>
+                            </div>
+                            
+                            <h4 style="color: var(--primary); margin: 15px 0 10px 0;">✅ Solution for Self-Signed Certificate Issues:</h4>
+                            <ol style="color: #666; font-size: 13px; margin: 10px 0 0 0; padding-left: 20px;">
+                                <li style="margin: 8px 0;"><strong>Open your browser</strong> (Chrome, Firefox, Safari, Edge)</li>
+                                <li style="margin: 8px 0;"><strong>Visit the certificate source:</strong> <code style="background: #fff; padding: 2px 4px; border-radius: 2px;">https://YOUR_SERVER_URL:8080/api/v1/health</code>
+                                    <br/><span style="font-size: 12px; color: #999;">Example: https://18.141.220.36:8080/api/v1/health</span>
+                                </li>
+                                <li style="margin: 8px 0;"><strong>You'll see "Your connection is not private"</strong> warning</li>
+                                <li style="margin: 8px 0;"><strong>Click "Advanced"</strong> button</li>
+                                <li style="margin: 8px 0;"><strong>Click "Proceed to [SERVER_ADDRESS]"</strong> (or similar button)</li>
+                                <li style="margin: 8px 0;"><strong>Accept the certificate</strong> ✅ (browser will remember it)</li>
+                                <li style="margin: 8px 0;"><strong>Return to AiScripto Demo:</strong> <code style="background: #fff; padding: 2px 4px; border-radius: 2px;">https://aiscripto.app/demo.html</code></li>
+                                <li style="margin: 8px 0;"><strong>Enter your server URL again</strong> and it should connect successfully ✅</li>
+                            </ol>
+                            
+                            <hr style="margin: 15px 0; border: none; border-top: 1px solid #ddd;">
+                            
+                            <h4 style="color: var(--primary); margin: 15px 0 10px 0;">Other Connection Issues:</h4>
+                            <ol style="color: #666; font-size: 13px; margin: 10px 0 0 0; padding-left: 20px;">
                                 <li>Check if server is running and accessible</li>
-                                <li>Verify server URL is correct (e.g., http://localhost:8080)</li>
+                                <li>Verify server URL is correct (e.g., http://localhost:8080 or https://18.141.220.36:8080)</li>
                                 <li>Make sure you're on same network or can reach the server</li>
                                 <li>Try refreshing the page (F5)</li>
-                                <li>Check browser console for detailed error messages</li>
+                                <li>Check browser console (F12) for detailed error messages</li>
+                                <li>Verify firewall/network rules allow access to the server port</li>
                             </ol>
                         </div>
 
@@ -2116,8 +2143,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             restoreServerUrl();
             initializeCommandInfo();
-            loadTestCases();
             checkServerConnection();
+            loadTestCases();
         });
 
         // ===== Server Connection =====
@@ -2127,6 +2154,7 @@
 
             try {
                 console.log(`[DEBUG] Attempting to connect to: ${state.serverUrl}/api/v1/health`);
+                console.log('[DEBUG] Request configuration: CORS mode, no credentials');
                 
                 const response = await fetch(`${state.serverUrl}/api/v1/health`, {
                     method: 'GET',
@@ -2134,18 +2162,20 @@
                         'Content-Type': 'application/json'
                     },
                     mode: 'cors',
-                    credentials: 'omit'
+                    credentials: 'omit',
+                    timeout: 10000
                 });
 
                 console.log(`[DEBUG] Response status: ${response.status}`);
                 console.log(`[DEBUG] Response headers:`, response.headers);
 
                 if (response.ok) {
+                    const data = await response.json();
                     state.serverStatus = 'ok';
                     statusIndicator.className = 'status-indicator ok';
                     statusIndicator.parentElement.innerHTML = '<span class="status-indicator ok"></span><span>Connected ✓</span>';
                     document.getElementById('submitBtn').disabled = false;
-                    console.log('[DEBUG] Connection successful!');
+                    console.log('[DEBUG] Connection successful! Response:', data);
                 } else {
                     throw new Error(`Server returned status ${response.status}`);
                 }
@@ -2155,12 +2185,17 @@
                 const errorMsg = error.message || error.toString();
                 statusIndicator.parentElement.innerHTML = `<span class="status-indicator error"></span><span>Connection Failed: ${errorMsg}</span>`;
                 document.getElementById('submitBtn').disabled = true;
-                console.error('[ERROR] Server connection failed:', error);
-                console.error('[ERROR] Error details:', {
-                    message: error.message,
-                    name: error.name,
-                    stack: error.stack
-                });
+                
+                // Enhanced error logging
+                console.error('[ERROR] Server connection failed');
+                console.error('[ERROR] Error type:', error.name);
+                console.error('[ERROR] Error message:', error.message);
+                console.error('[ERROR] Troubleshooting steps:');
+                console.error('  1. Check if server is running at:', state.serverUrl);
+                console.error('  2. Verify server CORS headers are configured');
+                console.error('  3. Check firewall/network rules');
+                console.error('  4. Try accessing server directly in browser');
+                console.error('[ERROR] Full error:', error);
             }
         }
 
@@ -2595,16 +2630,29 @@
             return text.replace(/[&<>"']/g, m => map[m]);
         }
 
+        function normalizeServerUrl(url) {
+            // If current page is HTTPS and URL is HTTP, convert to HTTPS to avoid mixed content
+            if (window.location.protocol === 'https:' && url.startsWith('http://')) {
+                console.log('[DEBUG] Page is HTTPS but URL is HTTP, converting to HTTPS to avoid mixed content');
+                return url.replace('http://', 'https://');
+            }
+            return url;
+        }
+
         function restoreServerUrl() {
             const saved = localStorage.getItem('aiscripto_server_url');
             if (saved) {
-                state.serverUrl = saved;
-                document.getElementById('serverUrl').value = saved;
+
+
+                state.serverUrl = normalizeServerUrl(saved);
+                document.getElementById('serverUrl').value = state.serverUrl;
             }
 
             // Save on change
             document.getElementById('serverUrl').addEventListener('change', function() {
-                state.serverUrl = this.value;
+
+                state.serverUrl = normalizeServerUrl(this.value);
+                document.getElementById('serverUrl').value = state.serverUrl;
                 localStorage.setItem('aiscripto_server_url', this.value);
                 loadTestCases();
                 checkServerConnection();
@@ -2612,7 +2660,9 @@
 
             // Also update on blur
             document.getElementById('serverUrl').addEventListener('blur', function() {
-                state.serverUrl = this.value;
+
+                state.serverUrl = normalizeServerUrl(this.value);
+                document.getElementById('serverUrl').value = state.serverUrl;
                 localStorage.setItem('aiscripto_server_url', this.value);
                 loadTestCases();
                 checkServerConnection();
