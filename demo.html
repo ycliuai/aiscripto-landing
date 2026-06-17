@@ -1,0 +1,3392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AiScripto - Interactive Demo - Test Case Validation Platform">
+    <title>AiScripto - Interactive Demo</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Demo-specific styles */
+        :root {
+            --primary: #1a1a1a;
+            --accent: #ff9900;
+            --success: #27ae60;
+            --error: #e74c3c;
+            --warning: #f39c12;
+            --info: #3498db;
+            --light-bg: #f5f5f5;
+            --border: #ddd;
+        }
+
+        body {
+            background-color: #f9f9f9;
+        }
+
+        .demo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            padding-top: 80px;
+        }
+
+        .demo-header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .demo-header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .demo-header .subtitle {
+            font-size: 18px;
+            color: #a0a0a0;
+            font-weight: 300;
+        }
+
+        .demo-badge {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 12px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .demo-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .control-panel, .execution-panel {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+        }
+
+        .panel-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        button {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background-color: #ff8800;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 153, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--light-bg);
+            color: var(--primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background-color: #e8e8e8;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .server-config {
+            background-color: var(--light-bg);
+            border-left: 4px solid var(--info);
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        .server-config-title {
+            font-weight: 600;
+            color: var(--info);
+            margin-bottom: 8px;
+        }
+
+        .server-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .status-indicator.ok {
+            background-color: var(--success);
+        }
+
+        .status-indicator.error {
+            background-color: var(--error);
+        }
+
+        .status-indicator.loading {
+            background-color: var(--warning);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .job-info {
+            background-color: var(--light-bg);
+            border-left: 4px solid var(--info);
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .job-info.visible {
+            display: block;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .info-value {
+            color: #666;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+
+        .events-timeline {
+            position: relative;
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        #eventsContainer {
+            display: none;
+            flex: 1;
+            min-height: 0;
+        }
+
+        #eventsContainer.visible {
+            display: block;
+        }
+
+        .events-timeline-scroll {
+            flex: 1;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 15px;
+            background-color: var(--light-bg);
+            min-height: 300px;
+            max-height: 400px;
+        }
+
+        .events-timeline-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .events-timeline-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .events-timeline-scroll::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .events-timeline-scroll::-webkit-scrollbar-thumb:hover {
+            background: #a0a0a0;
+        }
+
+        .timeline-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--info);
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px var(--info);
+        }
+
+        .timeline-item.tool::before {
+            background-color: var(--accent);
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+
+        .timeline-item.question::before {
+            background-color: var(--warning);
+            box-shadow: 0 0 0 2px var(--warning);
+        }
+
+        .timeline-item.complete::before {
+            background-color: var(--success);
+            box-shadow: 0 0 0 2px var(--success);
+        }
+
+        .timeline-item.error::before {
+            background-color: var(--error);
+            box-shadow: 0 0 0 2px var(--error);
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-time {
+            font-size: 11px;
+            color: #999;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .timeline-type {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .timeline-message {
+            color: #666;
+            font-size: 13px;
+            background-color: var(--light-bg);
+            padding: 10px;
+            border-radius: 4px;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+
+        .timeline-message code {
+            background-color: #fff;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-badge.queued {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-badge.running {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .status-badge.completed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-badge.failed {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-badge.cancelled {
+            background-color: #e2e3e5;
+            color: #383d41;
+        }
+
+        .result-box {
+            background-color: var(--light-bg);
+            border-left: 4px solid var(--success);
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: none;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .result-box.visible {
+            display: block;
+        }
+
+        .result-box.error {
+            border-left-color: var(--error);
+            background-color: #fee;
+        }
+
+        .result-title {
+            font-weight: 600;
+            color: var(--success);
+            margin-bottom: 10px;
+        }
+
+        .result-box.error .result-title {
+            color: var(--error);
+        }
+
+        .result-content {
+            font-size: 13px;
+            color: #666;
+            font-family: 'Courier New', monospace;
+            word-wrap: break-word;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .test-cases-quick {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .quick-test-btn {
+            padding: 10px !important;
+            font-size: 12px !important;
+            background-color: var(--light-bg);
+            color: var(--primary);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .quick-test-btn:hover:not(:disabled) {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .demo-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .demo-header {
+                padding: 40px 0;
+            }
+
+            .demo-header h1 {
+                font-size: 32px;
+            }
+
+            .control-panel, .execution-panel {
+                padding: 20px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-top: 2px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .polling-info {
+            font-size: 12px;
+            color: #999;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+        }
+
+        .help-text {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+            display: block;
+        }
+
+        /* Hide import test case option */
+        #command option[value="import"] {
+            display: none;
+        }
+
+        /* ===== Script Download Manager Styles ===== */
+        .scripts-report-tab {
+            margin-top: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+        }
+
+        .scripts-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .scripts-header h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .scripts-header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .script-filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .script-filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .script-filter-group label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .script-filter-group input,
+        .script-filter-group select {
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .scripts-list-container {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .script-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            align-items: start;
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            background: #fafafa;
+            transition: background-color 0.2s;
+        }
+
+        .script-item:last-child {
+            border-bottom: none;
+        }
+
+        .script-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .script-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .script-id {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .script-title {
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .script-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .script-status {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .status-badge-sm {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-badge-sm.none {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .script-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 150px;
+        }
+
+        .script-actions-row {
+            display: flex;
+            gap: 6px;
+        }
+
+        .btn-download-script,
+        .btn-view-report,
+        .btn-download-report {
+            padding: 6px 12px;
+            font-size: 12px;
+            min-width: auto;
+            flex: 1;
+            border-radius: 3px;
+            border: 1px solid var(--border);
+            background: white;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .btn-download-script:hover {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .btn-view-report:hover,
+        .btn-download-report:hover {
+            background-color: var(--info);
+            color: white;
+            border-color: var(--info);
+        }
+
+        .btn-download-script:disabled,
+        .btn-view-report:disabled,
+        .btn-download-report:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .scripts-list-empty {
+            padding: 40px;
+            text-align: center;
+            color: #999;
+        }
+
+        .scripts-list-loading {
+            padding: 20px;
+            text-align: center;
+            color: #999;
+        }
+
+        .report-viewer-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .report-viewer-modal.visible {
+            display: flex;
+        }
+
+        .report-viewer-box {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .report-viewer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .report-viewer-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .report-viewer-close {
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            line-height: 1;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .report-viewer-close:hover {
+            color: var(--primary);
+        }
+
+        .report-viewer-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .report-viewer-content code {
+            background-color: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .report-viewer-content pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        .report-json {
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .report-markdown {
+            color: #333;
+        }
+
+        .report-markdown h1,
+        .report-markdown h2,
+        .report-markdown h3 {
+            margin: 15px 0 10px 0;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .report-markdown ul,
+        .report-markdown ol {
+            margin: 10px 0 10px 20px;
+        }
+
+        .report-html-viewer {
+            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .report-html-viewer h1,
+        .report-html-viewer h2,
+        .report-html-viewer h3 {
+            color: var(--primary);
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+        }
+
+        .report-html-viewer h1 { font-size: 24px; }
+        .report-html-viewer h2 { font-size: 20px; }
+        .report-html-viewer h3 { font-size: 16px; }
+
+        .report-html-viewer p {
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        .report-html-viewer table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .report-html-viewer table th {
+            background-color: var(--light-bg);
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .report-html-viewer table td {
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .report-html-viewer table tr:hover {
+            background-color: #fafafa;
+        }
+
+        .report-html-viewer pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+
+        .report-html-viewer code {
+            background-color: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+
+        .report-html-viewer ul,
+        .report-html-viewer ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .report-html-viewer li {
+            margin: 5px 0;
+        }
+
+        .report-html-viewer video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 10px 0;
+            background-color: #000;
+        }
+
+        .report-html-viewer img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+
+        .report-html-viewer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .report-html-viewer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .script-item {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .script-actions {
+                min-width: auto;
+                width: 100%;
+            }
+
+            .script-actions-row {
+                flex-direction: column;
+            }
+
+            .script-filters {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== Tab Navigation ===== */
+        .demo-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .demo-tab {
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #666;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: auto;
+            flex: none;
+            border-radius: 0;
+        }
+
+        .demo-tab:hover {
+            color: var(--accent);
+            background-color: rgba(255, 153, 0, 0.05);
+            transform: none;
+            box-shadow: none;
+        }
+
+        .demo-tab.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+            background-color: rgba(255, 153, 0, 0.05);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* ===== Test Case Manager Styles ===== */
+        .tc-manager-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .tc-list-panel, .tc-editor-panel {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+        }
+
+        .tc-list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .tc-list-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .tc-list-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-sm {
+            padding: 8px 14px;
+            font-size: 12px;
+            min-width: auto;
+            flex: none;
+        }
+
+        .btn-danger {
+            background-color: var(--error);
+            color: white;
+        }
+
+        .btn-danger:hover:not(:disabled) {
+            background-color: #c0392b;
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover:not(:disabled) {
+            background-color: #219a52;
+            transform: translateY(-1px);
+        }
+
+        .tc-search-bar {
+            margin-bottom: 15px;
+        }
+
+        .tc-search-bar input {
+            padding: 10px 12px;
+            font-size: 13px;
+        }
+
+        .tc-list-container {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .tc-list-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .tc-list-item:last-child {
+            border-bottom: none;
+        }
+
+        .tc-list-item:hover {
+            background-color: var(--light-bg);
+        }
+
+        .tc-list-item.selected {
+            background-color: rgba(255, 153, 0, 0.08);
+            border-left: 3px solid var(--accent);
+        }
+
+        .tc-list-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .tc-list-item-id {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+
+        .tc-list-item-title {
+            font-size: 13px;
+            color: var(--primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .tc-list-item-meta {
+            font-size: 11px;
+            color: #999;
+            margin-top: 2px;
+        }
+
+        .tc-list-item-actions {
+            display: flex;
+            gap: 6px;
+            margin-left: 10px;
+        }
+
+        .tc-action-btn {
+            padding: 5px 8px;
+            font-size: 11px;
+            min-width: auto;
+            flex: none;
+            border-radius: 3px;
+            border: 1px solid var(--border);
+            background: white;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tc-action-btn:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .tc-action-btn.edit:hover {
+            background-color: var(--info);
+            color: white;
+            border-color: var(--info);
+        }
+
+        .tc-action-btn.delete:hover {
+            background-color: var(--error);
+            color: white;
+            border-color: var(--error);
+        }
+
+        /* Hide delete button */
+        .tc-action-btn.delete {
+            display: none;
+        }
+
+        /* Hide delete modal */
+        #deleteModal {
+            display: none !important;
+        }
+
+        .tc-list-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+
+        .tc-list-empty-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        /* Editor Panel */
+        .tc-editor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .tc-editor-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .tc-editor-mode-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .tc-editor-mode-badge.create {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .tc-editor-mode-badge.edit {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .tc-editor-form .form-group {
+            margin-bottom: 16px;
+        }
+
+        .tc-editor-form label {
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .tc-editor-form input,
+        .tc-editor-form textarea {
+            font-size: 13px;
+            padding: 10px 12px;
+        }
+
+        .tc-editor-form textarea.tc-content-editor {
+            min-height: 280px;
+            line-height: 1.5;
+        }
+
+        .tc-template-bar {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .tc-template-btn {
+            padding: 4px 10px;
+            font-size: 11px;
+            min-width: auto;
+            flex: none;
+            background-color: var(--light-bg);
+            border: 1px solid var(--border);
+            color: #666;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .tc-template-btn:hover {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: none;
+            box-shadow: none;
+        }
+
+        .tc-editor-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tc-editor-actions button {
+            flex: 1;
+        }
+
+        /* Toast Notification */
+        .toast-container {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            padding: 14px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            animation: slideIn 0.3s ease;
+            min-width: 280px;
+            max-width: 400px;
+        }
+
+        .toast.success {
+            background-color: var(--success);
+        }
+
+        .toast.error {
+            background-color: var(--error);
+        }
+
+        .toast.info {
+            background-color: var(--info);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        /* Confirm Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.visible {
+            display: flex;
+        }
+
+        .modal-box {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 420px;
+            width: 90%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .modal-message {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .modal-actions button {
+            min-width: 80px;
+            flex: none;
+        }
+
+        @media (max-width: 1024px) {
+            .tc-manager-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .demo-tabs {
+                flex-direction: column;
+            }
+
+            .demo-tab {
+                border-bottom: none;
+                border-left: 3px solid transparent;
+            }
+
+            .demo-tab.active {
+                border-left-color: var(--accent);
+                border-bottom-color: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (reuse from main site) -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">Ai<span>Scripto</span></a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="workflow.html">Workflow</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="demo.html" class="active">Demo</a></li>
+            </ul>
+            <div class="language-switcher">
+                <button id="lang-en" class="active" onclick="setLanguage('en')">EN</button>
+                <button id="lang-zh" onclick="setLanguage('zh')">中文</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Demo Header -->
+    <div class="demo-header">
+        <div class="container">
+            <div class="demo-badge">Live Demo</div>
+            <h1>Interactive Demo</h1>
+            <p class="subtitle">Experience AiScripto's Test Case Validation in Real-time</p>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Delete Confirm Modal -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal-box">
+            <div class="modal-title">Confirm Delete</div>
+            <div class="modal-message" id="deleteModalMessage">Are you sure you want to delete this test case? This action cannot be undone.</div>
+            <div class="modal-actions">
+                <button class="btn-secondary btn-sm" onclick="closeDeleteModal()">Cancel</button>
+                <button class="btn-danger btn-sm" id="deleteModalConfirmBtn" onclick="confirmDeleteTestCase()">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Demo Content -->
+    <div class="demo-container">
+        <!-- Tab Navigation -->
+        <div class="demo-tabs">
+            <button class="demo-tab active" onclick="switchTab('job-runner')" id="tab-job-runner">&#9654; Job Runner</button>
+            <button class="demo-tab" onclick="switchTab('tc-manager')" id="tab-tc-manager">&#128221; Test Case Manager</button>
+            <button class="demo-tab" onclick="switchTab('script-reports')" id="tab-script-reports">&#128229; Scripts & Reports</button>
+            <button class="demo-tab" onclick="switchTab('guide')" id="tab-guide">&#128218; User Guide</button>
+        </div>
+
+        <!-- Tab 1: Job Runner (existing content) -->
+        <div class="tab-content active" id="content-job-runner">
+        <div class="demo-content">
+            <!-- Control Panel (Left) -->
+            <div class="control-panel">
+                <div class="panel-title">📋 Control Panel</div>
+
+                <!-- Server Configuration -->
+                <div class="server-config">
+                    <div class="server-config-title">Server Configuration</div>
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label style="margin-bottom: 5px;">Server URL</label>
+                        <input type="text" id="serverUrl" placeholder="http://localhost:8080" value="http://localhost:8080">
+                        <span class="help-text">e.g., http://localhost:8080 or http://192.168.1.100:8080</span>
+                    </div>
+                    <div class="server-status">
+                        <span class="status-indicator loading" id="statusIndicator"></span>
+                        <span>Checking connection...</span>
+                    </div>
+                    <!-- Debug Info -->
+                    <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.1); font-size: 11px;">
+                        <details>
+                            <summary style="cursor: pointer; color: #666; margin-bottom: 5px;">🔍 Debug Info (Open Browser Console for full logs)</summary>
+                            <div id="debugInfo" style="background: #f0f0f0; padding: 8px; border-radius: 3px; margin-top: 5px; max-height: 100px; overflow-y: auto; font-family: monospace; white-space: pre-wrap; word-break: break-all; font-size: 10px;">
+                                Loading...
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- Command Selection -->
+                <div class="form-group">
+                    <label for="command">Command Type</label>
+                    <select id="command" onchange="updateCommandInfo()">
+                        <option value="validate">✓ Validate Test Case</option>
+                        <option value="convert">→ Convert to Playwright Script</option>
+                        <!-- Hidden: <option value="import">⬇ Import Test Case</option> -->
+                        <option value="verify">✔ Verify Execution</option>
+                        <option value="parameterize">⚙ Parameterize Test</option>
+                    </select>
+                    <span class="help-text" id="commandHelp"></span>
+                </div>
+
+                <!-- Test Case Selection -->
+                <div class="form-group">
+                    <label for="testCase">Test Case ID</label>
+                    <select id="testCase">
+                        <option value="">-- Loading available test cases --</option>
+                    </select>
+                    <span class="help-text">Select from available test cases on the server</span>
+                </div>
+
+                <!-- Custom Parameters -->
+                <div class="form-group" style="display: none;">
+                    <label for="customArgs">Additional Parameters (Optional)</label>
+                    <textarea id="customArgs" placeholder="Any additional parameters or notes for this job"></textarea>
+                </div>
+
+                <!-- Quick Test Buttons -->
+                <div style="margin-top: 15px; display: none;">
+                    <div style="font-size: 12px; font-weight: 600; color: var(--primary); margin-bottom: 10px;">Quick Test Cases:</div>
+                    <div class="test-cases-quick" id="quickTestCases"></div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="button-group">
+                    <button class="btn-primary" id="submitBtn" onclick="submitJob()">
+                        <span id="submitBtnText">▶ Submit Job</span>
+                    </button>
+                    <button class="btn-secondary" id="cancelBtn" onclick="cancelJob()" style="display: none;">
+                        ✕ Cancel Job
+                    </button>
+                    <button class="btn-secondary" onclick="clearDemo()">Clear</button>
+                </div>
+
+                <div class="polling-info" id="pollingInfo"></div>
+            </div>
+
+            <!-- Execution Panel (Right) -->
+            <div class="execution-panel">
+                <div class="panel-title">📊 Execution Monitor</div>
+
+                <!-- Job Information -->
+                <div class="job-info" id="jobInfo">
+                    <div class="info-row">
+                        <span class="info-label">Job ID:</span>
+                        <span class="info-value" id="jobId">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Status:</span>
+                        <span class="info-value"><span class="status-badge queued" id="jobStatus">queued</span></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Duration:</span>
+                        <span class="info-value" id="jobDuration">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Created:</span>
+                        <span class="info-value" id="jobCreated">-</span>
+                    </div>
+                </div>
+
+                <!-- Events Timeline -->
+                <div id="eventsContainer">
+                    <div class="events-timeline">
+                        <div class="timeline-title">📊 Monitoring Execution in Real-time (Latest 6 Events)</div>
+                        <div class="events-timeline-scroll" id="eventsScrollContainer">
+                            <div id="eventsList"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result Box -->
+                <div class="result-box" id="resultBox">
+                    <div class="result-title" id="resultTitle">✅ Execution Result</div>
+                    <div class="result-content" id="resultContent"></div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-state-icon">🚀</div>
+                    <p>Submit a job to start monitoring execution in real-time</p>
+                    <p style="font-size: 12px; margin-top: 10px;">Check server connection and select test case above</p>
+                </div>
+            </div>
+        </div>
+        </div><!-- end tab-content job-runner -->
+
+        <!-- Tab 2: Scripts & Reports Manager -->
+        <div class="tab-content" id="content-script-reports">
+            <div class="scripts-report-tab">
+                <div class="scripts-header">
+                    <h2>📥 Downloaded Scripts & Reports</h2>
+                    <div class="scripts-header-actions">
+                        <button class="btn-secondary btn-sm" onclick="refreshScriptsList()" title="Refresh list">&#8635; Refresh</button>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="script-filters">
+                    <div class="script-filter-group">
+                        <label for="scriptFilter">Filter by ID</label>
+                        <input type="text" id="scriptFilter" placeholder="Search TC-ID..." oninput="filterScripts()">
+                    </div>
+                    <div class="script-filter-group">
+                        <label for="reportFilter">Filter by Report Type</label>
+                        <select id="reportFilter" onchange="filterScripts()">
+                            <option value="">All Reports</option>
+                            <option value="all-reports">Has Reports</option>
+                            <option value="healing">Has Healing Report</option>
+                            <option value="validation">Has Validation Report</option>
+                            <option value="execution">Has Execution Report</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Scripts List -->
+                <div class="scripts-list-container" id="scriptsListContainer">
+                    <div class="scripts-list-empty">
+                        <div style="font-size: 36px; margin-bottom: 10px;">📚</div>
+                        <p>No scripts available</p>
+                        <p style="font-size: 12px; margin-top: 8px; color: #999;">Run convert job first to generate scripts</p>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end tab-content script-reports -->
+
+        <!-- Tab 3: Test Case Manager -->
+        <div class="tab-content" id="content-tc-manager">
+            <div class="tc-manager-layout">
+                <!-- Left: Test Case List -->
+                <div class="tc-list-panel">
+                    <div class="panel-title">&#128203; Test Cases</div>
+                    <div class="tc-list-header">
+                        <h3 id="tcListCount">0 Test Cases</h3>
+                        <div class="tc-list-actions">
+                            <button class="btn-sm btn-secondary" onclick="tcRefreshList()" title="Refresh list">&#8635; Refresh</button>
+                            <button class="btn-sm btn-primary" onclick="tcNewTestCase()">+ New</button>
+                        </div>
+                    </div>
+                    <div class="tc-search-bar">
+                        <input type="text" id="tcSearchInput" placeholder="Search test cases..." oninput="tcFilterList()">
+                    </div>
+                    <div class="tc-list-container" id="tcListContainer">
+                        <div class="tc-list-empty">
+                            <div class="tc-list-empty-icon">&#128196;</div>
+                            <p>No test cases loaded</p>
+                            <p style="font-size: 12px; margin-top: 5px;">Connect to server and click Refresh</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Editor Panel -->
+                <div class="tc-editor-panel">
+                    <div class="panel-title">&#9998; Editor</div>
+                    <div class="tc-editor-header">
+                        <h3 id="tcEditorTitle">New Test Case</h3>
+                        <span class="tc-editor-mode-badge create" id="tcEditorBadge">CREATE</span>
+                    </div>
+
+                    <div class="tc-editor-form">
+                        <div class="form-group">
+                            <label for="tcEditorId">Test Case ID (optional, auto-generated if empty)</label>
+                            <input type="text" id="tcEditorId" placeholder="e.g., TC-100 (leave empty for auto)">
+                            <span class="help-text">Format: TC-XXX. Leave empty to auto-generate next available ID.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tcEditorTitleInput">Title</label>
+                            <input type="text" id="tcEditorTitleInput" placeholder="e.g., Login Test, Checkout Flow">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Content</label>
+                            <div class="tc-template-bar">
+                                <button class="tc-template-btn" onclick="tcInsertTemplate('basic')">Basic Template</button>
+                                <button class="tc-template-btn" onclick="tcInsertTemplate('detailed')">Detailed Template</button>
+                                <button class="tc-template-btn" onclick="tcClearEditor()">Clear</button>
+                            </div>
+                            <textarea class="tc-content-editor" id="tcEditorContent" placeholder="Test Case ID: XXX&#10;&#10;Preconditions:&#10;(none)&#10;&#10;1) Step description&#10;   Action details&#10;   Expected: Expected result"></textarea>
+                            <span class="help-text">Must contain 'Test Case ID:' line and at least one numbered step (e.g., '1) ...').</span>
+                        </div>
+
+                        <div class="tc-editor-actions">
+                            <button class="btn-primary" id="tcSaveBtn" onclick="tcSaveTestCase()">&#128190; Save Test Case</button>
+                            <button class="btn-secondary" onclick="tcCancelEdit()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end tab-content tc-manager -->
+
+        <!-- Tab 4: User Guide -->
+        <div class="tab-content" id="content-guide">
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <div style="background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); padding: 40px;">
+                    <h1 style="color: var(--primary); margin-top: 0;">📖 AiScripto Demo - Complete User Guide</h1>
+                    
+                    <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                        <p style="margin: 0; color: #666; font-size: 16px;">
+                            Welcome to AiScripto Interactive Demo! This guide covers all features and how to use them.
+                        </p>
+                    </div>
+
+                    <!-- Table of Contents -->
+                    <div style="margin: 40px 0;">
+                        <h2 style="color: var(--primary);">📋 Table of Contents</h2>
+                        <ol style="font-size: 15px; line-height: 2;">
+                            <li><a href="#section1" style="color: var(--accent); text-decoration: none;">⚙️ System Requirements & Setup</a></li>
+                            <li><a href="#section2" style="color: var(--accent); text-decoration: none;">🚀 Tab 1: Job Runner</a></li>
+                            <li><a href="#section3" style="color: var(--accent); text-decoration: none;">✏️ Tab 2: Test Case Manager</a></li>
+                            <li><a href="#section4" style="color: var(--accent); text-decoration: none;">📥 Tab 3: Scripts & Reports</a></li>
+                            <li><a href="#section5" style="color: var(--accent); text-decoration: none;">🐛 Troubleshooting</a></li>
+                        </ol>
+                    </div>
+
+                    <!-- Section 1: Setup -->
+                    <div id="section1" style="margin: 40px 0; padding-top: 20px; border-top: 2px solid #ddd;">
+                        <h2 style="color: var(--primary);">⚙️ System Requirements & Setup</h2>
+                        
+                        <h3 style="color: #555; margin-top: 20px;">Before You Start</h3>
+                        <ul style="font-size: 14px; line-height: 1.8; color: #666;">
+                            <li>✅ Modern web browser (Chrome 90+, Firefox 88+, Safari 14+, Edge 90+)</li>
+                            <li>✅ AiScripto server running and accessible</li>
+                            <li>✅ Network connection to the server (HTTP/HTTPS)</li>
+                            <li>✅ JavaScript enabled in browser</li>
+                        </ul>
+
+                        <h3 style="color: #555; margin-top: 20px;">Server Configuration</h3>
+                        <div style="background: #f9f9f9; border-left: 4px solid var(--accent); padding: 15px; border-radius: 4px; font-size: 14px; color: #666; margin-top: 10px;">
+                            <strong>Location:</strong> Control Panel → Server Configuration (top-left)<br>
+                            <strong>Default URL:</strong> http://localhost:8080<br>
+                            <strong>Action:</strong> Enter your server URL and press Enter<br>
+                            <strong>Status:</strong> Green indicator shows connection is successful<br>
+                            <span style="display: block; margin-top: 10px; color: #999; font-size: 12px;">💡 Tip: The URL is saved in browser storage, so you don't need to re-enter it.</span>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Job Runner -->
+                    <div id="section2" style="margin: 40px 0; padding-top: 20px; border-top: 2px solid #ddd;">
+                        <h2 style="color: var(--primary);">🚀 Tab 1: Job Runner</h2>
+                        <p style="color: #666; font-size: 14px; line-height: 1.6;">Execute various commands on test cases to perform validation, conversion, and verification tasks.</p>
+
+                        <h3 style="color: #555; margin-top: 20px;">Available Commands</h3>
+                        <div style="display: grid; gap: 15px; margin-top: 10px;">
+                            <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; border-left: 4px solid var(--accent);">
+                                <strong style="color: var(--primary);">✓ Validate Test Case</strong>
+                                <p style="margin: 8px 0 0 0; color: #666; font-size: 13px;">Check test case syntax, structure, and compatibility with the system.</p>
+                            </div>
+                            <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; border-left: 4px solid var(--accent);">
+                                <strong style="color: var(--primary);">→ Convert to Playwright Script</strong>
+                                <p style="margin: 8px 0 0 0; color: #666; font-size: 13px;">Generate TypeScript Playwright scripts from test case. This is the main conversion function.</p>
+                            </div>
+                            <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; border-left: 4px solid var(--accent);">
+                                <strong style="color: var(--primary);">✔ Verify Execution</strong>
+                                <p style="margin: 8px 0 0 0; color: #666; font-size: 13px;">Execute the converted script and generate verification reports (healing, validation, execution).</p>
+                            </div>
+                            <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; border-left: 4px solid var(--accent);">
+                                <strong style="color: var(--primary);">⚙ Parameterize Test</strong>
+                                <p style="margin: 8px 0 0 0; color: #666; font-size: 13px;">Extract and parameterize test data for data-driven testing.</p>
+                            </div>
+                        </div>
+
+                        <h3 style="color: #555; margin-top: 20px;">How to Submit a Job</h3>
+                        <ol style="color: #666; font-size: 14px; line-height: 2;">
+                            <li><strong>Select Command:</strong> Choose from dropdown (e.g., "Convert to Playwright Script")</li>
+                            <li><strong>Select Test Case:</strong> Pick a test case ID from the dropdown</li>
+                            <li><strong>Optional Parameters:</strong> Add notes or parameters if needed</li>
+                            <li><strong>Submit:</strong> Click "▶ Submit Job" button</li>
+                            <li><strong>Monitor:</strong> Watch real-time execution events in the right panel</li>
+                            <li><strong>View Result:</strong> Check completion status and result message</li>
+                        </ol>
+
+                        <h3 style="color: #555; margin-top: 20px;">Execution Monitor Panel</h3>
+                        <ul style="color: #666; font-size: 14px; line-height: 1.8;">
+                            <li>📊 <strong>Job Information:</strong> Shows Job ID, Status, Duration, Creation Time</li>
+                            <li>📋 <strong>Event Timeline:</strong> Real-time execution events (latest 6 displayed)</li>
+                            <li>✅ <strong>Result Box:</strong> Final result message after job completion</li>
+                            <li>🔄 <strong>Polling Status:</strong> Shows polling interval (checks every 2 seconds)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Section 3: Test Case Manager -->
+                    <div id="section3" style="margin: 40px 0; padding-top: 20px; border-top: 2px solid #ddd;">
+                        <h2 style="color: var(--primary);">✏️ Tab 2: Test Case Manager</h2>
+                        <p style="color: #666; font-size: 14px; line-height: 1.6;">Create, edit, and manage test cases directly in the system.</p>
+
+                        <h3 style="color: #555; margin-top: 20px;">Left Panel: Test Case List</h3>
+                        <ul style="color: #666; font-size: 14px; line-height: 1.8;">
+                            <li><strong>Search Bar:</strong> Filter test cases by ID or title</li>
+                            <li><strong>Refresh Button:</strong> Reload the list from server</li>
+                            <li><strong>+ New Button:</strong> Create a new test case</li>
+                            <li><strong>Click Item:</strong> Select and edit a test case</li>
+                            <li><strong>Count Display:</strong> Shows total number of test cases</li>
+                        </ul>
+
+                        <h3 style="color: #555; margin-top: 20px;">Right Panel: Editor</h3>
+                        <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; margin-top: 10px; font-size: 14px; color: #666;">
+                            <strong>CREATE Mode:</strong> Fields for new test case
+                            <ul style="margin-top: 10px;">
+                                <li><strong>Test Case ID:</strong> Optional (auto-generated if empty)</li>
+                                <li><strong>Title:</strong> Name of the test case</li>
+                                <li><strong>Content:</strong> Test steps in specific format</li>
+                            </ul>
+                            <hr style="margin: 15px 0; border: none; border-top: 1px solid #ddd;">
+                            <strong>EDIT Mode:</strong> Modify existing test case
+                            <ul style="margin-top: 10px;">
+                                <li>Test Case ID is locked (cannot change)</li>
+                                <li>Can update title and content</li>
+                                <li>Changes are saved immediately</li>
+                            </ul>
+                        </div>
+
+                        <h3 style="color: #555; margin-top: 20px;">Content Format Requirements</h3>
+                        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; border-radius: 4px; margin-top: 10px; font-size: 13px; color: #664d03;">
+                            <strong>⚠️ Important:</strong> Content must have:
+                            <ul style="margin: 10px 0 0 0;">
+                                <li>One line with "Test Case ID:" (e.g., "Test Case ID: 1")</li>
+                                <li>At least one numbered step (e.g., "1) Step description")</li>
+                                <li>Each step can have "Action:" and "Expected:" sub-lines</li>
+                            </ul>
+                        </div>
+
+                        <h3 style="color: #555; margin-top: 20px;">Template Examples</h3>
+                        <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; margin-top: 10px;">
+                            <strong style="font-size: 13px;">Basic Template:</strong>
+                            <pre style="background: #fff; padding: 10px; border-radius: 3px; overflow-x: auto; font-size: 12px; margin-top: 8px;">Test Case ID: 1
+
+1) Step description
+   Action: Describe what to do
+   Expected: Describe expected result</pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 4: Scripts & Reports -->
+                    <div id="section4" style="margin: 40px 0; padding-top: 20px; border-top: 2px solid #ddd;">
+                        <h2 style="color: var(--primary);">📥 Tab 3: Scripts & Reports</h2>
+                        <p style="color: #666; font-size: 14px; line-height: 1.6;">View and download converted scripts and generated reports.</p>
+
+                        <h3 style="color: #555; margin-top: 20px;">Features</h3>
+                        <ul style="color: #666; font-size: 14px; line-height: 1.8;">
+                            <li>📋 <strong>List All Scripts:</strong> Shows all converted test scripts</li>
+                            <li>🔍 <strong>Filter by ID:</strong> Search for specific test cases</li>
+                            <li>📊 <strong>Filter by Report Type:</strong> Find tests with specific reports</li>
+                            <li>⬇️ <strong>Download Scripts:</strong> Get .spec.ts files</li>
+                            <li>📄 <strong>View/Download Reports:</strong> Healing, Validation, Execution</li>
+                            <li>🎬 <strong>Video Support:</strong> Download and view videos from execution reports</li>
+                        </ul>
+
+                        <h3 style="color: #555; margin-top: 20px;">Three Types of Reports</h3>
+                        <div style="display: grid; gap: 15px; margin-top: 10px;">
+                            <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; border-left: 4px solid var(--accent);">
+                                <strong style="color: var(--primary);">👁️ Healing Report</strong>
+                                <p style="margin: 8px 0 0 0; color: #666; font-size: 13px;">Shows how the system fixed issues during execution (JSON format)</p>
+                                <p style="margin: 8px 0 0 0; color: #999; font-size: 12px;">📊 Buttons: [View] [Download]</p>
+                            </div>
+                            <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; border-left: 4px solid var(--accent);">
+                                <strong style="color: var(--primary);">👁️ Validation Report</strong>
+                                <p style="margin: 8px 0 0 0; color: #666; font-size: 13px;">Details about test case structure and validation (Markdown format)</p>
+                                <p style="margin: 8px 0 0 0; color: #999; font-size: 12px;">📊 Buttons: [View] [Download]</p>
+                            </div>
+                            <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; border-left: 4px solid var(--accent);">
+                                <strong style="color: var(--primary);">👁️ Execution Report</strong>
+                                <p style="margin: 8px 0 0 0; color: #666; font-size: 13px;">Test execution results with videos, step-by-step logs (HTML + Videos)</p>
+                                <p style="margin: 8px 0 0 0; color: #999; font-size: 12px;">📊 Buttons: [View HTML] [Download ZIP+Videos] [Videos List]</p>
+                            </div>
+                        </div>
+
+                        <h3 style="color: #555; margin-top: 20px;">Execution Report Video Features</h3>
+                        <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; margin-top: 10px;">
+                            <strong style="color: var(--primary);">Three Options:</strong>
+                            <ol style="color: #666; font-size: 13px; margin-top: 10px;">
+                                <li><strong>👁️ HTML:</strong> View HTML report online (with embedded videos)</li>
+                                <li><strong>🎬 Videos (N):</strong> See video list with metadata and download individual videos</li>
+                                <li><strong>⬇ ZIP+Videos:</strong> Download complete report as ZIP (HTML + all videos)</li>
+                            </ol>
+                        </div>
+
+                        <h3 style="color: #555; margin-top: 20px;">Workflow</h3>
+                        <ol style="color: #666; font-size: 14px; line-height: 2;">
+                            <li><strong>Step 1 - Convert:</strong> Go to Job Runner, select "Convert" command, submit</li>
+                            <li><strong>Step 2 - View:</strong> Switch to Scripts & Reports tab</li>
+                            <li><strong>Step 3 - Search:</strong> Find your test case using filters</li>
+                            <li><strong>Step 4 - Download:</strong> Choose how to download (view online or download files)</li>
+                            <li><strong>Step 5 - Use:</strong> Use scripts for automation, reports for documentation</li>
+                        </ol>
+                    </div>
+
+                    <!-- Section 5: Troubleshooting -->
+                    <div id="section5" style="margin: 40px 0; padding-top: 20px; border-top: 2px solid #ddd;">
+                        <h2 style="color: var(--primary);">🐛 Troubleshooting</h2>
+
+                        <h3 style="color: #555; margin-top: 20px;">Connection Issues</h3>
+                        <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; margin-top: 10px;">
+                            <strong style="color: var(--primary);">❌ "Connection Failed" message</strong>
+                            <ol style="color: #666; font-size: 13px; margin-top: 10px;">
+                                <li>Check if server is running and accessible</li>
+                                <li>Verify server URL is correct (e.g., http://localhost:8080)</li>
+                                <li>Make sure you're on same network or can reach the server</li>
+                                <li>Try refreshing the page (F5)</li>
+                                <li>Check browser console for detailed error messages</li>
+                            </ol>
+                        </div>
+
+                        <h3 style="color: #555; margin-top: 20px;">Job Submission Issues</h3>
+                        <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; margin-top: 10px;">
+                            <strong style="color: var(--primary);">❌ Submit button is disabled</strong>
+                            <ul style="color: #666; font-size: 13px; margin-top: 10px;">
+                                <li>Make sure server connection is successful (green indicator)</li>
+                                <li>Select a test case from the dropdown</li>
+                                <li>Ensure you selected a valid command</li>
+                            </ul>
+                        </div>
+
+                        <h3 style="color: #555; margin-top: 20px;">Test Case Manager Issues</h3>
+                        <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; margin-top: 10px;">
+                            <strong style="color: var(--primary);">❌ Cannot save test case</strong>
+                            <ul style="color: #666; font-size: 13px; margin-top: 10px;">
+                                <li>Make sure title is not empty (for new cases)</li>
+                                <li>Check content has "Test Case ID:" line</li>
+                                <li>Verify content has at least one numbered step ("1) ...")</li>
+                                <li>Check browser console for error details</li>
+                            </ul>
+                        </div>
+
+                        <h3 style="color: #555; margin-top: 20px;">Scripts & Reports Issues</h3>
+                        <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; margin-top: 10px;">
+                            <strong style="color: var(--primary);">❌ Scripts list is empty</strong>
+                            <ul style="color: #666; font-size: 13px; margin-top: 10px;">
+                                <li>Run convert job first in Job Runner tab</li>
+                                <li>Click "Refresh" button to reload the list</li>
+                                <li>Check if test case was successfully converted</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; margin-top: 10px;">
+                            <strong style="color: var(--primary);">❌ Video buttons show "?"</strong>
+                            <ul style="color: #666; font-size: 13px; margin-top: 10px;">
+                                <li>Wait for the API to load video count</li>
+                                <li>Click Refresh to reload the list</li>
+                                <li>Check if execution report has been generated</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Tips Section -->
+                    <div style="margin: 40px 0; padding: 20px; background: #e8f4f8; border-left: 4px solid var(--info); border-radius: 4px;">
+                        <h3 style="color: var(--primary); margin-top: 0;">💡 Pro Tips</h3>
+                        <ul style="color: #666; font-size: 13px; line-height: 1.8;">
+                            <li>✅ Use "Refresh" buttons frequently to get latest data</li>
+                            <li>✅ Monitor execution events in real-time for long jobs</li>
+                            <li>✅ Download execution reports as ZIP for complete backup</li>
+                            <li>✅ Use filters in Scripts & Reports to find tests quickly</li>
+                            <li>✅ Check browser console (F12) for detailed debug information</li>
+                            <li>✅ Server URL is saved automatically, no need to re-enter</li>
+                            <li>✅ Reports can be opened offline after downloading ZIP</li>
+                        </ul>
+                    </div>
+
+                    <!-- Footer -->
+                    <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd; text-align: center; color: #999; font-size: 12px;">
+                        <p>AiScripto Interactive Demo | For more help, check browser console (F12) or contact support</p>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end tab-content guide -->
+    </div>
+
+    <!-- Report Viewer Modal -->
+    <div class="report-viewer-modal" id="reportViewerModal">
+        <div class="report-viewer-box">
+            <div class="report-viewer-header">
+                <h3 class="report-viewer-title" id="reportViewerTitle">Report</h3>
+                <button class="report-viewer-close" onclick="closeReportViewer()">×</button>
+            </div>
+            <div class="report-viewer-content" id="reportViewerContent">
+                Loading...
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <ul>
+                        <li><a href="features.html">Features</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Demo</h3>
+                    <ul>
+                        <li><a href="docs/architecture_spec/TestAgent/UNIFIED_REST_API.md">API Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AiScripto.APP Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== Tab Switching =====
+        function switchTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById('tab-' + tabName).classList.add('active');
+
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById('content-' + tabName).classList.add('active');
+
+            // Refresh TC list when switching to manager
+            if (tabName === 'tc-manager') {
+                tcRefreshList();
+            }
+            
+            // Refresh scripts list when switching to scripts & reports
+            if (tabName === 'script-reports') {
+                refreshScriptsList();
+            }
+            
+            // No special action needed for guide tab
+            if (tabName === 'guide') {
+                // Guide is static content, no loading needed
+            }
+        }
+
+        // ===== Configuration =====
+        const config = {
+            pollInterval: 2000, // 2 seconds polling interval
+            maxRetries: 3,
+            connectionTimeout: 5000,
+            commandHelp: {
+                validate: '✓ Validate test case syntax, structure, and compatibility',
+                convert: '→ Generate Playwright TypeScript test script from test case',
+                import: '⬇ Import and execute test case with step-by-step walkthrough',
+                verify: '✔ Execute test case verification and generate report',
+                parameterize: '⚙ Extract and parameterize test data for data-driven testing'
+            }
+        };
+
+        // ===== Debug Logging =====
+        let debugLogs = [];
+        const maxDebugLogs = 20;
+        
+        function addDebugLog(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = `[${timestamp}] ${message}`;
+            debugLogs.push(logEntry);
+            if (debugLogs.length > maxDebugLogs) {
+                debugLogs.shift();
+            }
+            updateDebugInfo();
+        }
+        
+        function updateDebugInfo() {
+            const debugInfo = document.getElementById('debugInfo');
+            if (debugInfo) {
+                debugInfo.textContent = debugLogs.join('\n');
+                debugInfo.scrollTop = debugInfo.scrollHeight;
+            }
+        }
+        
+        // Intercept console logs
+        const originalLog = console.log;
+        const originalError = console.error;
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addDebugLog('LOG: ' + args.join(' '));
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addDebugLog('ERROR: ' + args.join(' '));
+        };
+
+        // ===== State Management =====
+        let state = {
+            serverUrl: 'http://localhost:8080',
+            currentJobId: null,
+            isPolling: false,
+            pollTimer: null,
+            lastEventTimestamp: null,
+            serverStatus: 'unknown' // 'ok', 'error', 'unknown'
+        };
+
+        // ===== Initialization =====
+        document.addEventListener('DOMContentLoaded', function() {
+            restoreServerUrl();
+            initializeCommandInfo();
+            loadTestCases();
+            checkServerConnection();
+        });
+
+        // ===== Server Connection =====
+        async function checkServerConnection() {
+            const statusIndicator = document.getElementById('statusIndicator');
+            statusIndicator.className = 'status-indicator loading';
+
+            try {
+                console.log(`[DEBUG] Attempting to connect to: ${state.serverUrl}/api/v1/health`);
+                
+                const response = await fetch(`${state.serverUrl}/api/v1/health`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+
+                console.log(`[DEBUG] Response status: ${response.status}`);
+                console.log(`[DEBUG] Response headers:`, response.headers);
+
+                if (response.ok) {
+                    state.serverStatus = 'ok';
+                    statusIndicator.className = 'status-indicator ok';
+                    statusIndicator.parentElement.innerHTML = '<span class="status-indicator ok"></span><span>Connected ✓</span>';
+                    document.getElementById('submitBtn').disabled = false;
+                    console.log('[DEBUG] Connection successful!');
+                } else {
+                    throw new Error(`Server returned status ${response.status}`);
+                }
+            } catch (error) {
+                state.serverStatus = 'error';
+                statusIndicator.className = 'status-indicator error';
+                const errorMsg = error.message || error.toString();
+                statusIndicator.parentElement.innerHTML = `<span class="status-indicator error"></span><span>Connection Failed: ${errorMsg}</span>`;
+                document.getElementById('submitBtn').disabled = true;
+                console.error('[ERROR] Server connection failed:', error);
+                console.error('[ERROR] Error details:', {
+                    message: error.message,
+                    name: error.name,
+                    stack: error.stack
+                });
+            }
+        }
+
+        // ===== Test Cases Management =====
+        async function loadTestCases() {
+            try {
+                console.log(`[DEBUG] Loading test cases from: ${state.serverUrl}/api/v1/test-cases`);
+                
+                const response = await fetch(`${state.serverUrl}/api/v1/test-cases`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+                
+                console.log(`[DEBUG] Test cases response status: ${response.status}`);
+                
+                if (!response.ok) throw new Error(`Server returned status ${response.status}`);
+
+                const testCases = await response.json();
+                console.log('[DEBUG] Test cases loaded:', testCases);
+                
+                const select = document.getElementById('testCase');
+                select.innerHTML = '';
+
+                if (Array.isArray(testCases) && testCases.length > 0) {
+                    testCases.forEach(tc => {
+                        const option = document.createElement('option');
+                        option.value = tc.id || tc;
+                        // Display only name field
+                        const displayName = tc.name || tc.id || tc;
+                        option.textContent = displayName;
+                        select.appendChild(option);
+                    });
+
+                    // Generate quick test buttons
+                    generateQuickTestButtons(testCases);
+                } else {
+                    const option = document.createElement('option');
+                    option.textContent = 'No test cases available';
+                    select.appendChild(option);
+                }
+            } catch (error) {
+                console.error('[ERROR] Failed to load test cases:', error);
+                const select = document.getElementById('testCase');
+                select.innerHTML = '<option value="">Error loading test cases - Check server connection</option>';
+            }
+        }
+
+        function generateQuickTestButtons(testCases) {
+            const container = document.getElementById('quickTestCases');
+            container.innerHTML = '';
+
+            // Show first 3 test cases as quick buttons
+            testCases.slice(0, 3).forEach(tc => {
+                const btn = document.createElement('button');
+                btn.className = 'quick-test-btn';
+                // Display only name field
+                const displayName = tc.name || tc.id || tc;
+                btn.textContent = displayName;
+                btn.onclick = () => {
+                    document.getElementById('testCase').value = tc.id || tc;
+                    submitJob();
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        // ===== Command Information =====
+        function initializeCommandInfo() {
+            updateCommandInfo();
+        }
+
+        function updateCommandInfo() {
+            const command = document.getElementById('command').value;
+            const helpText = document.getElementById('commandHelp');
+            helpText.textContent = config.commandHelp[command] || '';
+        }
+
+        // ===== Job Submission =====
+        async function submitJob() {
+            const command = document.getElementById('command').value;
+            const testCase = document.getElementById('testCase').value;
+            const customArgs = document.getElementById('customArgs').value;
+
+            if (!testCase) {
+                alert('Please select a test case');
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            const submitBtnText = document.getElementById('submitBtnText');
+            submitBtn.disabled = true;
+            submitBtnText.innerHTML = '<span class="loading-spinner"></span>Submitting...';
+
+            try {
+                const payload = {
+                    command: command,
+                    args: testCase,
+                    user_id: 'web_demo'
+                };
+
+                if (customArgs) {
+                    payload.notes = customArgs;
+                }
+
+                console.log('[DEBUG] Submitting job with payload:', payload);
+                console.log(`[DEBUG] Submitting to: ${state.serverUrl}/api/v1/jobs`);
+                
+                const response = await fetch(`${state.serverUrl}/api/v1/jobs`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    credentials: 'omit',
+                    body: JSON.stringify(payload)
+                });
+
+                console.log(`[DEBUG] Job submission response status: ${response.status}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('[DEBUG] Job submission response:', data);
+                state.currentJobId = data.job_id;
+                state.lastEventTimestamp = new Date().toISOString();
+
+                // Update UI
+                document.getElementById('emptyState').style.display = 'none';
+                document.getElementById('eventsContainer').classList.add('visible');
+                document.getElementById('jobInfo').classList.add('visible');
+                document.getElementById('jobId').textContent = state.currentJobId;
+                document.getElementById('jobStatus').textContent = 'queued';
+                document.getElementById('jobStatus').className = 'status-badge queued';
+                document.getElementById('resultBox').classList.remove('visible');
+                document.getElementById('eventsList').innerHTML = '';
+
+                // Show cancel button
+                document.getElementById('cancelBtn').style.display = 'block';
+                document.getElementById('testCase').disabled = true;
+                document.getElementById('command').disabled = true;
+
+                // Reset displayed events
+                displayedEvents = [];
+
+                // Start polling
+                startPolling();
+
+                submitBtnText.textContent = '▶ Submit Job';
+            } catch (error) {
+                alert('Error submitting job: ' + error.message);
+                submitBtnText.textContent = '▶ Submit Job';
+                submitBtn.disabled = false;
+                console.error('Submission error:', error);
+            }
+        }
+
+        // ===== Job Polling =====
+        function startPolling() {
+            if (state.isPolling) return;
+            state.isPolling = true;
+            updatePollingInfo();
+            pollJob();
+        }
+
+        function stopPolling() {
+            state.isPolling = false;
+            if (state.pollTimer) {
+                clearInterval(state.pollTimer);
+                state.pollTimer = null;
+            }
+            updatePollingInfo();
+        }
+
+        function updatePollingInfo() {
+            const info = document.getElementById('pollingInfo');
+            if (state.isPolling) {
+                info.textContent = `🔄 Polling every ${config.pollInterval / 1000}s (Job: ${state.currentJobId})`;
+            } else {
+                info.textContent = '';
+            }
+        }
+
+        async function pollJob() {
+            if (!state.currentJobId || !state.isPolling) return;
+
+            try {
+                // Get job status
+                console.log(`[DEBUG] Polling job status: ${state.serverUrl}/api/v1/jobs/${state.currentJobId}`);
+                
+                const statusResponse = await fetch(`${state.serverUrl}/api/v1/jobs/${state.currentJobId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+                
+                if (!statusResponse.ok) throw new Error(`Failed to fetch job status: ${statusResponse.status}`);
+
+                const job = await statusResponse.json();
+                console.log('[DEBUG] Job status:', job);
+                updateJobInfo(job);
+
+                // Get events
+                const eventsUrl = state.lastEventTimestamp
+                    ? `${state.serverUrl}/api/v1/jobs/${state.currentJobId}/events?since=${encodeURIComponent(state.lastEventTimestamp)}`
+                    : `${state.serverUrl}/api/v1/jobs/${state.currentJobId}/events`;
+
+                console.log(`[DEBUG] Fetching events from: ${eventsUrl}`);
+                
+                const eventsResponse = await fetch(eventsUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+                
+                if (!eventsResponse.ok) throw new Error(`Failed to fetch events: ${eventsResponse.status}`);
+
+                const eventsData = await eventsResponse.json();
+                console.log('[DEBUG] Events data:', eventsData);
+                
+                if (eventsData.events && eventsData.events.length > 0) {
+                    eventsData.events.forEach(event => {
+                        addEventToTimeline(event);
+                        state.lastEventTimestamp = event.timestamp;
+                    });
+                }
+
+                // Check if job is done
+                if (job.status === 'completed' || job.status === 'failed' || job.status === 'cancelled') {
+                    console.log('[DEBUG] Job completed with status:', job.status);
+                    stopPolling();
+                    showResult(job);
+                    document.getElementById('cancelBtn').style.display = 'none';
+                    document.getElementById('submitBtn').disabled = false;
+                    document.getElementById('testCase').disabled = false;
+                    document.getElementById('command').disabled = false;
+                } else {
+                    // Continue polling
+                    state.pollTimer = setTimeout(pollJob, config.pollInterval);
+                }
+            } catch (error) {
+                console.error('[ERROR] Polling error:', error);
+                state.pollTimer = setTimeout(pollJob, config.pollInterval);
+            }
+        }
+
+        // ===== Job Information Display =====
+        function updateJobInfo(job) {
+            document.getElementById('jobId').textContent = job.id;
+
+            // Update status
+            const statusBadge = document.getElementById('jobStatus');
+            statusBadge.textContent = job.status.toUpperCase();
+            statusBadge.className = `status-badge ${job.status}`;
+
+            // Update duration
+            if (job.duration_s) {
+                document.getElementById('jobDuration').textContent = `${job.duration_s.toFixed(2)}s`;
+            }
+
+            // Update creation time
+            if (job.created_at) {
+                document.getElementById('jobCreated').textContent = new Date(job.created_at).toLocaleString();
+            }
+        }
+
+        // ===== Events Display =====
+        let displayedEvents = [];
+        const maxDisplayedEvents = 6;
+
+        function addEventToTimeline(event) {
+            const eventsList = document.getElementById('eventsList');
+            const scrollContainer = document.getElementById('eventsScrollContainer');
+            const eventItem = document.createElement('div');
+            const eventType = (event.event_type || 'UNKNOWN').toLowerCase();
+            eventItem.className = `timeline-item ${getEventClass(event.event_type)}`;
+
+            const timestamp = new Date(event.timestamp).toLocaleTimeString();
+            const data = event.data || {};
+
+            let message = '';
+            if (data.message) {
+                message = data.message;
+            } else if (data.tool_name) {
+                message = `Tool: ${data.tool_name}`;
+            } else if (data.result) {
+                message = data.result;
+            } else {
+                message = JSON.stringify(data).substring(0, 200);
+            }
+
+            eventItem.innerHTML = `
+                <div class="timeline-content">
+                    <div class="timeline-time">${timestamp}</div>
+                    <div class="timeline-type">${formatEventType(event.event_type)}</div>
+                    <div class="timeline-message">${escapeHtml(message)}</div>
+                </div>
+            `;
+
+            eventsList.appendChild(eventItem);
+            displayedEvents.push(eventItem);
+
+            // Keep only the last 6 events
+            if (displayedEvents.length > maxDisplayedEvents) {
+                const oldestEvent = displayedEvents.shift();
+                oldestEvent.remove();
+            }
+
+            // Auto-scroll to the bottom
+            setTimeout(() => {
+                scrollContainer.scrollTop = scrollContainer.scrollHeight;
+            }, 0);
+        }
+
+        function getEventClass(eventType) {
+            const type = (eventType || '').toLowerCase();
+            if (type.includes('tool')) return 'tool';
+            if (type.includes('question')) return 'question';
+            if (type.includes('complete')) return 'complete';
+            if (type.includes('error')) return 'error';
+            return '';
+        }
+
+        function formatEventType(eventType) {
+            const typeMap = {
+                'ToolActivity': '🔧 Tool Activity',
+                'TextOutput': '📝 Text Output',
+                'Question': '❓ Question',
+                'Complete': '✅ Complete',
+                'TOOL_ACTIVITY': '🔧 Tool Activity',
+                'TEXT_OUTPUT': '📝 Text Output',
+                'QUESTION': '❓ Question',
+                'COMPLETE': '✅ Complete'
+            };
+            return typeMap[eventType] || eventType;
+        }
+
+        // ===== Result Display =====
+        function showResult(job) {
+            const resultBox = document.getElementById('resultBox');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultContent = document.getElementById('resultContent');
+
+            if (job.status === 'completed') {
+                resultBox.classList.remove('error');
+                resultTitle.textContent = '✅ Execution Completed Successfully';
+                resultContent.textContent = job.result || 'Job completed without additional output';
+            } else if (job.status === 'failed') {
+                resultBox.classList.add('error');
+                resultTitle.textContent = '❌ Execution Failed';
+                resultContent.textContent = job.error || 'An error occurred during execution';
+            } else if (job.status === 'cancelled') {
+                resultBox.classList.add('error');
+                resultTitle.textContent = '⚠ Job Cancelled';
+                resultContent.textContent = 'The job was cancelled by user request';
+            }
+
+            resultBox.classList.add('visible');
+        }
+
+        async function cancelJob() {
+            if (!state.currentJobId) return;
+
+            if (!confirm('Are you sure you want to cancel this job?')) return;
+
+            try {
+                console.log(`[DEBUG] Cancelling job: ${state.currentJobId}`);
+                
+                const response = await fetch(`${state.serverUrl}/api/v1/jobs/${state.currentJobId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+
+                if (!response.ok) throw new Error(`Failed to cancel job: ${response.status}`);
+
+                stopPolling();
+                document.getElementById('cancelBtn').style.display = 'none';
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('testCase').disabled = false;
+                document.getElementById('command').disabled = false;
+
+                alert('Job cancelled successfully');
+            } catch (error) {
+                console.error('[ERROR] Job cancellation failed:', error);
+                alert('Error cancelling job: ' + error.message);
+            }
+        }
+
+        // ===== Clear Demo =====
+        function clearDemo() {
+            stopPolling();
+            state.currentJobId = null;
+            state.lastEventTimestamp = null;
+
+            document.getElementById('testCase').disabled = false;
+            document.getElementById('command').disabled = false;
+            document.getElementById('cancelBtn').style.display = 'none';
+            document.getElementById('submitBtn').disabled = false;
+            document.getElementById('customArgs').value = '';
+            document.getElementById('jobInfo').classList.remove('visible');
+            document.getElementById('eventsContainer').classList.remove('visible');
+            document.getElementById('resultBox').classList.remove('visible');
+            document.getElementById('emptyState').style.display = 'block';
+            document.getElementById('eventsList').innerHTML = '';
+            displayedEvents = [];
+        }
+
+        // ===== Utility Functions =====
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        function restoreServerUrl() {
+            const saved = localStorage.getItem('aiscripto_server_url');
+            if (saved) {
+                state.serverUrl = saved;
+                document.getElementById('serverUrl').value = saved;
+            }
+
+            // Save on change
+            document.getElementById('serverUrl').addEventListener('change', function() {
+                state.serverUrl = this.value;
+                localStorage.setItem('aiscripto_server_url', this.value);
+                loadTestCases();
+                checkServerConnection();
+            });
+
+            // Also update on blur
+            document.getElementById('serverUrl').addEventListener('blur', function() {
+                state.serverUrl = this.value;
+                localStorage.setItem('aiscripto_server_url', this.value);
+                loadTestCases();
+                checkServerConnection();
+            });
+        }
+
+        // Periodic connection check
+        setInterval(() => {
+            if (!state.isPolling) {
+                checkServerConnection();
+            }
+        }, 10000);
+
+        // =============================================
+        // ===== TEST CASE MANAGER FUNCTIONS =====
+        // =============================================
+
+        let tcState = {
+            testCases: [],
+            filteredCases: [],
+            selectedId: null,
+            editMode: 'create', // 'create' or 'edit'
+            deleteTargetId: null
+        };
+
+        // ===== Toast Notifications =====
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.3s ease forwards';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // ===== Refresh Test Case List =====
+        async function tcRefreshList() {
+            try {
+                const response = await fetch(`${state.serverUrl}/api/v1/test-cases`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+
+                if (!response.ok) throw new Error(`Server returned ${response.status}`);
+
+                tcState.testCases = await response.json();
+                tcState.filteredCases = [...tcState.testCases];
+                tcRenderList();
+            } catch (error) {
+                console.error('[TC Manager] Failed to load test cases:', error);
+                showToast('Failed to load test cases: ' + error.message, 'error');
+                tcRenderEmptyList('Connection error. Check server.');
+            }
+        }
+
+        // ===== Render Test Case List =====
+        function tcRenderList() {
+            const container = document.getElementById('tcListContainer');
+            const countEl = document.getElementById('tcListCount');
+
+            countEl.textContent = `${tcState.filteredCases.length} Test Case${tcState.filteredCases.length !== 1 ? 's' : ''}`;
+
+            if (tcState.filteredCases.length === 0) {
+                tcRenderEmptyList('No test cases found');
+                return;
+            }
+
+            let html = '';
+            tcState.filteredCases.forEach(tc => {
+                const id = tc.id || tc;
+                const title = tc.title || tc.name || id;
+                const stepCount = tc.step_count || 0;
+                const isSelected = tcState.selectedId === id;
+
+                html += `
+                    <div class="tc-list-item ${isSelected ? 'selected' : ''}" onclick="tcSelectItem('${id}')">
+                        <div class="tc-list-item-info">
+                            <div class="tc-list-item-id">${escapeHtml(id)}</div>
+                            <div class="tc-list-item-title">${escapeHtml(title)}</div>
+                            <div class="tc-list-item-meta">${stepCount} step${stepCount !== 1 ? 's' : ''}</div>
+                        </div>
+                        <div class="tc-list-item-actions">
+                            <button class="tc-action-btn edit" onclick="event.stopPropagation(); tcEditTestCase('${id}')" title="Edit">&#9998;</button>
+                            <!-- Delete button hidden -->
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function tcRenderEmptyList(message) {
+            const container = document.getElementById('tcListContainer');
+            container.innerHTML = `
+                <div class="tc-list-empty">
+                    <div class="tc-list-empty-icon">&#128196;</div>
+                    <p>${escapeHtml(message)}</p>
+                </div>
+            `;
+        }
+
+        // ===== Filter List =====
+        function tcFilterList() {
+            const query = document.getElementById('tcSearchInput').value.toLowerCase().trim();
+            if (!query) {
+                tcState.filteredCases = [...tcState.testCases];
+            } else {
+                tcState.filteredCases = tcState.testCases.filter(tc => {
+                    const id = (tc.id || '').toLowerCase();
+                    const title = (tc.title || tc.name || '').toLowerCase();
+                    return id.includes(query) || title.includes(query);
+                });
+            }
+            tcRenderList();
+        }
+
+        // ===== Select Item =====
+        function tcSelectItem(id) {
+            tcState.selectedId = id;
+            tcRenderList();
+            tcEditTestCase(id);
+        }
+
+        // ===== New Test Case =====
+        function tcNewTestCase() {
+            tcState.editMode = 'create';
+            tcState.selectedId = null;
+
+            document.getElementById('tcEditorTitle').textContent = 'New Test Case';
+            document.getElementById('tcEditorBadge').textContent = 'CREATE';
+            document.getElementById('tcEditorBadge').className = 'tc-editor-mode-badge create';
+            document.getElementById('tcEditorId').value = '';
+            document.getElementById('tcEditorId').disabled = false;
+            document.getElementById('tcEditorTitleInput').value = '';
+            document.getElementById('tcEditorContent').value = '';
+            document.getElementById('tcSaveBtn').innerHTML = '&#128190; Create Test Case';
+
+            tcRenderList();
+        }
+
+        // ===== Edit Test Case =====
+        async function tcEditTestCase(id) {
+            try {
+                const response = await fetch(`${state.serverUrl}/api/v1/test-cases/${encodeURIComponent(id)}`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+
+                if (!response.ok) throw new Error(`Server returned ${response.status}`);
+
+                const data = await response.json();
+
+                tcState.editMode = 'edit';
+                tcState.selectedId = id;
+
+                document.getElementById('tcEditorTitle').textContent = `Edit: ${id}`;
+                document.getElementById('tcEditorBadge').textContent = 'EDIT';
+                document.getElementById('tcEditorBadge').className = 'tc-editor-mode-badge edit';
+                document.getElementById('tcEditorId').value = data.test_case_id || id;
+                document.getElementById('tcEditorId').disabled = true;
+                document.getElementById('tcEditorTitleInput').value = data.title || '';
+                document.getElementById('tcEditorContent').value = data.content || '';
+                document.getElementById('tcSaveBtn').innerHTML = '&#128190; Update Test Case';
+
+                tcRenderList();
+            } catch (error) {
+                console.error('[TC Manager] Failed to load test case:', error);
+                showToast('Failed to load test case: ' + error.message, 'error');
+            }
+        }
+
+        // ===== Save Test Case (Create or Update) =====
+        async function tcSaveTestCase() {
+            const id = document.getElementById('tcEditorId').value.trim();
+            const title = document.getElementById('tcEditorTitleInput').value.trim();
+            const content = document.getElementById('tcEditorContent').value.trim();
+
+            if (!content) {
+                showToast('Content cannot be empty', 'error');
+                return;
+            }
+
+            if (!title && tcState.editMode === 'create') {
+                showToast('Please provide a title', 'error');
+                return;
+            }
+
+            const saveBtn = document.getElementById('tcSaveBtn');
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<span class="loading-spinner"></span>Saving...';
+
+            try {
+                if (tcState.editMode === 'create') {
+                    // POST - Create new
+                    const payload = {
+                        title: title,
+                        content: content,
+                        user_id: 'web_demo'
+                    };
+                    if (id) {
+                        payload.test_case_id = id;
+                    }
+
+                    const response = await fetch(`${state.serverUrl}/api/v1/test-cases`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        mode: 'cors',
+                        credentials: 'omit',
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        const errData = await response.json().catch(() => ({}));
+                        throw new Error(errData.detail || `Server returned ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    showToast(`Test case ${result.test_case_id} created successfully!`, 'success');
+                    tcState.selectedId = result.test_case_id;
+
+                } else {
+                    // PUT - Update existing
+                    const payload = {
+                        content: content,
+                        user_id: 'web_demo'
+                    };
+
+                    const response = await fetch(`${state.serverUrl}/api/v1/test-cases/${encodeURIComponent(tcState.selectedId)}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        mode: 'cors',
+                        credentials: 'omit',
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        const errData = await response.json().catch(() => ({}));
+                        throw new Error(errData.detail || `Server returned ${response.status}`);
+                    }
+
+                    showToast(`Test case ${tcState.selectedId} updated successfully!`, 'success');
+                }
+
+                // Refresh list and also refresh the Job Runner test case dropdown
+                await tcRefreshList();
+                loadTestCases();
+
+            } catch (error) {
+                console.error('[TC Manager] Save failed:', error);
+                showToast('Save failed: ' + error.message, 'error');
+            } finally {
+                saveBtn.disabled = false;
+                if (tcState.editMode === 'create') {
+                    saveBtn.innerHTML = '&#128190; Create Test Case';
+                } else {
+                    saveBtn.innerHTML = '&#128190; Update Test Case';
+                }
+            }
+        }
+
+        // ===== Delete Test Case =====
+        function tcRequestDelete(id) {
+            tcState.deleteTargetId = id;
+            document.getElementById('deleteModalMessage').textContent = `Are you sure you want to delete "${id}"? This action cannot be undone.`;
+            document.getElementById('deleteModal').classList.add('visible');
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').classList.remove('visible');
+            tcState.deleteTargetId = null;
+        }
+
+        async function confirmDeleteTestCase() {
+            const id = tcState.deleteTargetId;
+            if (!id) return;
+
+            closeDeleteModal();
+
+            try {
+                const response = await fetch(`${state.serverUrl}/api/v1/test-cases/${encodeURIComponent(id)}`, {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+
+                if (!response.ok) {
+                    const errData = await response.json().catch(() => ({}));
+                    throw new Error(errData.detail || `Server returned ${response.status}`);
+                }
+
+                showToast(`Test case ${id} deleted successfully.`, 'success');
+
+                // If we were editing this, reset editor
+                if (tcState.selectedId === id) {
+                    tcNewTestCase();
+                }
+
+                // Refresh list and also refresh Job Runner dropdown
+                await tcRefreshList();
+                loadTestCases();
+
+            } catch (error) {
+                console.error('[TC Manager] Delete failed:', error);
+                showToast('Delete failed: ' + error.message, 'error');
+            }
+        }
+
+        // ===== Cancel Edit =====
+        function tcCancelEdit() {
+            tcNewTestCase();
+        }
+
+        // ===== Clear Editor =====
+        function tcClearEditor() {
+            document.getElementById('tcEditorContent').value = '';
+        }
+
+        // ===== Insert Template =====
+        function tcInsertTemplate(type) {
+            let template = '';
+
+            if (type === 'basic') {
+                template = `Test Case ID: 1\n\nPreconditions:\n(none)\n\n1) Step description\n   Action: Describe what to do\n   Expected: Describe expected result\n\n2) Step description\n   Action: Describe what to do\n   Expected: Describe expected result`;
+            } else if (type === 'detailed') {
+                template = `Test Case ID: 1\n\nTitle: [Your Test Title]\nPriority: Medium\nType: Functional\n\nPreconditions:\n- User is logged in\n- Application is at home page\n\nTest Data:\n- Username: testuser@example.com\n- Password: TestPass123\n\n1) Navigate to Application\n   Open Chrome Browser and navigate to the application URL\n   Expected: Application loads successfully and login page is displayed\n\n2) Enter credentials\n   Enter username and password in the respective fields\n   Expected: Fields accept input without error\n\n3) Submit login form\n   Click the \"Login\" button\n   Expected: User is redirected to dashboard\n\n4) Verify login success\n   Check that user avatar and welcome message are visible\n   Expected: Dashboard displays correctly with user information`;
+            }
+
+            document.getElementById('tcEditorContent').value = template;
+        }
+
+        // =============================================
+        // ===== SCRIPTS & REPORTS MANAGER FUNCTIONS =====
+        // =============================================
+
+        let scriptsState = {
+            scripts: [],
+            filteredScripts: [],
+            currentReportType: null,
+            currentTestCaseId: null,
+            videosData: {}
+        };
+
+        // ===== Refresh Scripts List =====
+        async function refreshScriptsList() {
+            try {
+                const container = document.getElementById('scriptsListContainer');
+                container.innerHTML = '<div class="scripts-list-loading"><span class="loading-spinner"></span> Loading scripts...</div>';
+
+                console.log(`[DEBUG] Loading scripts from: ${state.serverUrl}/api/v1/scripts`);
+                
+                const response = await fetch(`${state.serverUrl}/api/v1/scripts?limit=100`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+
+                if (!response.ok) throw new Error(`Server returned ${response.status}`);
+
+                const data = await response.json();
+                console.log('[DEBUG] Scripts loaded:', data);
+
+                scriptsState.scripts = data.scripts || [];
+                scriptsState.filteredScripts = [...scriptsState.scripts];
+                renderScriptsList();
+            } catch (error) {
+                console.error('[Scripts Manager] Failed to load scripts:', error);
+                const container = document.getElementById('scriptsListContainer');
+                container.innerHTML = `
+                    <div class="scripts-list-empty">
+                        <div style="font-size: 36px; margin-bottom: 10px;">📚</div>
+                        <p>Failed to load scripts</p>
+                        <p style="font-size: 12px; margin-top: 8px; color: #999;">${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // ===== Render Scripts List =====
+        function renderScriptsList() {
+            const container = document.getElementById('scriptsListContainer');
+
+            if (scriptsState.filteredScripts.length === 0) {
+                container.innerHTML = `
+                    <div class="scripts-list-empty">
+                        <div style="font-size: 36px; margin-bottom: 10px;">📚</div>
+                        <p>No scripts available</p>
+                        <p style="font-size: 12px; margin-top: 8px; color: #999;">Run convert job first to generate scripts</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            scriptsState.filteredScripts.forEach(script => {
+                const id = script.test_case_id;
+                const hasHealingReport = script.has_healing_report;
+                const hasValidationReport = script.has_validation_report;
+                const hasExecutionReport = script.has_execution_report;
+
+                html += `
+                    <div class="script-item">
+                        <div class="script-info">
+                            <div class="script-id">📄 ${escapeHtml(id)}</div>
+                            <div class="script-title">TypeScript Test Script</div>
+                            <div class="script-meta">
+                                <span title="File size">📦 ${formatFileSize(script.size_bytes)}</span>
+                                <span title="Created date">🕐 ${new Date(script.created_at).toLocaleDateString()}</span>
+                            </div>
+                            <div class="script-status">
+                                ${hasHealingReport ? '<span class="status-badge-sm">✓ Healing Report</span>' : '<span class="status-badge-sm none">✗ No Healing</span>'}
+                                ${hasValidationReport ? '<span class="status-badge-sm">✓ Validation Report</span>' : '<span class="status-badge-sm none">✗ No Validation</span>'}
+                                ${hasExecutionReport ? '<span class="status-badge-sm">✓ Execution Report</span>' : '<span class="status-badge-sm none">✗ No Execution</span>'}
+                            </div>
+                        </div>
+                        <div class="script-actions">
+                            <button class="btn-download-script" onclick="downloadScript('${id}')" title="Download .spec.ts file">⬇ Download Script</button>
+                            <div class="script-actions-row">
+                                <button class="btn-view-report" onclick="viewReport('${id}', 'healing')" ${!hasHealingReport ? 'disabled' : ''} title="View healing report">👁 Healing</button>
+                                <button class="btn-download-report" onclick="downloadReport('${id}', 'healing')" ${!hasHealingReport ? 'disabled' : ''} title="Download healing report">⬇ Download</button>
+                            </div>
+                            <div class="script-actions-row">
+                                <button class="btn-view-report" onclick="viewReport('${id}', 'validation')" ${!hasValidationReport ? 'disabled' : ''} title="View validation report">👁 Validation</button>
+                                <button class="btn-download-report" onclick="downloadReport('${id}', 'validation')" ${!hasValidationReport ? 'disabled' : ''} title="Download validation report">⬇ Download</button>
+                            </div>
+                            <div class="script-actions-row">
+                                <button class="btn-view-report" onclick="viewExecutionReport('${id}')" ${!hasExecutionReport ? 'disabled' : ''} title="View execution report HTML">👁 HTML</button>
+                                <button class="btn-download-report" onclick="downloadExecutionReportZip('${id}')" ${!hasExecutionReport ? 'disabled' : ''} title="Download execution report with videos (ZIP)">⬇ ZIP+Videos</button>
+                            </div>
+                            <div class="script-actions-row">
+                                <button class="btn-download-report" onclick="showExecutionVideos('${id}')" ${!hasExecutionReport ? 'disabled' : ''} title="View video list">🎬 Videos (${script.video_count || 0})</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // ===== Filter Scripts =====
+        function filterScripts() {
+            const searchQuery = document.getElementById('scriptFilter').value.toLowerCase().trim();
+            const reportFilter = document.getElementById('reportFilter').value;
+
+            scriptsState.filteredScripts = scriptsState.scripts.filter(script => {
+                // Text filter
+                if (searchQuery && !script.test_case_id.toLowerCase().includes(searchQuery)) {
+                    return false;
+                }
+
+                // Report type filter
+                if (reportFilter === 'healing' && !script.has_healing_report) return false;
+                if (reportFilter === 'validation' && !script.has_validation_report) return false;
+                if (reportFilter === 'execution' && !script.has_execution_report) return false;
+                if (reportFilter === 'all-reports' && !(script.has_healing_report || script.has_validation_report || script.has_execution_report)) return false;
+
+                return true;
+            });
+
+            renderScriptsList();
+        }
+
+        // ===== Download Script =====
+        async function downloadScript(testCaseId) {
+            try {
+                console.log(`[DEBUG] Downloading script: ${testCaseId}`);
+                const url = `${state.serverUrl}/api/v1/scripts/${testCaseId}/download`;
+                
+                const response = await fetch(url, {
+                    method: 'GET',
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+
+                if (!response.ok) throw new Error(`Failed to download: ${response.status}`);
+
+                const blob = await response.blob();
+                const downloadUrl = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = downloadUrl;
+                a.download = `${testCaseId}.spec.ts`;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(downloadUrl);
+                document.body.removeChild(a);
+
+                showToast(`Downloaded ${testCaseId}.spec.ts successfully`, 'success');
+            } catch (error) {
+                console.error('[Scripts Manager] Download failed:', error);
+                showToast('Failed to download script: ' + error.message, 'error');
+            }
+        }
+
+        // ===== View Report =====
+        async function viewReport(testCaseId, reportType) {
+            try {
+                console.log(`[DEBUG] Loading report: ${testCaseId} - ${reportType}`);
+                const url = `${state.serverUrl}/api/v1/scripts/${testCaseId}/reports/${reportType}`;
+                
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+
+                if (!response.ok) throw new Error(`Failed to load report: ${response.status}`);
+
+                const contentType = response.headers.get('content-type');
+                let content = await response.text();
+
+                // Parse content if JSON
+                let formattedContent = content;
+                if (contentType && contentType.includes('application/json')) {
+                    try {
+                        const json = JSON.parse(content);
+                        formattedContent = JSON.stringify(json, null, 2);
+                    } catch (e) {
+                        console.warn('Failed to parse JSON');
+                    }
+                }
+
+                // Display in modal
+                document.getElementById('reportViewerTitle').textContent = `${testCaseId} - ${reportType.charAt(0).toUpperCase() + reportType.slice(1)} Report`;
+                const contentDiv = document.getElementById('reportViewerContent');
+                
+                if (contentType && contentType.includes('text/markdown')) {
+                    contentDiv.className = 'report-markdown';
+                    contentDiv.textContent = formattedContent;
+                } else {
+                    contentDiv.className = 'report-json';
+                    contentDiv.textContent = formattedContent;
+                }
+                
+                document.getElementById('reportViewerModal').classList.add('visible');
+                scriptsState.currentReportType = reportType;
+                scriptsState.currentTestCaseId = testCaseId;
+            } catch (error) {
+                console.error('[Scripts Manager] Load report failed:', error);
+                showToast('Failed to load report: ' + error.message, 'error');
+            }
+        }
+
+        // ===== View Execution Report (HTML) =====
+        async function viewExecutionReport(testCaseId) {
+            try {
+                console.log(`[DEBUG] Loading execution report HTML: ${testCaseId}`);
+                const url = `${state.serverUrl}/api/v1/scripts/${testCaseId}/reports/execution`;
+                
+                const response = await fetch(url, {
+                    method: 'GET',
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+
+                if (!response.ok) throw new Error(`Failed to load report: ${response.status}`);
+
+                const htmlContent = await response.text();
+                
+                // Display in modal
+                document.getElementById('reportViewerTitle').textContent = `${testCaseId} - Execution Report (HTML)`;
+                const contentDiv = document.getElementById('reportViewerContent');
+                contentDiv.className = 'report-html-viewer';
+                contentDiv.innerHTML = htmlContent;
+                
+                document.getElementById('reportViewerModal').classList.add('visible');
+                scriptsState.currentReportType = 'execution';
+                scriptsState.currentTestCaseId = testCaseId;
+            } catch (error) {
+                console.error('[Scripts Manager] Load execution report failed:', error);
+                showToast('Failed to load execution report: ' + error.message, 'error');
+            }
+        }
+
+        // ===== Show Execution Videos List =====
+        async function showExecutionVideos(testCaseId) {
+            try {
+                console.log(`[DEBUG] Loading execution videos: ${testCaseId}`);
+                const url = `${state.serverUrl}/api/v1/scripts/${testCaseId}/reports/execution/videos`;
+                
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+
+                if (!response.ok) throw new Error(`Failed to load videos: ${response.status}`);
+
+                const data = await response.json();
+                scriptsState.videosData[testCaseId] = data;
+
+                // Build HTML content
+                let html = `
+                    <div style="padding: 20px;">
+                        <h3 style="margin: 0 0 15px 0; color: var(--primary);">🎬 Videos for ${testCaseId}</h3>
+                        <div style="background: #f5f5f5; padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+                            <strong>Total Videos:</strong> ${data.video_count}
+                        </div>
+                `;
+
+                if (data.videos && data.videos.length > 0) {
+                    html += '<div style="border: 1px solid #ddd; border-radius: 4px; overflow: hidden;">';
+                    data.videos.forEach((video, index) => {
+                        const sizeInMB = (video.size_bytes / (1024 * 1024)).toFixed(2);
+                        html += `
+                            <div style="padding: 12px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <div style="font-weight: 600; color: var(--primary); margin-bottom: 4px;">📹 ${escapeHtml(video.filename)}</div>
+                                    <div style="font-size: 12px; color: #999;">
+                                        📦 ${sizeInMB} MB | 🕐 ${new Date(video.created_at).toLocaleString()}
+                                    </div>
+                                </div>
+                                <button class="btn-download-report" onclick="downloadExecutionVideo('${testCaseId}', '${video.filename}')" style="margin-left: 10px;">⬇ Download</button>
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                } else {
+                    html += '<div style="padding: 20px; text-align: center; color: #999;">No videos found</div>';
+                }
+
+                html += `
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #ddd;">
+                            <button onclick="downloadExecutionReportZip('${testCaseId}')" style="padding: 10px 16px; background: var(--accent); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;">⬇ Download Complete Report (ZIP)</button>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('reportViewerTitle').textContent = `${testCaseId} - Video List`;
+                const contentDiv = document.getElementById('reportViewerContent');
+                contentDiv.className = 'report-html-viewer';
+                contentDiv.innerHTML = html;
+                
+                document.getElementById('reportViewerModal').classList.add('visible');
+                scriptsState.currentReportType = 'execution-videos';
+                scriptsState.currentTestCaseId = testCaseId;
+            } catch (error) {
+                console.error('[Scripts Manager] Load videos failed:', error);
+                showToast('Failed to load videos: ' + error.message, 'error');
+            }
+        }
+
+        // ===== Download Execution Report ZIP (with videos) =====
+        async function downloadExecutionReportZip(testCaseId) {
+            try {
+                console.log(`[DEBUG] Downloading execution report ZIP: ${testCaseId}`);
+                const url = `${state.serverUrl}/api/v1/scripts/${testCaseId}/reports/execution/download`;
+                
+                const response = await fetch(url, {
+                    method: 'GET',
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+
+                if (!response.ok) throw new Error(`Failed to download: ${response.status}`);
+
+                const blob = await response.blob();
+                const downloadUrl = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = downloadUrl;
+                a.download = `${testCaseId}-execution-report.zip`;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(downloadUrl);
+                document.body.removeChild(a);
+
+                showToast(`Downloaded ${testCaseId}-execution-report.zip (HTML + Videos)`, 'success');
+            } catch (error) {
+                console.error('[Scripts Manager] Download ZIP failed:', error);
+                showToast('Failed to download report ZIP: ' + error.message, 'error');
+            }
+        }
+
+        // ===== Download Execution Video =====
+        async function downloadExecutionVideo(testCaseId, filename) {
+            try {
+                console.log(`[DEBUG] Downloading video: ${testCaseId} - ${filename}`);
+                const url = `${state.serverUrl}/api/v1/scripts/${testCaseId}/reports/execution/video/${encodeURIComponent(filename)}`;
+                
+                const response = await fetch(url, {
+                    method: 'GET',
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+
+                if (!response.ok) throw new Error(`Failed to download: ${response.status}`);
+
+                const blob = await response.blob();
+                const downloadUrl = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = downloadUrl;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(downloadUrl);
+                document.body.removeChild(a);
+
+                showToast(`Downloaded ${filename}`, 'success');
+            } catch (error) {
+                console.error('[Scripts Manager] Download video failed:', error);
+                showToast('Failed to download video: ' + error.message, 'error');
+            }
+        }
+
+        // ===== Download Report =====
+        async function downloadReport(testCaseId, reportType) {
+            try {
+                console.log(`[DEBUG] Downloading report: ${testCaseId} - ${reportType}`);
+                const url = `${state.serverUrl}/api/v1/scripts/${testCaseId}/reports/${reportType}/download`;
+                
+                const response = await fetch(url, {
+                    method: 'GET',
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+
+                if (!response.ok) throw new Error(`Failed to download: ${response.status}`);
+
+                const blob = await response.blob();
+                const downloadUrl = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = downloadUrl;
+                
+                // Determine file extension
+                const ext = reportType === 'validation' ? 'md' : 'json';
+                a.download = `${testCaseId}-${reportType}-report.${ext}`;
+                
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(downloadUrl);
+                document.body.removeChild(a);
+
+                showToast(`Downloaded ${reportType} report successfully`, 'success');
+            } catch (error) {
+                console.error('[Scripts Manager] Download report failed:', error);
+                showToast('Failed to download report: ' + error.message, 'error');
+            }
+        }
+
+        // ===== Close Report Viewer =====
+        function closeReportViewer() {
+            document.getElementById('reportViewerModal').classList.remove('visible');
+            scriptsState.currentReportType = null;
+            scriptsState.currentTestCaseId = null;
+        }
+
+        // ===== Format File Size =====
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('reportViewerModal');
+            if (e.target === modal) {
+                closeReportViewer();
+            }
+        });
+    </script>
+</body>
+</html>
