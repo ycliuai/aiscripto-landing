@@ -1405,6 +1405,12 @@
             flex: none;
         }
 
+        /* === Hide Healing & Validation Report Options === */
+        #reportFilter option[value="healing"],
+        #reportFilter option[value="validation"] {
+            display: none;
+        }
+
         @media (max-width: 1024px) {
             .tc-manager-layout {
                 grid-template-columns: 1fr;
@@ -1634,6 +1640,7 @@
                             <option value="healing">Has Healing Report</option>
                             <option value="validation">Has Validation Report</option>
                             <option value="execution">Has Execution Report</option>
+                            <option value="data">Has Parameterized Data</option>
                         </select>
                     </div>
                 </div>
@@ -3086,15 +3093,16 @@
                                 ${hasHealingReport ? '<span class="status-badge-sm">✓ Healing Report</span>' : '<span class="status-badge-sm none">✗ No Healing</span>'}
                                 ${hasValidationReport ? '<span class="status-badge-sm">✓ Validation Report</span>' : '<span class="status-badge-sm none">✗ No Validation</span>'}
                                 ${hasExecutionReport ? '<span class="status-badge-sm">✓ Execution Report</span>' : '<span class="status-badge-sm none">✗ No Execution</span>'}
+                                ${script.has_parameterized_data ? '<span class="status-badge-sm">✓ Parameterized Data</span>' : '<span class="status-badge-sm none">✗ No Data</span>'}
                             </div>
                         </div>
                         <div class="script-actions">
                             <button class="btn-download-script" onclick="downloadScript('${id}')" title="Download .spec.ts file">⬇ Download Script</button>
-                            <div class="script-actions-row">
+                            <div class="script-actions-row" style="display: none;">
                                 <button class="btn-view-report" onclick="viewReport('${id}', 'healing')" ${!hasHealingReport ? 'disabled' : ''} title="View healing report">👁 Healing</button>
                                 <button class="btn-download-report" onclick="downloadReport('${id}', 'healing')" ${!hasHealingReport ? 'disabled' : ''} title="Download healing report">⬇ Download</button>
                             </div>
-                            <div class="script-actions-row">
+                            <div class="script-actions-row" style="display: none;">
                                 <button class="btn-view-report" onclick="viewReport('${id}', 'validation')" ${!hasValidationReport ? 'disabled' : ''} title="View validation report">👁 Validation</button>
                                 <button class="btn-download-report" onclick="downloadReport('${id}', 'validation')" ${!hasValidationReport ? 'disabled' : ''} title="Download validation report">⬇ Download</button>
                             </div>
@@ -3104,6 +3112,9 @@
                             </div>
                             <div class="script-actions-row">
                                 <button class="btn-download-report" onclick="showExecutionVideos('${id}')" ${!hasExecutionReport ? 'disabled' : ''} title="View video list">🎬 Videos (${script.video_count || 0})</button>
+                            </div>
+                            <div class="script-actions-row">
+                                <button class="btn-download-report" onclick="downloadParameterizedData('${id}')" ${!script.has_parameterized_data ? 'disabled' : ''} title="Download parameterized data file">📊 Data.json</button>
                             </div>
                         </div>
                     </div>
@@ -3128,6 +3139,7 @@
                 if (reportFilter === 'healing' && !script.has_healing_report) return false;
                 if (reportFilter === 'validation' && !script.has_validation_report) return false;
                 if (reportFilter === 'execution' && !script.has_execution_report) return false;
+                if (reportFilter === 'data' && !script.has_parameterized_data) return false;
                 if (reportFilter === 'all-reports' && !(script.has_healing_report || script.has_validation_report || script.has_execution_report)) return false;
 
                 return true;
@@ -3200,13 +3212,24 @@
                 document.getElementById('reportViewerTitle').textContent = `${testCaseId} - ${reportType.charAt(0).toUpperCase() + reportType.slice(1)} Report`;
                 const contentDiv = document.getElementById('reportViewerContent');
                 
-                if (contentType && contentType.includes('text/markdown')) {
-                    contentDiv.className = 'report-markdown';
-                    contentDiv.textContent = formattedContent;
+                // Determine display format based on report type
+                let displayClass = 'report-json'; // default
+                
+                if (reportType === 'healing') {
+                    // Always show Healing as JSON
+                    displayClass = 'report-json';
+                } else if (reportType === 'validation') {
+                    // Always show Validation as JSON
+                    displayClass = 'report-json';
                 } else {
-                    contentDiv.className = 'report-json';
-                    contentDiv.textContent = formattedContent;
+                    // For other types, check content-type header
+                    if (contentType && contentType.includes('text/markdown')) {
+                        displayClass = 'report-markdown';
+                    }
                 }
+                
+                contentDiv.className = displayClass;
+                contentDiv.textContent = formattedContent;
                 
                 document.getElementById('reportViewerModal').classList.add('visible');
                 scriptsState.currentReportType = reportType;
@@ -3376,6 +3399,37 @@
             } catch (error) {
                 console.error('[Scripts Manager] Download video failed:', error);
                 showToast('Failed to download video: ' + error.message, 'error');
+            }
+        }
+
+        // ===== Download Parameterized Data =====
+        async function downloadParameterizedData(testCaseId) {
+            try {
+                console.log(`[DEBUG] Downloading parameterized data: ${testCaseId}`);
+                const url = `${state.serverUrl}/api/v1/scripts/${testCaseId}/download/data`;
+                
+                const response = await fetch(url, {
+                    method: 'GET',
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+
+                if (!response.ok) throw new Error(`Failed to download: ${response.status}`);
+
+                const blob = await response.blob();
+                const downloadUrl = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = downloadUrl;
+                a.download = `${testCaseId}.data.json`;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(downloadUrl);
+                document.body.removeChild(a);
+
+                showToast(`Downloaded ${testCaseId}.data.json successfully`, 'success');
+            } catch (error) {
+                console.error('[Scripts Manager] Download data failed:', error);
+                showToast('Failed to download data file: ' + error.message, 'error');
             }
         }
 
