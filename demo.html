@@ -2060,8 +2060,28 @@
     </footer>
 
     <script>
+        // ===== Helper: Cancel All Pending Requests =====
+        function abortAllRequests() {
+            console.log('[DEBUG] Aborting all pending requests due to tab switch');
+            // Abort all controllers
+            Object.keys(state.abortControllers).forEach(key => {
+                if (state.abortControllers[key]) {
+                    try {
+                        state.abortControllers[key].abort();
+                    } catch (e) {
+                        console.log(`[DEBUG] Failed to abort ${key}:`, e);
+                    }
+                }
+            });
+            // Stop polling if active
+            stopPolling();
+        }
+
         // ===== Tab Switching =====
         function switchTab(tabName) {
+            // Abort all pending requests from previous tab
+            abortAllRequests();
+            
             // Update tab buttons
             document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
             document.getElementById('tab-' + tabName).classList.add('active');
@@ -2143,7 +2163,27 @@
             isPolling: false,
             pollTimer: null,
             lastEventTimestamp: null,
-            serverStatus: 'unknown' // 'ok', 'error', 'unknown'
+            serverStatus: 'unknown', // 'ok', 'error', 'unknown'
+            // AbortControllers for managing fetch requests
+            abortControllers: {
+                connectionCheck: null,
+                loadTestCases: null,
+                pollJob: null,
+                pollEvents: null,
+                tcRefreshList: null,
+                tcEditTestCase: null,
+                tcSaveTestCase: null,
+                tcDeleteTestCase: null,
+                refreshScriptsList: null,
+                viewReport: null,
+                viewExecutionReport: null,
+                showExecutionVideos: null,
+                downloadScript: null,
+                downloadReport: null,
+                downloadExecutionReportZip: null,
+                downloadExecutionVideo: null,
+                downloadParameterizedData: null
+            }
         };
 
         // ===== Initialization =====
@@ -2159,11 +2199,18 @@
             const statusIndicator = document.getElementById('statusIndicator');
             statusIndicator.className = 'status-indicator loading';
 
+            // Cancel previous request if any
+            if (state.abortControllers.connectionCheck) {
+                state.abortControllers.connectionCheck.abort();
+            }
+            state.abortControllers.connectionCheck = new AbortController();
+
             try {
                 console.log(`[DEBUG] Attempting to connect to: ${state.serverUrl}/api/v1/health`);
                 console.log('[DEBUG] Request configuration: CORS mode, no credentials');
                 
                 const response = await fetch(`${state.serverUrl}/api/v1/health`, {
+                    signal: state.abortControllers.connectionCheck.signal,
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -2187,6 +2234,12 @@
                     throw new Error(`Server returned status ${response.status}`);
                 }
             } catch (error) {
+                // Ignore abort errors (user switched tabs)
+                if (error.name === 'AbortError') {
+                    console.log('[DEBUG] Connection check cancelled by user');
+                    return;
+                }
+                
                 state.serverStatus = 'error';
                 statusIndicator.className = 'status-indicator error';
                 const errorMsg = error.message || error.toString();
@@ -2208,10 +2261,17 @@
 
         // ===== Test Cases Management =====
         async function loadTestCases() {
+            // Cancel previous request if any
+            if (state.abortControllers.loadTestCases) {
+                state.abortControllers.loadTestCases.abort();
+            }
+            state.abortControllers.loadTestCases = new AbortController();
+            
             try {
                 console.log(`[DEBUG] Loading test cases from: ${state.serverUrl}/api/v1/test-cases`);
                 
                 const response = await fetch(`${state.serverUrl}/api/v1/test-cases`, {
+                    signal: state.abortControllers.loadTestCases.signal,
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -2248,6 +2308,12 @@
                     select.appendChild(option);
                 }
             } catch (error) {
+                // Ignore abort errors (user switched tabs)
+                if (error.name === 'AbortError') {
+                    console.log('[DEBUG] Load test cases cancelled by user');
+                    return;
+                }
+                
                 console.error('[ERROR] Failed to load test cases:', error);
                 const select = document.getElementById('testCase');
                 select.innerHTML = '<option value="">Error loading test cases - Check server connection</option>';
@@ -2394,11 +2460,18 @@
         async function pollJob() {
             if (!state.currentJobId || !state.isPolling) return;
 
+            // Cancel previous poll request if any
+            if (state.abortControllers.pollJob) {
+                state.abortControllers.pollJob.abort();
+            }
+            state.abortControllers.pollJob = new AbortController();
+
             try {
                 // Get job status
                 console.log(`[DEBUG] Polling job status: ${state.serverUrl}/api/v1/jobs/${state.currentJobId}`);
                 
                 const statusResponse = await fetch(`${state.serverUrl}/api/v1/jobs/${state.currentJobId}`, {
+                    signal: state.abortControllers.pollJob.signal,
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -2420,7 +2493,14 @@
 
                 console.log(`[DEBUG] Fetching events from: ${eventsUrl}`);
                 
+                // Cancel previous events request if any
+                if (state.abortControllers.pollEvents) {
+                    state.abortControllers.pollEvents.abort();
+                }
+                state.abortControllers.pollEvents = new AbortController();
+                
                 const eventsResponse = await fetch(eventsUrl, {
+                    signal: state.abortControllers.pollEvents.signal,
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -2455,6 +2535,12 @@
                     state.pollTimer = setTimeout(pollJob, config.pollInterval);
                 }
             } catch (error) {
+                // Ignore abort errors (user switched tabs)
+                if (error.name === 'AbortError') {
+                    console.log('[DEBUG] Polling cancelled by user');
+                    return;
+                }
+                
                 console.error('[ERROR] Polling error:', error);
                 state.pollTimer = setTimeout(pollJob, config.pollInterval);
             }
@@ -2711,8 +2797,15 @@
 
         // ===== Refresh Test Case List =====
         async function tcRefreshList() {
+            // Cancel previous request if any
+            if (state.abortControllers.tcRefreshList) {
+                state.abortControllers.tcRefreshList.abort();
+            }
+            state.abortControllers.tcRefreshList = new AbortController();
+            
             try {
                 const response = await fetch(`${state.serverUrl}/api/v1/test-cases`, {
+                    signal: state.abortControllers.tcRefreshList.signal,
                     method: 'GET',
                     headers: { 'Content-Type': 'application/json' },
                     mode: 'cors',
@@ -2725,6 +2818,12 @@
                 tcState.filteredCases = [...tcState.testCases];
                 tcRenderList();
             } catch (error) {
+                // Ignore abort errors (user switched tabs)
+                if (error.name === 'AbortError') {
+                    console.log('[DEBUG] TC refresh list cancelled by user');
+                    return;
+                }
+                
                 console.error('[TC Manager] Failed to load test cases:', error);
                 showToast('Failed to load test cases: ' + error.message, 'error');
                 tcRenderEmptyList('Connection error. Check server.');
@@ -2819,8 +2918,15 @@
 
         // ===== Edit Test Case =====
         async function tcEditTestCase(id) {
+            // Cancel previous request if any
+            if (state.abortControllers.tcEditTestCase) {
+                state.abortControllers.tcEditTestCase.abort();
+            }
+            state.abortControllers.tcEditTestCase = new AbortController();
+            
             try {
                 const response = await fetch(`${state.serverUrl}/api/v1/test-cases/${encodeURIComponent(id)}`, {
+                    signal: state.abortControllers.tcEditTestCase.signal,
                     method: 'GET',
                     headers: { 'Content-Type': 'application/json' },
                     mode: 'cors',
@@ -2845,6 +2951,12 @@
 
                 tcRenderList();
             } catch (error) {
+                // Ignore abort errors (user switched tabs)
+                if (error.name === 'AbortError') {
+                    console.log('[DEBUG] TC edit test case cancelled by user');
+                    return;
+                }
+                
                 console.error('[TC Manager] Failed to load test case:', error);
                 showToast('Failed to load test case: ' + error.message, 'error');
             }
@@ -3024,6 +3136,12 @@
 
         // ===== Refresh Scripts List =====
         async function refreshScriptsList() {
+            // Cancel previous request if any
+            if (state.abortControllers.refreshScriptsList) {
+                state.abortControllers.refreshScriptsList.abort();
+            }
+            state.abortControllers.refreshScriptsList = new AbortController();
+            
             try {
                 const container = document.getElementById('scriptsListContainer');
                 container.innerHTML = '<div class="scripts-list-loading"><span class="loading-spinner"></span> Loading scripts...</div>';
@@ -3031,6 +3149,7 @@
                 console.log(`[DEBUG] Loading scripts from: ${state.serverUrl}/api/v1/scripts`);
                 
                 const response = await fetch(`${state.serverUrl}/api/v1/scripts?limit=100`, {
+                    signal: state.abortControllers.refreshScriptsList.signal,
                     method: 'GET',
                     headers: { 'Content-Type': 'application/json' },
                     mode: 'cors',
@@ -3046,6 +3165,12 @@
                 scriptsState.filteredScripts = [...scriptsState.scripts];
                 renderScriptsList();
             } catch (error) {
+                // Ignore abort errors (user switched tabs)
+                if (error.name === 'AbortError') {
+                    console.log('[DEBUG] Refresh scripts list cancelled by user');
+                    return;
+                }
+                
                 console.error('[Scripts Manager] Failed to load scripts:', error);
                 const container = document.getElementById('scriptsListContainer');
                 container.innerHTML = `
@@ -3181,11 +3306,18 @@
 
         // ===== View Report =====
         async function viewReport(testCaseId, reportType) {
+            // Cancel previous request if any
+            if (state.abortControllers.viewReport) {
+                state.abortControllers.viewReport.abort();
+            }
+            state.abortControllers.viewReport = new AbortController();
+            
             try {
                 console.log(`[DEBUG] Loading report: ${testCaseId} - ${reportType}`);
                 const url = `${state.serverUrl}/api/v1/scripts/${testCaseId}/reports/${reportType}`;
                 
                 const response = await fetch(url, {
+                    signal: state.abortControllers.viewReport.signal,
                     method: 'GET',
                     headers: { 'Content-Type': 'application/json' },
                     mode: 'cors',
@@ -3235,6 +3367,12 @@
                 scriptsState.currentReportType = reportType;
                 scriptsState.currentTestCaseId = testCaseId;
             } catch (error) {
+                // Ignore abort errors (user switched tabs)
+                if (error.name === 'AbortError') {
+                    console.log('[DEBUG] View report cancelled by user');
+                    return;
+                }
+                
                 console.error('[Scripts Manager] Load report failed:', error);
                 showToast('Failed to load report: ' + error.message, 'error');
             }
@@ -3242,11 +3380,18 @@
 
         // ===== View Execution Report (HTML) =====
         async function viewExecutionReport(testCaseId) {
+            // Cancel previous request if any
+            if (state.abortControllers.viewExecutionReport) {
+                state.abortControllers.viewExecutionReport.abort();
+            }
+            state.abortControllers.viewExecutionReport = new AbortController();
+            
             try {
                 console.log(`[DEBUG] Loading execution report HTML: ${testCaseId}`);
                 const url = `${state.serverUrl}/api/v1/scripts/${testCaseId}/reports/execution`;
                 
                 const response = await fetch(url, {
+                    signal: state.abortControllers.viewExecutionReport.signal,
                     method: 'GET',
                     mode: 'cors',
                     credentials: 'omit'
@@ -3266,6 +3411,12 @@
                 scriptsState.currentReportType = 'execution';
                 scriptsState.currentTestCaseId = testCaseId;
             } catch (error) {
+                // Ignore abort errors (user switched tabs)
+                if (error.name === 'AbortError') {
+                    console.log('[DEBUG] View execution report cancelled by user');
+                    return;
+                }
+                
                 console.error('[Scripts Manager] Load execution report failed:', error);
                 showToast('Failed to load execution report: ' + error.message, 'error');
             }
@@ -3273,11 +3424,18 @@
 
         // ===== Show Execution Videos List =====
         async function showExecutionVideos(testCaseId) {
+            // Cancel previous request if any
+            if (state.abortControllers.showExecutionVideos) {
+                state.abortControllers.showExecutionVideos.abort();
+            }
+            state.abortControllers.showExecutionVideos = new AbortController();
+            
             try {
                 console.log(`[DEBUG] Loading execution videos: ${testCaseId}`);
                 const url = `${state.serverUrl}/api/v1/scripts/${testCaseId}/reports/execution/videos`;
                 
                 const response = await fetch(url, {
+                    signal: state.abortControllers.showExecutionVideos.signal,
                     method: 'GET',
                     headers: { 'Content-Type': 'application/json' },
                     mode: 'cors',
@@ -3335,6 +3493,12 @@
                 scriptsState.currentReportType = 'execution-videos';
                 scriptsState.currentTestCaseId = testCaseId;
             } catch (error) {
+                // Ignore abort errors (user switched tabs)
+                if (error.name === 'AbortError') {
+                    console.log('[DEBUG] Show execution videos cancelled by user');
+                    return;
+                }
+                
                 console.error('[Scripts Manager] Load videos failed:', error);
                 showToast('Failed to load videos: ' + error.message, 'error');
             }
