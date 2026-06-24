@@ -1936,7 +1936,7 @@
                             <ol style="color: #666; font-size: 13px; margin: 10px 0 0 0; padding-left: 20px;">
                                 <li style="margin: 8px 0;"><strong>Open your browser</strong> (Chrome, Firefox, Safari, Edge)</li>
                                 <li style="margin: 8px 0;"><strong>Visit the certificate source:</strong> <code style="background: #fff; padding: 2px 4px; border-radius: 2px;">https://YOUR_SERVER_URL:8080/api/v1/health</code>
-                                    <br/><span style="font-size: 12px; color: #999;">Example: https://18.141.220.36:8080/api/v1/health</span>
+                                    <br/><span style="font-size: 12px; color: #999;">Example: https://api.aiscripto.app:8080/api/v1/health</span>
                                 </li>
                                 <li style="margin: 8px 0;"><strong>You'll see "Your connection is not private"</strong> warning</li>
                                 <li style="margin: 8px 0;"><strong>Click "Advanced"</strong> button</li>
@@ -1951,7 +1951,7 @@
                             <h4 style="color: var(--primary); margin: 15px 0 10px 0;">Other Connection Issues:</h4>
                             <ol style="color: #666; font-size: 13px; margin: 10px 0 0 0; padding-left: 20px;">
                                 <li>Check if server is running and accessible</li>
-                                <li>Verify server URL is correct (e.g., http://localhost:8080 or https://18.141.220.36:8080)</li>
+                                <li>Verify server URL is correct (e.g., http://localhost:8080 or https://api.aiscripto.app:8080)</li>
                                 <li>Make sure you're on same network or can reach the server</li>
                                 <li>Try refreshing the page (F5)</li>
                                 <li>Check browser console (F12) for detailed error messages</li>
@@ -3241,6 +3241,9 @@
                             <div class="script-actions-row">
                                 <button class="btn-download-report" onclick="downloadParameterizedData('${id}')" ${!script.has_parameterized_data ? 'disabled' : ''} title="Download parameterized data file">📊 Data.json</button>
                             </div>
+                            <div class="script-actions-row">
+                                <button class="btn-download-script" onclick="downloadPackage('${id}')" title="Download complete test package (.zip)">📦 Download Package</button>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -3594,6 +3597,37 @@
             } catch (error) {
                 console.error('[Scripts Manager] Download data failed:', error);
                 showToast('Failed to download data file: ' + error.message, 'error');
+            }
+        }
+
+        // ===== Download Package =====
+        async function downloadPackage(testCaseId) {
+            try {
+                console.log(`[DEBUG] Downloading complete package: ${testCaseId}`);
+                const url = `${state.serverUrl}/api/v1/scripts/${testCaseId}/download/package`;
+                
+                const response = await fetch(url, {
+                    method: 'GET',
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+
+                if (!response.ok) throw new Error(`Failed to download: ${response.status}`);
+
+                const blob = await response.blob();
+                const downloadUrl = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = downloadUrl;
+                a.download = `${testCaseId}-package.zip`;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(downloadUrl);
+                document.body.removeChild(a);
+
+                showToast(`Downloaded ${testCaseId}-package.zip successfully`, 'success');
+            } catch (error) {
+                console.error('[Scripts Manager] Download package failed:', error);
+                showToast('Failed to download complete package: ' + error.message, 'error');
             }
         }
 
