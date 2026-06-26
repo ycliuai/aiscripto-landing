@@ -289,183 +289,148 @@
         <section>
             <div class="divider-dark"></div>
             <h2>Enterprise Autonomous Testing Platform</h2>
-            <p>
-                AiScripto is an <strong>enterprise-grade, AI-powered end-to-end test automation orchestration platform</strong> designed to eliminate the brittle coding and maintenance bottlenecks for Quality Assurance (QA) organizations. By translating human-written, plain-text manual test cases (Natural Language) into production-ready executable <strong>Playwright TypeScript</strong> test suites and reusable <strong>Page Object Models (POM)</strong>, AiScripto compresses software regression development cycles by over <strong>80%</strong>.
+                        <p>
+                AiScripto is an <strong>enterprise-grade, AI-powered end-to-end test automation orchestration platform</strong> designed to eliminate the brittle coding and maintenance bottlenecks for Quality Assurance (QA) organizations. By translating human-written, plain-text manual test cases into production-ready executable <strong>Playwright TypeScript</strong> test suites and reusable <strong>Page Object Models (POM)</strong>, AiScripto compresses software regression development cycles.
             </p>
             <p style="margin-top: 15px; font-size: 14px; color: #666;">
-                Our platform is built on <strong>multi-cloud architecture</strong> with <strong>model-agnostic AI inference</strong>, ensuring you can choose the cloud provider and AI model provider that best fits your enterprise requirements.
+                Our platform is built on a <strong>multi-channel architecture</strong> including a Local TUI, a Telegram Bot, and a Web UI, integrating with <strong>Claude Code SDK</strong> and <strong>AWS Bedrock</strong> to automatically discover UI elements and generate highly maintainable code.
             </p>
         </section>
         
+                <!-- Multi-Channel Architecture -->
+        <section>
+            <h2>📱 Multi-Channel Interactive Architecture</h2>
+            <p>
+                AiScripto supports three major interaction channels, allowing different user groups to interact with the system in the most suitable way:
+            </p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>💻 TUI (Terminal UI)</h4>
+                    <ul class="tech-list" style="margin-top: 15px;">
+                        <li><strong>Environment:</strong> <span class="description">Local Python Textual App</span></li>
+                        <li><strong>Best for:</strong> <span class="description">Developers & QA for rapid local iteration</span></li>
+                        <li><strong>Features:</strong> <span class="description">Full command set, synchronous execution, offline support</span></li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>💬 Telegram Bot</h4>
+                    <ul class="tech-list" style="margin-top: 15px;">
+                        <li><strong>Environment:</strong> <span class="description">Remote Messaging App</span></li>
+                        <li><strong>Best for:</strong> <span class="description">Mobile access & asynchronous communication</span></li>
+                        <li><strong>Features:</strong> <span class="description">Real-time push notifications, low bandwidth</span></li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🌐 Web UI (REST API)</h4>
+                    <ul class="tech-list" style="margin-top: 15px;">
+                        <li><strong>Environment:</strong> <span class="description">Modern Web Browser</span></li>
+                        <li><strong>Best for:</strong> <span class="description">Cross-department collaboration & management</span></li>
+                        <li><strong>Features:</strong> <span class="description">Graphical interface, comprehensive reports, team sharing</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="flexibility-box">
+                <h4>🔌 Flexible Deployment</h4>
+                <p>Run the <strong>TUI locally</strong> with direct SDK access, or deploy the <strong>FastAPI Server</strong> to handle Web UI and Telegram Bot requests remotely with built-in task queues and event streaming.</p>
+            </div>
+        </section>
+
         <!-- Core Technology Stack & Architecture -->
         <section>
             <h2>Core Technology Stack & Architecture</h2>
             
             <h3>🔄 Multi-Phase Agentic Pipeline</h3>
-            <p>Driven by advanced foundation models via <strong>Model Context Protocol (MCP)</strong> to seamlessly ingest test cases from tools like:</p>
+            <p>Driven by advanced foundation models via <strong>Claude Code SDK</strong> to seamlessly orchestrate the testing pipeline:</p>
             <div class="badge-group">
-                <span class="service-badge aws">Azure DevOps</span>
-                <span class="service-badge">GitHub Issues</span>
-                <span class="service-badge azure">Jira</span>
-                <span class="service-badge gcp">Google Workspace Docs</span>
-                <span class="service-badge">Plain Text Files</span>
-                <span class="service-badge">REST APIs</span>
+                <span class="service-badge aws">/import</span>
+                <span class="service-badge">/validate</span>
+                <span class="service-badge azure">/convert</span>
+                <span class="service-badge gcp">/verify</span>
+                <span class="service-badge">/parameterize</span>
+                <span class="service-badge">/walkthrough</span>
             </div>
-            <p style="margin-top: 15px; font-size: 14px; color: #666;">Execute intelligent context analysis and generate optimized test specifications.</p>
+            <p style="margin-top: 15px; font-size: 14px; color: #666;">Execute intelligent context analysis, real-time UI exploration, and generate optimized test specifications.</p>
             
-            <h3>🧠 Cross-Regional Inference Layer (Multi-Model Support)</h3>
-            <p>Our architecture supports multiple AI model providers, allowing you to choose based on your compliance, cost, and latency requirements:</p>
+            <h3>🧠 AI Orchestration & Knowledge Base</h3>
+            <p>Our architecture combines powerful AI agents with contextual knowledge:</p>
             <ul class="tech-list">
                 <li>
-                    <strong>AWS Ecosystem:</strong>
+                    <strong>Claude Code SDK:</strong>
                     <div class="description">
-                        <strong>Amazon Bedrock (Claude 3.5 Sonnet, Haiku)</strong> for high-performance multi-turn reasoning and application-aware UI component discovery.
-                        <div class="badge-group" style="margin-top: 8px;">
-                            <span class="service-badge aws">Bedrock</span>
-                            <span class="service-badge aws">SageMaker</span>
-                        </div>
+                        Core AI agent framework used to orchestrate complex multi-step workflows, UI discovery, and Playwright code generation.
                     </div>
                 </li>
                 <li>
-                    <strong>Google Cloud:</strong>
+                    <strong>AWS Bedrock:</strong>
                     <div class="description">
-                        <strong>Vertex AI (Gemini Pro)</strong> with cross-regional inference for low-latency APAC deployments.
-                        <div class="badge-group" style="margin-top: 8px;">
-                            <span class="service-badge gcp">Vertex AI</span>
-                            <span class="service-badge gcp">Google AI Studio</span>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <strong>Microsoft Azure:</strong>
-                    <div class="description">
-                        <strong>Azure AI Studio / Azure OpenAI Service</strong> for organizations requiring Azure-native governance and compliance.
-                        <div class="badge-group" style="margin-top: 8px;">
-                            <span class="service-badge azure">Azure AI Studio</span>
-                            <span class="service-badge azure">Azure OpenAI</span>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <strong>Independent Model Providers:</strong>
-                    <div class="description">
-                        Support for OpenAI API, Anthropic Claude (direct), and custom model endpoints via LLM gateway abstraction.
-                        <div class="badge-group" style="margin-top: 8px;">
-                            <span class="service-badge">OpenAI API</span>
-                            <span class="service-badge">Anthropic API</span>
-                        </div>
+                        Knowledge base queries for business logic constraints and page documentation.
                     </div>
                 </li>
             </ul>
             
-            <div class="flexibility-box">
-                <h4>🔌 Flexible Model Switching</h4>
-                <p>Switch between model providers at runtime without code changes. Use cost-optimized models for routine analysis and premium models for complex reasoning.</p>
-            </div>
-            
             <h3>🛠️ AI Self-Healing Intelligence</h3>
-            <p>Powered by a localized, persistent <strong>Memory Knowledge Graph</strong> that intercepts execution failures, automatically identifies updated element locators, and auto-repairs broken test specifications at runtime without manual intervention.</p>
-            
-            <h3>📊 Decoupled Serverless Telemetry (Multi-Cloud Data Storage)</h3>
-            <p>Integrates multiple serverless compute and storage options for maximum flexibility:</p>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h4>🟨 AWS Solutions</h4>
-                    <ul class="tech-list" style="margin-top: 15px;">
-                        <li><strong>Compute:</strong> <span class="description">Lambda, Fargate</span></li>
-                        <li><strong>Messaging:</strong> <span class="description">SNS, SQS, EventBridge</span></li>
-                        <li><strong>Storage:</strong> <span class="description">S3, DynamoDB</span></li>
-                        <li><strong>Analytics:</strong> <span class="description">CloudWatch, X-Ray</span></li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <h4>🔵 Google Cloud Solutions</h4>
-                    <ul class="tech-list" style="margin-top: 15px;">
-                        <li><strong>Compute:</strong> <span class="description">Cloud Functions, Cloud Run</span></li>
-                        <li><strong>Messaging:</strong> <span class="description">Pub/Sub, Cloud Tasks</span></li>
-                        <li><strong>Storage:</strong> <span class="description">Cloud Storage, Firestore</span></li>
-                        <li><strong>Analytics:</strong> <span class="description">BigQuery, Cloud Logging</span></li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <h4>💚 Azure Solutions</h4>
-                    <ul class="tech-list" style="margin-top: 15px;">
-                        <li><strong>Compute:</strong> <span class="description">Functions, Container Instances</span></li>
-                        <li><strong>Messaging:</strong> <span class="description">Service Bus, Event Grid</span></li>
-                        <li><strong>Storage:</strong> <span class="description">Blob Storage, Cosmos DB</span></li>
-                        <li><strong>Analytics:</strong> <span class="description">Application Insights, Azure Monitor</span></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <p style="margin-top: 20px; color: #666; font-size: 14px;">
-                <strong>Asynchronously stream execution metadata</strong> into your chosen data warehouse (DynamoDB, BigQuery, Cosmos DB, or PostgreSQL) for real-time FinOps cost tracking and diagnostics archival into your preferred cloud storage.
-            </p>
+            <p>Powered by a localized, persistent <strong>Locator Cache & Memory</strong> that intercepts execution failures, automatically identifies updated element locators via real browser exploration, and auto-repairs broken POMs and test specifications at runtime.</p>
         </section>
         
-        <!-- CI/CD & DevOps Integration -->
+                <!-- Command Execution Layer -->
         <section>
-            <h2>🚀 CI/CD Pipeline Integration</h2>
-            <p>AiScripto seamlessly integrates with your existing DevOps infrastructure:</p>
+            <h2>🚀 Command Execution Workflow</h2>
+            <p>AiScripto provides specialized slash commands mapped to internal agents for precise orchestration:</p>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <h4>Git-Based Platforms</h4>
+                    <h4>/import</h4>
                     <ul class="tech-list" style="margin-top: 12px;">
-                        <li><span class="service-badge">GitHub Actions</span></li>
-                        <li><span class="service-badge">GitLab CI/CD</span></li>
-                        <li><span class="service-badge">Gitea CI</span></li>
+                        <li><span class="description">Ingest from Azure DevOps</span></li>
+                        <li><span class="description">Extract constraints via Bedrock</span></li>
+                        <li><span class="description">Format pre-conditions</span></li>
                     </ul>
                 </div>
                 
                 <div class="feature-card">
-                    <h4>Enterprise CI/CD</h4>
+                    <h4>/convert</h4>
                     <ul class="tech-list" style="margin-top: 12px;">
-                        <li><span class="service-badge azure">Azure Pipelines</span></li>
-                        <li><span class="service-badge">Jenkins</span></li>
-                        <li><span class="service-badge">HashiCorp Terraform</span></li>
+                        <li><span class="description">Syntax validation</span></li>
+                        <li><span class="description">Real browser UI exploration</span></li>
+                        <li><span class="description">TypeScript + POM generation</span></li>
+                        <li><span class="description">Self-healing execution</span></li>
                     </ul>
                 </div>
                 
                 <div class="feature-card">
-                    <h4>Test Case Management</h4>
+                    <h4>/parameterize & /verify</h4>
                     <ul class="tech-list" style="margin-top: 12px;">
-                        <li><span class="service-badge aws">Azure DevOps Test Plans</span></li>
-                        <li><span class="service-badge">Jira XRay</span></li>
-                        <li><span class="service-badge">GitHub Issues</span></li>
+                        <li><span class="description">Extract data to JSON files</span></li>
+                        <li><span class="description">Enable data-driven testing</span></li>
+                        <li><span class="description">Human-in-the-loop repair verification</span></li>
                     </ul>
                 </div>
             </div>
         </section>
         
-        <!-- Test Case Storage & Source Control -->
+                <!-- Test Case Storage & Source Control -->
         <section>
-            <h2>📁 Flexible Test Case Storage</h2>
-            <p>Store and version your test cases in any of these platforms:</p>
+            <h2>📁 Artifact Synchronization & Version Control</h2>
+            <p>Maintain your codebase efficiently with integrated version control mechanisms:</p>
             <ul class="tech-list">
                 <li>
-                    <strong>Cloud-Native Repositories:</strong>
+                    <strong>Git Worktree Sync:</strong>
                     <div class="description">
-                        <span class="service-badge">GitHub</span>
-                        <span class="service-badge">GitLab</span>
-                        <span class="service-badge">Gitea</span>
+                        Utilizes a `.artifacts-sync/` directory to manage shared code mirrors (e.g., `src/pages/`) preventing merge conflicts on shared Page Object Models.
                     </div>
                 </li>
                 <li>
-                    <strong>Enterprise Test Management:</strong>
+                    <strong>Test Case Inputs:</strong>
                     <div class="description">
-                        <span class="service-badge aws">Azure DevOps</span>
-                        <span class="service-badge">Jira</span>
-                        <span class="service-badge">TestRail</span>
+                        Ingest human-authored manual testing intent from plain text (`.txt`) or markdown (`.md`) files directly into the testing pipeline.
                     </div>
                 </li>
                 <li>
-                    <strong>Cloud Storage:</strong>
+                    <strong>Knowledge Cache:</strong>
                     <div class="description">
-                        <span class="service-badge aws">AWS S3</span>
-                        <span class="service-badge gcp">Google Cloud Storage</span>
-                        <span class="service-badge azure">Azure Blob Storage</span>
+                        Locators and page layouts are cached in `knowledge/locator-cache/` to accelerate subsequent test generation and prevent redundant exploration.
                     </div>
                 </li>
             </ul>
@@ -473,31 +438,36 @@
         
         <!-- Security & Governance -->
         <section>
-            <h2>Security & Governance</h2>
+            <h2>Authentication & Environment Configuration</h2>
             <p>
-                Built ground-up with a strict <strong>zero-data-retention philosophy</strong>, AiScripto enforces absolute <strong>multi-tenant environment isolation</strong> utilizing <strong>granular AWS IAM Role authorization, Azure RBAC, and Google Cloud IAM</strong> along with <strong>AWS STS temporary token management</strong> (or equivalent providers) across all distributed compute clusters.
+                AiScripto provides flexible session management and environment configuration to seamlessly interact with authenticated applications:
             </p>
             <div class="flexibility-box">
-                <h4>🔐 Multi-Cloud Compliance</h4>
-                <p><strong>Data residency flexibility:</strong> Run inference and storage exclusively within a single cloud region to meet GDPR, CCPA, and industry-specific compliance requirements (HIPAA, PCI-DSS, SOC2).</p>
+                <h4>🔐 Supported Authentication Methods</h4>
+                <p>Configure credentials securely via `.env` files. AiScripto supports:</p>
+                <ul style="margin-left: 20px; font-size: 14px; color: #333;">
+                    <li><strong>Okta SSO Integration</strong> (`BASE_URL` setup)</li>
+                    <li><strong>Standard Form Login</strong> (`LOGIN_URL` setup)</li>
+                </ul>
+                <p style="margin-top: 10px;">Session states are automatically cached in `.auth/storageState.json` to bypass repetitive logins during execution.</p>
             </div>
         </section>
         
-        <!-- Deployment Models -->
+                <!-- Deployment Models -->
         <section>
             <h2>Deployment Models</h2>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <h4>SaaS (Recommended)</h4>
-                    <p>Fully managed platform with automatic updates, scaling, and multi-cloud failover.</p>
+                    <h4>Local Developer Setup</h4>
+                    <p>Run the Python Textual TUI locally with direct Playwright execution and full offline support (except Bedrock queries).</p>
                 </div>
                 <div class="feature-card">
-                    <h4>Self-Hosted (Enterprise)</h4>
-                    <p>Deploy on your own Kubernetes cluster (EKS, GKE, AKS) with complete control over infrastructure and data.</p>
+                    <h4>Remote TestAgent Server</h4>
+                    <p>Deploy the FastAPI server with job queues to handle requests from the Telegram Bot and REST API clients.</p>
                 </div>
                 <div class="feature-card">
-                    <h4>Hybrid Mode</h4>
-                    <p>TUI client on-premise + serverless backend on your preferred cloud provider.</p>
+                    <h4>Artifact Synchronization</h4>
+                    <p>Utilize Git worktrees (`.artifacts-sync/`) for artifact synchronization to prevent merge conflicts on shared Page Object Models.</p>
                 </div>
             </div>
         </section>
