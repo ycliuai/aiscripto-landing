@@ -8,9 +8,21 @@
     
     <title>Features - AiScripto</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="language.js"></script>
+        <script src="language.js"></script>
 </head>
 <body>
+    <!-- Image Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" class="lightbox-img" src="" alt="">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+            <div class="lightbox-nav">
+                <span class="lightbox-prev" onclick="changeLightboxImage(-1)">&#10094;</span>
+                <span class="lightbox-next" onclick="changeLightboxImage(1)">&#10095;</span>
+            </div>
+        </div>
+    </div>
     <!-- Navigation -->
     <nav>
         <div class="container">
@@ -22,6 +34,7 @@
                 <li style="display: none;"><a href="architecture.html" data-en="Architecture" data-zh="架構">Architecture</a></li>
                 <li style="display: none;"><a href="getting-started.html" data-en="Getting Started" data-zh="快速開始">Getting Started</a></li>
                 <li style="display: none;"><a href="contact.html" data-en="Contact" data-zh="聯絡">Contact</a></li>
+                <li><a href="demo.html" data-en="Demo" data-zh="演示">Demo</a></li>
                 <li><a href="about-us.html" data-en="About Us" data-zh="關於我們">About Us</a></li>
             </ul>
             <div class="language-switcher">
@@ -34,36 +47,37 @@
     <!-- Header -->
     <header>
         <div class="container">
-            <h1 data-en="🚀 AiScripto Core Features" data-zh="🚀 AiScripto 核心功能">🚀 AiScripto Core Features</h1>
+                        <h1 data-en="🚀 AiScripto Core Features" data-zh="🚀 AiScripto 核心功能">🚀 AiScripto Core Features</h1>
             <p class="subtitle" data-en="Industry-leading AI-powered test automation capabilities" data-zh="擁有業界領先的AI自動化測試能力">Industry-leading AI-powered test automation capabilities</p>
         </div>
     </header>
     
     <div class="container">
         
-        <!-- Feature 1: Code-Free Test Creation -->
+                <!-- Feature 1: Code-Free Test Creation -->
         <section>
             <h2 data-en="Code-Free Test Creation" data-zh="無需編碼的測試建立">Code-Free Test Creation</h2>
             <div class="two-column">
                 <div class="two-column-text">
-                    <h3 data-en="✍️ Plain Text Test Cases" data-zh="✍️ 純文字測試用例">✍️ Plain Text Test Cases</h3>
-                    <p data-en="QA engineers can write tests without learning Playwright or TypeScript. Simply describe manual test steps, and AiScripto's AI engine automatically converts them to production-grade Playwright code." data-zh="QA工程師無需學習Playwright或TypeScript就能編寫測試。只需描述手動測試步驟，AiScripto的AI引擎會自動轉換為生產級的Playwright代碼。">QA engineers can write tests without learning Playwright or TypeScript. Simply describe manual test steps, and AiScripto's AI engine automatically converts them to production-grade Playwright code.</p>
+                    <h3 data-en="✍️ Plain Text & Markdown Test Cases" data-zh="✍️ 純文字與 Markdown 測試用例">✍️ Plain Text & Markdown Test Cases</h3>
+                    <p data-en="QA engineers can write tests without learning Playwright or TypeScript. Simply describe manual test steps, and AiScripto's AI engine automatically converts them to production-grade Playwright code. Supports Markdown with conditional logic and variables." data-zh="QA工程師無需學習Playwright或TypeScript就能編寫測試。只需描述手動測試步驟，AiScripto的AI引擎會自動轉換為生產級的Playwright代碼。支援帶有條件邏輯和變數的 Markdown 格式。">QA engineers can write tests without learning Playwright or TypeScript. Simply describe manual test steps, and AiScripto's AI engine automatically converts them to production-grade Playwright code. Supports Markdown with conditional logic and variables.</p>
                     <p style="margin-top: 20px; color: var(--text-primary); font-weight: 500;">
                         <strong>Example:</strong><br>
                         <code style="background: #f5f5f5; padding: 10px; display: block; margin-top: 10px;">
                             Step 1: Navigate to Order Management page<br>
                             Step 2: Click "Create Order" button<br>
-                            Step 3: Enter "ORD-001" in Order Number field<br>
-                            Step 4: Verify order appears in the table
+                            Step 3: Enter "{{VAR:orderNumber}}" in Order Number field<br>
+                            Step 4: [IF-THEN] If confirmation dialog appears, click OK<br>
+                            Step 5: Verify order appears in the table
                         </code>
                     </p>
                     <div style="margin-top: 20px;">
                         <span class="tag">Natural Language Processing</span>
-                        <span class="tag">AI-Driven</span>
+                        <span class="tag">Markdown Support</span>
                         <span class="tag">Code-Free</span>
                     </div>
                 </div>
-                <div class="two-column-visual">
+                                <div class="two-column-visual">
                     <div style="text-align: center;">
                         <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
                         <h4>Test Cases</h4>
@@ -74,12 +88,12 @@
                         <div style="font-size: 48px;">⚙️</div>
                         <h4>Executable Code</h4>
                     </div>
-                </div>
+                                </div>
             </div>
             
             <div class="highlight-box">
-                <h4>💡 Save Time</h4>
-                <p>Traditional Playwright development takes 2-3 hours; AiScripto takes only 15-20 minutes</p>
+                <h4>💡 Advanced Orchestration</h4>
+                <p>Features 6 slash commands (/import, /validate, /convert, /verify, /parameterize, /walkthrough) for a complete end-to-end testing pipeline.</p>
             </div>
         </section>
         
@@ -181,7 +195,7 @@
                 </div>
             </div>
             
-            <h3>Showcase: Automatically Generated Page Object Models (POM)</h3>
+                        <h3>Showcase: Automatically Generated Page Object Models (POM)</h3>
             <div style="background: #1a1a1a; color: #00ff00; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 12px;">
 <pre style="margin: 0;">// Auto-generated Page Object Model
 export class OrderPage {
@@ -213,7 +227,7 @@ export class OrderPage {
             </div>
             
             <div style="margin-top: 20px;">
-                <span class="tag">TypeScript Types</span>
+                                <span class="tag">TypeScript Types</span>
                 <span class="tag">Industry Best Practices</span>
                 <span class="tag">Automatic Documentation</span>
             </div>
@@ -221,7 +235,7 @@ export class OrderPage {
         
         <!-- Feature 4: Data-Driven Testing -->
         <section>
-            <h2 data-en=\"📊 Data-Driven Testing\" data-zh=\"📊 數據驅動的測試\">📊 Data-Driven Testing</h2>
+            <h2 data-en="📊 Data-Driven Testing" data-zh="📊 數據驅動的測試">📊 Data-Driven Testing</h2>
             <div class="two-column">
                 <div class="two-column-text">
                     <h3>📊 Externalize Test Data</h3>
@@ -281,7 +295,7 @@ export class OrderPage {
         
         <!-- Feature 5: Multi-Cloud & Multi-Model -->
         <section>
-            <h2 data-en=\"🌍 Multi-Cloud & Multi-Model Support\" data-zh=\"🌍 多雲與多模型支持\">🌍 Multi-Cloud & Multi-Model Support</h2>
+            <h2 data-en="🌍 Multi-Cloud & Multi-Model Support" data-zh="🌍 多雲與多模型支持">🌍 Multi-Cloud & Multi-Model Support</h2>
             <p>
                 AiScripto is vendor-agnostic, supporting combinations of multiple AI model vendors and cloud platforms.
                 Choose the configuration that best fits your enterprise needs.
@@ -293,21 +307,21 @@ export class OrderPage {
                     <div style="font-size: 32px; margin-bottom: 10px;">🟠</div>
                     <h4>AWS Bedrock</h4>
                     <p style="font-size: 13px; color: var(--text-secondary); margin-top: 10px;">
-                        Support Claude、Llama、Mistral and more
+                        Support Claude Fable, Claude Opus, Claude Sonnet, Claude Haiku and more
                     </p>
                 </div>
                 <div class="stat-card">
                     <div style="font-size: 32px; margin-bottom: 10px;">🔵</div>
-                    <h4>Azure AI Services</h4>
+                    <h4>Azure AI Foundry</h4>
                     <p style="font-size: 13px; color: var(--text-secondary); margin-top: 10px;">
-                        Support GPT-4, GPT-4 Vision and more
+                        Support Claude Fable, Claude Opus, Claude Sonnet, Claude Haiku and more
                     </p>
                 </div>
                 <div class="stat-card">
                     <div style="font-size: 32px; margin-bottom: 10px;">🟡</div>
-                    <h4>Google Vertex AI</h4>
+                    <h4>Google Agent Platform/Vertex AI</h4>
                     <p style="font-size: 13px; color: var(--text-secondary); margin-top: 10px;">
-                        Support Gemini, PaLM and other models
+                        Support Claude Fable, Claude Opus, Claude Sonnet, Claude Haiku and more
                     </p>
                 </div>
             </div>
@@ -320,15 +334,15 @@ export class OrderPage {
                 </div>
                 <div class="feature-card">
                     <h4>☁️ Azure</h4>
-                    <p>Deploy to App Service and Container Instances.</p>
+                    <p>Deploy to App Service, VM and Container Instances.</p>
                 </div>
                 <div class="feature-card">
                     <h4>☁️ Google Cloud</h4>
-                    <p>Deploy to Cloud Run and GKE containerized environments.</p>
+                    <p>Deploy to Cloud Run, Compute Engine VMs, and GKE containerized environments.</p>
                 </div>
                 <div class="feature-card">
                     <h4>🏢 On-Premise</h4>
-                    <p>Docker, Kubernetes self-managed</p>
+                    <p>Windows 11, Windows Server 2022/2025, laptop, PC and Kubernetes self-managed</p>
                 </div>
             </div>
             
@@ -341,14 +355,14 @@ export class OrderPage {
             </div>
         </section>
         
-        <!-- Feature 6: Advanced Logging & Insights -->
+                <!-- Feature 6: Advanced Logging & Insights -->
         <section>
             <h2 data-en="🔍 Advanced Logging & Insights" data-zh="🔍 高級日誌和洞察">🔍 Advanced Logging & Insights</h2>
             <p>
                 Each test execution generates detailed logs and execution traces for analysis and improvement.
             </p>
             
-            <div class="feature-grid">
+                        <div class="feature-grid">
                 <div class="feature-card">
                     <h4>📸 Screenshot Trace</h4>
                     <p>Complete visual record of each test step</p>
@@ -365,10 +379,126 @@ export class OrderPage {
                     <h4>📊 Test Reports</h4>
                     <p>Detailed pass/fail analysis and trend reports</p>
                 </div>
+                <div class="feature-card">
+                    <h4>☁️ Cloud Log Recording</h4>
+                    <p>Centralized cloud-based logging for enterprise-scale monitoring and compliance</p>
+                </div>
+                        </div>
+            
+            <h3 style="margin-top: 30px;">Cloud-Based Log Management</h3>
+            <p>
+                AiScripto provides comprehensive cloud logging capabilities, integrating with major cloud providers' logging services for enterprise-scale monitoring, analysis, and compliance requirements.
+            </p>
+            
+            <div class="feature-grid" style="margin-top: 20px;">
+                <div class="feature-card">
+                    <h4>🟠 AWS CloudWatch</h4>
+                    <p>
+                        <strong>Real-time log streams</strong> for all test execution events<br>
+                        <strong>CloudWatch Insights</strong> for advanced querying and analysis<br>
+                        <strong>Automatic retention policies</strong> with configurable periods<br>
+                        <strong>Integration with CloudWatch Dashboards</strong> for visualization
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔵 Google Cloud Logging (Stackdriver)</h4>
+                    <p>
+                        <strong>Unified logging platform</strong> across all test resources<br>
+                        <strong>Advanced filtering and search</strong> capabilities<br>
+                        <strong>Log-based metrics</strong> for trend analysis and alerting<br>
+                        <strong>Integration with Cloud Monitoring</strong> dashboards
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h4>💙 Azure Monitor</h4>
+                    <p>
+                        <strong>Application Insights</strong> for detailed test performance tracking<br>
+                        <strong>Log Analytics Workspace</strong> for custom queries (KQL)<br>
+                        <strong>Alert Rules</strong> for proactive issue detection<br>
+                        <strong>Integration with Azure DevOps</strong> pipelines
+                    </p>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 30px;">Log Types and Retention</h3>
+            <table style="margin-top: 15px;">
+                <thead>
+                    <tr>
+                        <th>Log Type</th>
+                        <th>Cloud Storage</th>
+                        <th>Purpose</th>
+                        <th>Retention Period</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Execution Logs</strong></td>
+                        <td>CloudWatch / Stackdriver / Azure Monitor</td>
+                        <td>Test execution steps, results, and state changes</td>
+                        <td>30 days (configurable)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Trace Files</strong></td>
+                        <td>AWS S3 / Google Cloud Storage / Azure Blob</td>
+                        <td>Detailed Playwright interaction records and browser events</td>
+                        <td>60 days (configurable)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Screenshots</strong></td>
+                        <td>Object Storage (S3/GCS/Blob)</td>
+                        <td>Visual verification and debugging aid</td>
+                        <td>90 days (configurable)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Performance Metrics</strong></td>
+                        <td>Time-series Database</td>
+                        <td>Response times, load metrics, and trend analysis</td>
+                        <td>1 year (configurable)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Audit Logs</strong></td>
+                        <td>Cloud Logging Services</td>
+                        <td>All operational events for compliance and security</td>
+                        <td>2 years (compliance requirement)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="highlight-box" style="margin-top: 30px;">
+                <h4>🔒 Enterprise-Grade Compliance</h4>
+                <p>
+                    All cloud logs are encrypted in transit (TLS 1.3) and at rest (AES-256).<br>
+                    Support for fine-grained access control, audit trails, and long-term archival for regulatory compliance (SOC 2, GDPR, HIPAA, etc.)
+                </p>
             </div>
         </section>
         
-        <!-- Feature 7: Integration & Extensibility -->
+                <!-- Feature 7: Multi-Channel Interaction -->
+        <section>
+            <h2 data-en="📱 Multi-Channel Interaction" data-zh="📱 多通道互動">📱 Multi-Channel Interaction</h2>
+            <p data-en="AiScripto supports three major interaction channels, allowing different user groups to interact with the system in the way that suits them best." data-zh="AiScripto 支援三大互動通道，使不同使用者群體能以最適合的方式與系統互動。">AiScripto supports three major interaction channels, allowing different user groups to interact with the system in the way that suits them best.</p>
+            
+                                                <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>💻 TUI (Terminal UI)</h4>
+                    <p>Local Python Textual interactive interface, perfect for developers/QA for rapid iteration and full command set access.</p>
+                    <p style="margin-top: 15px; font-size: 14px; color: var(--text-primary);"><strong>🔄 Multi-Turn Q&A</strong></p>
+                    <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">Seamlessly answer AI queries during execution (e.g., verifying captcha or guiding complex steps).</p>
+                </div>
+                <div class="feature-card">
+                    <h4>💬 Telegram Bot</h4>
+                    <p>Remote real-time messaging interaction, suitable for mobile devices and asynchronous communication.</p>
+                    <img src="images/Telegram_Convert_1.jpg" alt="Telegram Bot Convert Command" class="clickable-img" onclick="openLightbox('images/Telegram_Convert_1.jpg', 'Telegram Bot - /convert Command')" style="width: 100%; border-radius: 8px; margin-top: 15px; border: 1px solid #eee; object-fit: cover; max-height: 200px;">
+                </div>
+                <div class="feature-card">
+                    <h4>🌐 Web UI (REST API)</h4>
+                    <p>Modern web graphical interface communicating via REST API, ideal for cross-departmental collaboration and visual reporting.</p>
+                    <img src="images/Web_JobRunner_Overview.png" alt="Web UI Overview" class="clickable-img" onclick="openLightbox('images/Web_JobRunner_Overview.png', 'Web UI - Job Runner Overview')" style="width: 100%; border-radius: 8px; margin-top: 15px; border: 1px solid #eee; object-fit: cover; max-height: 200px;">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature 8: Integration & Extensibility -->
         <section>
             <h2 data-en="🔌 Integration & Extensibility" data-zh="🔌 集成與擴展性">🔌 Integration & Extensibility</h2>
             <p data-en="AiScripto seamlessly integrates with your existing development workflow." data-zh="AiScripto與您現有的開發工作流程無縫集成。">AiScripto seamlessly integrates with your existing development workflow.</p>
@@ -409,7 +539,7 @@ export class OrderPage {
             </ul>
         </section>
         
-        <!-- Performance Comparison -->
+                <!-- Performance Comparison -->
         <section>
             <h2 data-en="⚡ Performance Comparison" data-zh="⚡ 性能對比">⚡ Performance Comparison</h2>
             <table>
@@ -455,6 +585,150 @@ export class OrderPage {
                 </tbody>
             </table>
         </section>
+        
+        <!-- Feature 9: User Interface Gallery -->
+        <section>
+            <h2 data-en="🎨 User Interface Gallery" data-zh="🎨 用戶界面展示">🎨 User Interface Gallery</h2>
+            <p data-en="Explore the intuitive interfaces of AiScripto across different channels. Click any image to view details." data-zh="探索 AiScripto 在不同頻道上的直觀界面。點擊任何圖像查看詳細信息。">Explore the intuitive interfaces of AiScripto across different channels. Click any image to view details.</p>
+            
+            <!-- Web UI Section -->
+            <h3 style="margin-top: 40px; margin-bottom: 20px;">💻 Web UI - Job Management & Execution</h3>
+            <p style="margin-bottom: 25px;">Modern, feature-rich web interface for managing test jobs, monitoring execution, and analyzing results.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card" style="overflow: hidden;">
+                    <h4>📋 Job Runner Overview</h4>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Central dashboard for job execution and monitoring</p>
+                    <img src="images/Web_JobRunner_Overview.png" alt="Web UI - Job Runner Overview" class="clickable-img" onclick="openLightbox('images/Web_JobRunner_Overview.png', 'Web UI - Job Runner Overview')" style="width: 100%; border-radius: 6px; border: 1px solid #eee; object-fit: cover; cursor: pointer; transition: transform 0.3s;">
+                </div>
+                <div class="feature-card" style="overflow: hidden;">
+                    <h4>⚙️ Command Type Configuration</h4>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Configure and customize command types</p>
+                    <img src="images/Web_JobRunner_CommandType.png" alt="Web UI - Job Runner Command Type" class="clickable-img" onclick="openLightbox('images/Web_JobRunner_CommandType.png', 'Web UI - Command Type Configuration')" style="width: 100%; border-radius: 6px; border: 1px solid #eee; object-fit: cover; cursor: pointer; transition: transform 0.3s;">
+                </div>
+                <div class="feature-card" style="overflow: hidden;">
+                    <h4>🔄 Test Conversion Interface</h4>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Convert test cases to executable code</p>
+                    <img src="images/Web_JobRunner_Convert.png" alt="Web UI - Job Runner Convert" class="clickable-img" onclick="openLightbox('images/Web_JobRunner_Convert.png', 'Web UI - Test Conversion')" style="width: 100%; border-radius: 6px; border: 1px solid #eee; object-fit: cover; cursor: pointer; transition: transform 0.3s;">
+                </div>
+                <div class="feature-card" style="overflow: hidden;">
+                    <h4>✅ Validation Results</h4>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Detailed test validation and verification</p>
+                    <img src="images/Web_JobRunner_Validate.png" alt="Web UI - Job Runner Validate" class="clickable-img" onclick="openLightbox('images/Web_JobRunner_Validate.png', 'Web UI - Validation Results')" style="width: 100%; border-radius: 6px; border: 1px solid #eee; object-fit: cover; cursor: pointer; transition: transform 0.3s;">
+                </div>
+                <div class="feature-card" style="overflow: hidden;">
+                    <h4>📊 Execution Monitor</h4>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Real-time monitoring of test execution</p>
+                    <img src="images/Web_JobRunner_ExecutionMonitor.png" alt="Web UI - Job Runner Execution Monitor" class="clickable-img" onclick="openLightbox('images/Web_JobRunner_ExecutionMonitor.png', 'Web UI - Execution Monitor')" style="width: 100%; border-radius: 6px; border: 1px solid #eee; object-fit: cover; cursor: pointer; transition: transform 0.3s;">
+                </div>
+                <div class="feature-card" style="overflow: hidden;">
+                    <h4>🔍 Verification & Reports</h4>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Verify and review detailed test reports</p>
+                    <img src="images/Web_JobRunner_Verify.png" alt="Web UI - Job Runner Verify" class="clickable-img" onclick="openLightbox('images/Web_JobRunner_Verify.png', 'Web UI - Verification & Reports')" style="width: 100%; border-radius: 6px; border: 1px solid #eee; object-fit: cover; cursor: pointer; transition: transform 0.3s;">
+                </div>
+            </div>
+            
+            <!-- Test Case Manager Section -->
+            <h3 style="margin-top: 40px; margin-bottom: 20px;">📝 Test Case Management</h3>
+            <p style="margin-bottom: 25px;">Comprehensive test case creation and management interface.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card" style="overflow: hidden;">
+                    <h4>🗂️ Test Case Manager Overview</h4>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Create, organize, and manage test cases</p>
+                    <img src="images/Web_TestCaseManager_Overview.png" alt="Web UI - Test Case Manager Overview" class="clickable-img" onclick="openLightbox('images/Web_TestCaseManager_Overview.png', 'Web UI - Test Case Manager')" style="width: 100%; border-radius: 6px; border: 1px solid #eee; object-fit: cover; cursor: pointer; transition: transform 0.3s;">
+                </div>
+            </div>
+            
+            <!-- Scripts & Reports Section -->
+            <h3 style="margin-top: 40px; margin-bottom: 20px;">📊 Scripts & Reports</h3>
+            <p style="margin-bottom: 25px;">View generated scripts and download comprehensive test reports.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card" style="overflow: hidden;">
+                    <h4>📥 Scripts & Reports Download</h4>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Download generated test scripts and detailed reports</p>
+                    <img src="images/Web_Scripts&Reports_DownloadPage.png" alt="Web UI - Scripts & Reports Download Page" class="clickable-img" onclick="openLightbox('images/Web_Scripts&Reports_DownloadPage.png', 'Web UI - Scripts & Reports Download')" style="width: 100%; border-radius: 6px; border: 1px solid #eee; object-fit: cover; cursor: pointer; transition: transform 0.3s;">
+                </div>
+            </div>
+            
+            <!-- Telegram Bot Section -->
+            <h3 style="margin-top: 40px; margin-bottom: 20px;">💬 Telegram Bot - Mobile-First Interaction</h3>
+            <p style="margin-bottom: 25px;">Mobile-friendly Telegram bot interface for on-the-go test automation and real-time communication.</p>
+            
+            <!-- Telegram: Core Operations -->
+            <h4 style="font-size: 16px; margin-top: 30px; margin-bottom: 15px;">🔧 Core Operations</h4>
+            <div class="feature-grid">
+                <div class="feature-card" style="overflow: hidden;">
+                    <h4>📥 Test Import</h4>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Import test cases via Telegram</p>
+                    <img src="images/Telegram_Import_1.jpg" alt="Telegram Bot - Import Test Case" class="clickable-img" onclick="openLightbox('images/Telegram_Import_1.jpg', 'Telegram - Import Test Case')" style="width: 100%; border-radius: 6px; border: 1px solid #eee; object-fit: cover; cursor: pointer; transition: transform 0.3s;">
+                </div>
+                <div class="feature-card" style="overflow: hidden;">
+                    <h4>📋 Test Listing</h4>
+                    <p style="font-size: 13px; margin-bottom: 15px;">View available test cases</p>
+                    <img src="images/Telegram_List.jpg" alt="Telegram Bot - Test List" class="clickable-img" onclick="openLightbox('images/Telegram_List.jpg', 'Telegram - Test Listing')" style="width: 100%; border-radius: 6px; border: 1px solid #eee; object-fit: cover; cursor: pointer; transition: transform 0.3s;">
+                </div>
+                <div class="feature-card" style="overflow: hidden;">
+                    <h4>❓ Help & Documentation</h4>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Access help and command documentation</p>
+                    <img src="images/Telegram_Help.jpg" alt="Telegram Bot - Help" class="clickable-img" onclick="openLightbox('images/Telegram_Help.jpg', 'Telegram - Help & Documentation')" style="width: 100%; border-radius: 6px; border: 1px solid #eee; object-fit: cover; cursor: pointer; transition: transform 0.3s;">
+                </div>
+            </div>
+            
+            <!-- Telegram: Conversion -->
+            <h4 style="font-size: 16px; margin-top: 30px; margin-bottom: 15px;">🔄 Test Conversion</h4>
+            <div class="feature-grid">
+                <div class="feature-card" style="overflow: hidden;">
+                    <h4>⚙️ Convert - Step 1</h4>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Test conversion initiation</p>
+                    <img src="images/Telegram_Convert_1.jpg" alt="Telegram Bot - Convert Step 1" class="clickable-img" onclick="openLightbox('images/Telegram_Convert_1.jpg', 'Telegram - Convert Step 1')" style="width: 100%; border-radius: 6px; border: 1px solid #eee; object-fit: cover; cursor: pointer; transition: transform 0.3s;">
+                </div>
+                <div class="feature-card" style="overflow: hidden;">
+                    <h4>⚙️ Convert - Step 2</h4>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Test conversion progress</p>
+                    <img src="images/Telegram_Convert_2.jpg" alt="Telegram Bot - Convert Step 2" class="clickable-img" onclick="openLightbox('images/Telegram_Convert_2.jpg', 'Telegram - Convert Step 2')" style="width: 100%; border-radius: 6px; border: 1px solid #eee; object-fit: cover; cursor: pointer; transition: transform 0.3s;">
+                </div>
+            </div>
+            
+            <!-- Telegram: Validation -->
+            <h4 style="font-size: 16px; margin-top: 30px; margin-bottom: 15px;">✅ Test Validation</h4>
+            <div class="feature-grid">
+                <div class="feature-card" style="overflow: hidden;">
+                    <h4>🔍 Validate - Step 1</h4>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Test validation initiation</p>
+                    <img src="images/Telegram_Validate_1.jpg" alt="Telegram Bot - Validate Step 1" class="clickable-img" onclick="openLightbox('images/Telegram_Validate_1.jpg', 'Telegram - Validate Step 1')" style="width: 100%; border-radius: 6px; border: 1px solid #eee; object-fit: cover; cursor: pointer; transition: transform 0.3s;">
+                </div>
+                <div class="feature-card" style="overflow: hidden;">
+                    <h4>🔍 Validate - Step 2</h4>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Test validation results</p>
+                    <img src="images/Telegram_Validate_2.jpg" alt="Telegram Bot - Validate Step 2" class="clickable-img" onclick="openLightbox('images/Telegram_Validate_2.jpg', 'Telegram - Validate Step 2')" style="width: 100%; border-radius: 6px; border: 1px solid #eee; object-fit: cover; cursor: pointer; transition: transform 0.3s;">
+                </div>
+            </div>
+            
+                        <!-- Telegram: Parameterization -->
+            <h4 style="font-size: 16px; margin-top: 30px; margin-bottom: 15px;">📊 Test Parameterization</h4>
+            <div class="feature-grid">
+                <div class="feature-card" style="overflow: hidden;">
+                    <h4>📋 Parameterize - Overview</h4>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Configure test parameters</p>
+                    <img src="images/Telegram_Parameterize_.jpg" alt="Telegram Bot - Parameterize" class="clickable-img" onclick="openLightbox('images/Telegram_Parameterize_.jpg', 'Telegram - Parameterize Overview')" style="width: 100%; border-radius: 6px; border: 1px solid #eee; object-fit: cover; cursor: pointer; transition: transform 0.3s;">
+                </div>
+                <div class="feature-card" style="overflow: hidden;">
+                    <h4>📋 Parameterize - Detailed</h4>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Parameter configuration details</p>
+                    <img src="images/Telegram_Parameterize_1.jpg" alt="Telegram Bot - Parameterize Detailed" class="clickable-img" onclick="openLightbox('images/Telegram_Parameterize_1.jpg', 'Telegram - Parameterize Details')" style="width: 100%; border-radius: 6px; border: 1px solid #eee; object-fit: cover; cursor: pointer; transition: transform 0.3s;">
+                </div>
+            </div>
+            
+            <div class="highlight-box" style="margin-top: 40px;">
+                <h4>💡 Seamless Experience Across Channels</h4>
+                <p>
+                    Whether you prefer the rich desktop experience of the Web UI or the convenience of Telegram Bot on mobile,
+                    AiScripto delivers a consistent, intuitive interface that empowers your team to work efficiently.
+                </p>
+            </div>
+        </section>
     </div>
     
     <!-- Footer -->
@@ -479,6 +753,68 @@ export class OrderPage {
                 <p>&copy; 2026 AiScripto.APP Inc. All rights reserved.</p>
             </div>
         </div>
-    </footer>
+        </footer>
+    
+    <script>
+        // Lightbox functionality
+        let lightboxImages = [];
+        let currentImageIndex = 0;
+        
+        function openLightbox(imageSrc, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            
+            lightboxImg.src = imageSrc;
+            lightboxCaption.textContent = caption;
+            lightbox.classList.add('active');
+            
+            // Store all clickable images for navigation
+            lightboxImages = Array.from(document.querySelectorAll('.clickable-img')).map(img => ({
+                src: img.src,
+                caption: img.getAttribute('onclick')?.match(/openLightbox\('([^']*)',\s*'([^']*)'/)?.[2] || ''
+            }));
+            
+            currentImageIndex = lightboxImages.findIndex(img => img.src === imageSrc);
+            
+            // Close on escape key
+            document.addEventListener('keydown', handleKeyPress);
+        }
+        
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.removeEventListener('keydown', handleKeyPress);
+        }
+        
+        function changeLightboxImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex >= lightboxImages.length) {
+                currentImageIndex = 0;
+            } else if (currentImageIndex < 0) {
+                currentImageIndex = lightboxImages.length - 1;
+            }
+            
+            const image = lightboxImages[currentImageIndex];
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            
+            lightboxImg.src = image.src;
+            lightboxCaption.textContent = image.caption;
+        }
+        
+        function handleKeyPress(e) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeLightboxImage(-1);
+            if (e.key === 'ArrowRight') changeLightboxImage(1);
+        }
+        
+        // Close lightbox when clicking outside the image
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+    </script>
 </body>
 </html>
