@@ -1499,7 +1499,7 @@
                     <div class="server-config-title">Server Configuration</div>
                     <div class="form-group" style="margin-bottom: 10px;">
                         <label style="margin-bottom: 5px;">Server URL</label>
-                        <input type="text" id="serverUrl" placeholder="https://api.aiscripto.app:8080" value="https://api.aiscripto.app:8080">
+                        <input type="text" id="serverUrl" placeholder="https://api-gcp-server2025.aiscripto.app:8080" value="https://api-gcp-server2025.aiscripto.app:8080">
 
                         <span class="help-text">e.g., http://localhost:8080 or http://192.168.1.100:8080 (if page is HTTPS, HTTP URLs will be converted to HTTPS)</span>
                     </div>
@@ -1936,7 +1936,7 @@
                             <ol style="color: #666; font-size: 13px; margin: 10px 0 0 0; padding-left: 20px;">
                                 <li style="margin: 8px 0;"><strong>Open your browser</strong> (Chrome, Firefox, Safari, Edge)</li>
                                 <li style="margin: 8px 0;"><strong>Visit the certificate source:</strong> <code style="background: #fff; padding: 2px 4px; border-radius: 2px;">https://YOUR_SERVER_URL:8080/api/v1/health</code>
-                                    <br/><span style="font-size: 12px; color: #999;">Example: https://api.aiscripto.app:8080/api/v1/health</span>
+                                    <br/><span style="font-size: 12px; color: #999;">Example: https://api-gcp-server2025.aiscripto.app:8080/api/v1/health</span>
                                 </li>
                                 <li style="margin: 8px 0;"><strong>You'll see "Your connection is not private"</strong> warning</li>
                                 <li style="margin: 8px 0;"><strong>Click "Advanced"</strong> button</li>
@@ -1951,7 +1951,7 @@
                             <h4 style="color: var(--primary); margin: 15px 0 10px 0;">Other Connection Issues:</h4>
                             <ol style="color: #666; font-size: 13px; margin: 10px 0 0 0; padding-left: 20px;">
                                 <li>Check if server is running and accessible</li>
-                                <li>Verify server URL is correct (e.g., http://localhost:8080 or https://api.aiscripto.app:8080)</li>
+                                <li>Verify server URL is correct (e.g., http://localhost:8080 or https://api-gcp-server2025.aiscripto.app:8080)</li>
                                 <li>Make sure you're on same network or can reach the server</li>
                                 <li>Try refreshing the page (F5)</li>
                                 <li>Check browser console (F12) for detailed error messages</li>
@@ -2158,7 +2158,7 @@
 
         // ===== State Management =====
         let state = {
-            serverUrl: 'https://api.aiscripto.app:8080',
+            serverUrl: 'https://api-gcp-server2025.aiscripto.app:8080',
             currentJobId: null,
             isPolling: false,
             pollTimer: null,
