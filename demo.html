@@ -562,6 +562,133 @@
             display: none;
         }
 
+        /* ===== Multi-turn Question Dialog ===== */
+        .question-dialog {
+            display: none;
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            border: 2px solid var(--warning);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            animation: slideDown 0.3s ease;
+        }
+
+        .question-dialog.visible {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .question-dialog-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(243, 156, 18, 0.3);
+        }
+
+        .question-dialog-icon {
+            font-size: 24px;
+        }
+
+        .question-dialog-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .question-dialog-body {
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 14px;
+            color: var(--primary);
+            line-height: 1.6;
+            margin-bottom: 12px;
+            padding: 12px;
+            background: white;
+            border-radius: 4px;
+            border-left: 4px solid var(--warning);
+            white-space: pre-wrap;
+        }
+
+        .question-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .question-option-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: white;
+            color: var(--primary);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: auto;
+            flex: none;
+        }
+
+        .question-option-btn:hover {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .question-input-area {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .question-input-area input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .question-input-area input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.1);
+        }
+
+        .question-input-area button {
+            white-space: nowrap;
+            min-width: 100px;
+        }
+
+        .question-dialog-footer {
+            font-size: 12px;
+            color: #999;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .question-dialog.submitting .question-input-area input,
+        .question-dialog.submitting .question-input-area button,
+        .question-dialog.submitting .question-option-btn {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
         /* ===== Script Download Manager Styles ===== */
         .scripts-report-tab {
             margin-top: 30px;
@@ -1499,9 +1626,11 @@
                     <div class="server-config-title">Server Configuration</div>
                     <div class="form-group" style="margin-bottom: 10px;">
                         <label style="margin-bottom: 5px;">Server URL</label>
-                        <input type="text" id="serverUrl" placeholder="https://api-gcp-server2025.aiscripto.app:8080" value="https://api-gcp-server2025.aiscripto.app:8080">
-
-                        <span class="help-text">e.g., http://localhost:8080 or http://192.168.1.100:8080 (if page is HTTPS, HTTP URLs will be converted to HTTPS)</span>
+                        <select id="serverUrl" onchange="handleServerChange()">
+                            <option value="https://api-gcp-server2025.aiscripto.app:8080">GCP Windows Server 2025 VM (api-gcp-server2025.aiscripto.app)</option>
+                            <option value="https://api.aiscripto.app">ECS Cluster Prod (api.aiscripto.app)</option>
+                        </select>
+                        <span class="help-text">Select the server endpoint you want to connect to</span>
                     </div>
                     <div class="server-status">
                         <span class="status-indicator loading" id="statusIndicator"></span>
@@ -1604,6 +1733,31 @@
                 <div class="result-box" id="resultBox">
                     <div class="result-title" id="resultTitle">✅ Execution Result</div>
                     <div class="result-content" id="resultContent"></div>
+                </div>
+
+                <!-- Multi-turn Question Dialog -->
+                <div class="question-dialog" id="questionDialog">
+                    <div class="question-dialog-header">
+                        <span class="question-dialog-icon">❓</span>
+                        <span class="question-dialog-title">Agent is waiting for your answer</span>
+                    </div>
+                    <div class="question-dialog-body">
+                        <div class="question-text" id="questionText"></div>
+                        <div class="question-options" id="questionOptions"></div>
+                        <div class="question-input-area">
+                            <input type="text" id="answerInput" 
+                                   placeholder="Type your answer..." 
+                                   onkeydown="if(event.key==='Enter') submitAnswer()">
+                            <button class="btn-primary btn-sm" onclick="submitAnswer()" id="answerBtn">
+                                ✉ Submit Answer
+                            </button>
+                        </div>
+                    </div>
+                    <div class="question-dialog-footer">
+                        <span class="question-timer" id="questionTimer">
+                            ⚡ Waiting for answer... (auto-cancel after 10 minutes timeout)
+                        </span>
+                    </div>
                 </div>
 
                 <!-- Empty State -->
@@ -1903,7 +2057,7 @@
                             <ol style="color: #666; font-size: 13px; margin-top: 10px;">
                                 <li><strong>👁️ HTML:</strong> View HTML report online (with embedded videos)</li>
                                 <li><strong>🎬 Videos (N):</strong> See video list with metadata and download individual videos</li>
-                                <li><strong>⬇ ZIP+Videos:</strong> Download complete report as ZIP (HTML + all videos)</li>
+                                           <li><strong>⬇ ZIP+Videos:</strong> Download complete report as ZIP (HTML + all videos)</li>
                             </ol>
                         </div>
 
@@ -2164,6 +2318,9 @@
             pollTimer: null,
             lastEventTimestamp: null,
             serverStatus: 'unknown', // 'ok', 'error', 'unknown'
+            questionShown: false, // Whether question dialog is currently shown
+            consecutivePollErrors: 0, // Track consecutive polling errors
+            maxPollErrors: 15, // Stop polling after this many consecutive errors (~30s)
             // AbortControllers for managing fetch requests
             abortControllers: {
                 connectionCheck: null,
@@ -2521,6 +2678,49 @@
                     });
                 }
 
+                // ===== Multi-turn: Check if waiting for answer =====
+                if (eventsData.waiting_for_answer) {
+                    // Find the last Question event to display
+                    const lastQuestion = eventsData.events
+                        .filter(e => e.event_type === 'Question')
+                        .pop();
+                    if (lastQuestion && !state.questionShown) {
+                        showQuestionDialog(lastQuestion.data);
+                    } else if (!lastQuestion && !state.questionShown) {
+                        // waiting_for_answer is true but no new Question event in this batch
+                        // This means the Question was in a previous poll batch.
+                        // Fetch all events (without 'since') to find the question.
+                        try {
+                            const allEventsUrl = `${state.serverUrl}/api/v1/jobs/${state.currentJobId}/events`;
+                            const allEventsResp = await fetch(allEventsUrl, {
+                                method: 'GET',
+                                headers: { 'Content-Type': 'application/json' },
+                                mode: 'cors',
+                                credentials: 'omit'
+                            });
+                            if (allEventsResp.ok) {
+                                const allEventsData = await allEventsResp.json();
+                                const foundQuestion = (allEventsData.events || [])
+                                    .filter(e => e.event_type === 'Question')
+                                    .pop();
+                                if (foundQuestion) {
+                                    showQuestionDialog(foundQuestion.data);
+                                }
+                            }
+                        } catch (e) {
+                            console.log('[DEBUG] Failed to fetch all events for question recovery:', e);
+                        }
+                    }
+                } else {
+                    // No longer waiting - hide dialog if it was shown
+                    if (state.questionShown) {
+                        hideQuestionDialog();
+                    }
+                }
+
+                // Reset error counter on successful poll
+                state.consecutivePollErrors = 0;
+
                 // Check if job is done
                 if (job.status === 'completed' || job.status === 'failed' || job.status === 'cancelled') {
                     console.log('[DEBUG] Job completed with status:', job.status);
@@ -2541,8 +2741,26 @@
                     return;
                 }
                 
-                console.error('[ERROR] Polling error:', error);
-                state.pollTimer = setTimeout(pollJob, config.pollInterval);
+                state.consecutivePollErrors++;
+                console.error(`[ERROR] Polling error (${state.consecutivePollErrors}/${state.maxPollErrors}):`, error);
+                
+                if (state.consecutivePollErrors >= state.maxPollErrors) {
+                    console.error('[ERROR] Max polling errors reached. Stopping polling. Server may be down.');
+                    stopPolling();
+                    // Show error to user
+                    const fakeJob = {
+                        id: state.currentJobId,
+                        status: 'failed',
+                        result: '❌ **伺服器連線中斷**\n\n連續 ' + state.maxPollErrors + ' 次輪詢失敗，伺服器可能已關閉。\n請檢查伺服器狀態後重新執行任務。',
+                    };
+                    showResult(fakeJob);
+                    document.getElementById('cancelBtn').style.display = 'none';
+                    document.getElementById('submitBtn').disabled = false;
+                    document.getElementById('testCase').disabled = false;
+                    document.getElementById('command').disabled = false;
+                } else {
+                    state.pollTimer = setTimeout(pollJob, config.pollInterval);
+                }
             }
         }
 
@@ -2581,7 +2799,14 @@
             const data = event.data || {};
 
             let message = '';
-            if (data.message) {
+            if (event.event_type === 'Question') {
+                // Question event special format
+                const q = event.data || {};
+                message = q.question || '(Waiting for user answer)';
+                if (q.options && q.options.length > 0) {
+                    message += '\nOptions: ' + q.options.join(' | ');
+                }
+            } else if (data.message) {
                 message = data.message;
             } else if (data.tool_name) {
                 message = `Tool: ${data.tool_name}`;
@@ -2680,6 +2905,7 @@
                 if (!response.ok) throw new Error(`Failed to cancel job: ${response.status}`);
 
                 stopPolling();
+                hideQuestionDialog();
                 document.getElementById('cancelBtn').style.display = 'none';
                 document.getElementById('submitBtn').disabled = false;
                 document.getElementById('testCase').disabled = false;
@@ -2698,6 +2924,9 @@
             state.currentJobId = null;
             state.lastEventTimestamp = null;
 
+            // Clear question dialog
+            hideQuestionDialog();
+
             document.getElementById('testCase').disabled = false;
             document.getElementById('command').disabled = false;
             document.getElementById('cancelBtn').style.display = 'none';
@@ -2709,6 +2938,118 @@
             document.getElementById('emptyState').style.display = 'block';
             document.getElementById('eventsList').innerHTML = '';
             displayedEvents = [];
+        }
+
+        // ===== Multi-turn Question Dialog =====
+
+        function showQuestionDialog(questionData) {
+            const dialog = document.getElementById('questionDialog');
+            const questionText = document.getElementById('questionText');
+            const questionOptions = document.getElementById('questionOptions');
+            const answerInput = document.getElementById('answerInput');
+
+            // Set question text
+            questionText.textContent = questionData.question || 'Please answer the following question:';
+
+            // Generate option buttons (if there are preset options)
+            questionOptions.innerHTML = '';
+            if (questionData.options && questionData.options.length > 0) {
+                questionData.options.forEach(option => {
+                    const btn = document.createElement('button');
+                    btn.className = 'question-option-btn';
+                    btn.textContent = option;
+                    btn.onclick = () => {
+                        answerInput.value = option;
+                        submitAnswer();
+                    };
+                    questionOptions.appendChild(btn);
+                });
+            }
+
+            // Clear and focus input
+            answerInput.value = '';
+            dialog.classList.add('visible');
+            dialog.classList.remove('submitting');
+            state.questionShown = true;
+
+            // Focus the input
+            setTimeout(() => answerInput.focus(), 100);
+
+            console.log('[DEBUG] Question dialog shown:', questionData);
+        }
+
+        function hideQuestionDialog() {
+            const dialog = document.getElementById('questionDialog');
+            dialog.classList.remove('visible');
+            dialog.classList.remove('submitting');
+            state.questionShown = false;
+            console.log('[DEBUG] Question dialog hidden');
+        }
+
+        async function submitAnswer() {
+            const answerInput = document.getElementById('answerInput');
+            const dialog = document.getElementById('questionDialog');
+            const answer = answerInput.value.trim();
+
+            if (!answer) {
+                answerInput.style.borderColor = 'var(--error)';
+                setTimeout(() => { answerInput.style.borderColor = ''; }, 1500);
+                return;
+            }
+
+            if (!state.currentJobId) {
+                console.error('[ERROR] No active job to answer');
+                return;
+            }
+
+            // Disable UI to prevent duplicate submission
+            dialog.classList.add('submitting');
+            const answerBtn = document.getElementById('answerBtn');
+            const originalBtnText = answerBtn.innerHTML;
+            answerBtn.innerHTML = '<span class="loading-spinner"></span>Submitting...';
+
+            try {
+                console.log(`[DEBUG] Submitting answer for job ${state.currentJobId}: "${answer}"`);
+
+                const response = await fetch(`${state.serverUrl}/api/v1/jobs/${state.currentJobId}/answer`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    credentials: 'omit',
+                    body: JSON.stringify({ answer: answer })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    let detail = errorData.detail;
+                    if (Array.isArray(detail)) {
+                        detail = detail.map(e => e.msg || JSON.stringify(e)).join('; ');
+                    }
+                    throw new Error(detail || `HTTP ${response.status}`);
+                }
+
+                const result = await response.json();
+                console.log('[DEBUG] Answer submitted successfully:', result);
+
+                // Hide question dialog
+                hideQuestionDialog();
+
+                // Show user's answer in timeline
+                addEventToTimeline({
+                    timestamp: new Date().toISOString(),
+                    event_type: 'TextOutput',
+                    data: { message: `\uD83D\uDC64 Your answer: "${answer}"` }
+                });
+
+            } catch (error) {
+                console.error('[ERROR] Failed to submit answer:', error);
+                const errorMsg = error instanceof Error ? error.message : (typeof error === 'string' ? error : JSON.stringify(error));
+                showToast('Failed to submit answer: ' + errorMsg, 'error');
+                dialog.classList.remove('submitting');
+                answerBtn.innerHTML = originalBtnText;
+            }
         }
 
         // ===== Utility Functions =====
@@ -2732,34 +3073,20 @@
             return url;
         }
 
+        function handleServerChange() {
+            const select = document.getElementById('serverUrl');
+            state.serverUrl = normalizeServerUrl(select.value);
+            localStorage.setItem('aiscripto_server_url', select.value);
+            loadTestCases();
+            checkServerConnection();
+        }
+
         function restoreServerUrl() {
             const saved = localStorage.getItem('aiscripto_server_url');
             if (saved) {
-
-
                 state.serverUrl = normalizeServerUrl(saved);
                 document.getElementById('serverUrl').value = state.serverUrl;
             }
-
-            // Save on change
-            document.getElementById('serverUrl').addEventListener('change', function() {
-
-                state.serverUrl = normalizeServerUrl(this.value);
-                document.getElementById('serverUrl').value = state.serverUrl;
-                localStorage.setItem('aiscripto_server_url', this.value);
-                loadTestCases();
-                checkServerConnection();
-            });
-
-            // Also update on blur
-            document.getElementById('serverUrl').addEventListener('blur', function() {
-
-                state.serverUrl = normalizeServerUrl(this.value);
-                document.getElementById('serverUrl').value = state.serverUrl;
-                localStorage.setItem('aiscripto_server_url', this.value);
-                loadTestCases();
-                checkServerConnection();
-            });
         }
 
         // Periodic connection check
