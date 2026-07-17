@@ -3,268 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AiScripto - The Intelligent Multimodal Agentic Layer for Autonomous Software Quality Engineering. Transform manual test cases into executable Playwright TypeScript suites with AI-powered self-healing capabilities.">
-    <meta name="keywords" content="AI testing, test automation, Playwright, TypeScript, Bedrock, Azure AI, Vertex AI, quality assurance">
-    <meta property="og:title" content="AiScripto - Autonomous Testing Platform">
-    <meta property="og:description" content="AI-powered end-to-end test automation platform with multi-cloud and multi-model support.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://aiscripto.app">
-    
-    <title>AiScripto - Autonomous Testing Platform</title>
+    <title>Investor - AiScripto</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script src="language.js"></script>
     <style>
-        body {
-            background-color: #f9f9f9;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            color: white;
-            padding: 60px 0;
-            text-align: center;
-        }
-        
-        .badge {
-            display: inline-block;
-            background-color: #ff9900;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        h1 {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
-        
-        .subtitle {
-            font-size: 20px;
-            color: #a0a0a0;
-            margin-bottom: 40px;
-            font-weight: 300;
-        }
-        
-        .divider {
-            height: 3px;
-            background-color: #ff9900;
-            width: 200px;
-            margin: 30px auto;
-        }
-        
-        .divider-dark {
-            height: 2px;
-            background-color: #1a1a1a;
-            width: 100%;
-            margin: 40px 0;
-        }
-        
-        section {
-            background: white;
-            margin: 40px 0;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        
-        h2 {
-            font-size: 32px;
-            color: #1a1a1a;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #ff9900;
-            padding-bottom: 15px;
-        }
-        
-        h3 {
-            font-size: 20px;
-            color: #1a1a1a;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 30px 0;
-        }
-        
-        .feature-card {
-            background: #f5f5f5;
-            padding: 25px;
-            border-radius: 8px;
-            border-left: 4px solid #ff9900;
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
-        }
-        
-        .feature-card h4 {
-            color: #1a1a1a;
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-        
-        .feature-card p {
-            color: #666;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        
-        .tech-list {
-            list-style: none;
-            margin: 20px 0;
-        }
-        
-        .tech-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .tech-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .tech-list strong {
-            color: #1a1a1a;
-            min-width: 180px;
-            font-weight: 600;
-        }
-        
-        .tech-list .description {
-            color: #666;
-            font-size: 14px;
-        }
-        
-        .badge-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 15px 0;
-        }
-        
-        .service-badge {
-            display: inline-block;
-            background-color: #e8f4f8;
-            color: #0066cc;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 500;
-            border: 1px solid #b3d9e8;
-        }
-        
-        .service-badge.aws {
-            background-color: #fff3cd;
-            color: #856404;
-            border-color: #ffeaa7;
-        }
-        
-        .service-badge.gcp {
-            background-color: #e3f2fd;
-            color: #1565c0;
-            border-color: #bbdefb;
-        }
-        
-        .service-badge.azure {
-            background-color: #e8f5e9;
-            color: #2e7d32;
-            border-color: #c8e6c9;
-        }
-        
-        .flexibility-box {
-            background: #f0f7ff;
-            border-left: 4px solid #0066cc;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-        
-        .flexibility-box h4 {
-            color: #0066cc;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-        
-        .flexibility-box p {
-            color: #333;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-        
-        footer {
-            background: #1a1a1a;
-            color: #fff;
-            text-align: center;
-            padding: 30px;
-            font-size: 14px;
-            margin-top: 60px;
-        }
-        
-        .contact-link {
-            color: #ff9900;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        
-        .contact-link:hover {
-            text-decoration: underline;
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 32px;
-            }
-            
-            .subtitle {
-                font-size: 16px;
-            }
-            
-            section {
-                padding: 25px;
-                margin: 30px 0;
-            }
-            
-            h2 {
-                font-size: 24px;
-            }
-            
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        body { background-color: #f9f9f9; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); color: white; padding: 60px 0; text-align: center; }
+        h1 { font-size: 48px; font-weight: 700; margin-bottom: 20px; letter-spacing: -1px; }
+        .subtitle { font-size: 20px; color: #a0a0a0; margin-bottom: 40px; font-weight: 300; }
+        section { background: white; margin: 40px 0; padding: 40px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        h2 { font-size: 32px; color: #1a1a1a; margin-bottom: 30px; border-bottom: 2px solid #ff9900; padding-bottom: 15px; }
+        h3 { font-size: 24px; color: #1a1a1a; margin-top: 30px; margin-bottom: 15px; font-weight: 600; }
+        h4 { font-size: 20px; color: #333; margin-top: 25px; margin-bottom: 10px; font-weight: 600; }
+        p, ul, ol { color: #555; line-height: 1.7; }
+        li { margin-bottom: 10px; }
+        strong { color: #1a1a1a; font-weight: 700; }
+        .highlight { background-color: #fff3cd; padding: 2px 4px; border-radius: 3px; }
+        .mermaid { text-align: center; margin: 40px 0; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f2f2f2; font-weight: bold; color: #333; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav>
         <div class="container">
-                        <a href="index.html" class="logo">Ai<span>Scripto</span></a>
-                        <ul>
-                <li><a href="investor.html" data-en="Investor" data-zh="投資者">Investor</a></li>
+            <a href="index.html" class="logo">Ai<span>Scripto</span></a>
+            <ul>
+                <li style="display: none;"><a href="investor.html" class="active" data-en="Investor" data-zh="投資者">Investor</a></li>
                 <li><a href="features.html" data-en="Features" data-zh="功能">Features</a></li>
                 <li><a href="demo.html" data-en="Demo" data-zh="演示">Demo</a></li>
                 <li><a href="about-us.html" data-en="About Us" data-zh="關於我們">About Us</a></li>
-                <li style="display: none;"><a href="index.html" class="active" data-en="Home" data-zh="首頁">Home</a></li>
+                <li style="display: none;"><a href="index.html" data-en="Home" data-zh="首頁">Home</a></li>
                 <li style="display: none;"><a href="workflow.html" data-en="Workflow" data-zh="工作流程">Workflow</a></li>
                 <li style="display: none;"><a href="architecture.html" data-en="Architecture" data-zh="架構">Architecture</a></li>
                 <li style="display: none;"><a href="getting-started.html" data-en="Getting Started" data-zh="快速開始">Getting Started</a></li>
@@ -276,227 +50,269 @@
             </div>
         </div>
     </nav>
-    
+
     <header>
-            <div class="container">
-            
-                <h1>AiScripto</h1>
-                <p class="subtitle" data-en="The Intelligent Multimodal Agentic Layer for Autonomous Software Quality Engineering." data-zh="智慧多模態代理層，用於自主軟件品質工程。">The Intelligent Multimodal Agentic Layer for Autonomous Software Quality Engineering.</p>
-            </div>
-        </header>
-    
+        <div class="container">
+            <h1 data-en="AiScripto: Investor Pitch & Technical Moat" data-zh="AiScripto：投資人簡報 & 技術護城河">AiScripto: Investor Pitch & Technical Moat</h1>
+        </div>
+    </header>
+
     <div class="container">
-        <!-- Enterprise Autonomous Testing Platform -->
         <section>
-            <div class="divider-dark"></div>
-            <h2>Enterprise Autonomous Testing Platform</h2>
-                        <p>
-                AiScripto is an <strong>enterprise-grade, AI-powered end-to-end test automation orchestration platform</strong> designed to eliminate the brittle coding and maintenance bottlenecks for Quality Assurance (QA) organizations. By translating human-written, plain-text manual test cases into production-ready executable <strong>Playwright TypeScript</strong> test suites and reusable <strong>Page Object Models (POM)</strong>, AiScripto compresses software regression development cycles.
-            </p>
-            <p style="margin-top: 15px; font-size: 14px; color: #666;">
-                Our platform is built on a <strong>multi-channel architecture</strong> including a Local TUI, a Telegram Bot, and a Web UI, integrating with <strong>Claude Code SDK</strong> and <strong>AWS Bedrock</strong> to automatically discover UI elements and generate highly maintainable code.
-            </p>
+            <h2 data-en="Founder Profile" data-zh="創辦人背景 (Founder Profile)">Founder Profile</h2>
+            
+            <div style="background: #f9f9f9; border-left: 4px solid #ff9900; padding: 20px; border-radius: 4px; margin-bottom: 30px;">
+                <h3 style="margin-top: 0; color: #ff9900;">👤 YC Liu</h3>
+                <p style="margin: 10px 0; font-size: 14px;">
+                    <strong>Email:</strong> <a href="mailto:contact@aiscripto.app" style="color: #ff9900; text-decoration: none;">contact@aiscripto.app</a>
+                </p>
+                <p style="margin: 10px 0; font-size: 14px;">
+                    <strong>Current Role:</strong> <strong>Jabil Global IT Manager / Tech Lead</strong> (Software Quality & Performance)
+                </p>
+                <p style="margin: 10px 0; font-size: 14px;">
+                    <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/yc-liu-tw" target="_blank" style="color: #ff9900; text-decoration: none;">www.linkedin.com/in/yc-liu-tw</a>
+                </p>
+                <p style="margin: 10px 0; font-size: 14px;">
+                    <strong>Medium:</strong> <a href="https://medium.com/@ycliu.1985tw" target="_blank" style="color: #ff9900; text-decoration: none;">medium.com/@ycliu.1985tw</a>
+                </p>
+            </div>
+            
+            <p data-en="The birth of the AiScripto solution stems from the founder's deep industry experience and profound insights into real-world pain points. With over 17 years of system engineering and technical leadership experience, the founder's career has spanned from a frontline system developer to an IT manager in a multinational corporation, experiencing every stage of the software lifecycle:" data-zh="AiScripto 解決方案的誕生，源自於創辦人深耕業界的實戰痛點與深刻洞察。創辦人擁有超過 17 年系統工程與技術領導經驗，其職涯軌跡從第一線的系統開發員一路晉升至跨國企業的 IT 經理，完整經歷了軟體生命週期的每一個環節：">The birth of the AiScripto solution stems from the founder's deep industry experience and profound insights into real-world pain points. With over <strong>17 years of system engineering and technical leadership experience</strong>, the founder's career has spanned from a frontline system developer to an IT manager in a multinational corporation, experiencing every stage of the software lifecycle:</p>
+            <ul>
+                <li data-en="Phase 1: Deep Foundational Development Expertise (8 years as an MES Systems Engineer in Manufacturing). The founder has a profound understanding of developers' mindset, the pain points of underlying architecture, and the sense of engineering responsibility where one change affects the whole system." data-zh="第一階段：深厚底層開發實力 (8 年製造業 MES 系統工程師)。深刻理解開發工程師的心態、底層架構的痛點，以及「牽一髮動全身」的工程責任感。"><strong>Phase 1: Deep Foundational Development Expertise</strong> (<strong>8 years</strong> as an MES Systems Engineer in Manufacturing). The founder has a profound understanding of developers' mindset, the pain points of underlying architecture, and the sense of engineering responsibility where one change affects the whole system.</li>
+                <li data-en="Phase 2: Global Leader in Test Automation and Cloud Transformation (9 years as an IT Manager / IT Tech Lead in a Multinational Corporation). Established and led a global Performance Testing & Quality Assurance team (15 members), supporting over 30 global-scale large system test automation projects and saving the company over $500,000 in direct operational costs." data-zh="第二階段：測試自動化與雲端轉型的全球領導者 (9 年跨國企業 IT Manager / IT Tech Lead)。一手建立並領導了全球 Performance Testing & Quality Assurance 團隊（15 人編制）。期間成功支援了超過 30 個全球級大型系統的測試自動化專案，為企業省下超過 50 萬美元的直接營運成本 (Soft Saving)。"><strong>Phase 2: Global Leader in Test Automation</strong> (<strong>9 years</strong> as an IT Manager / IT Tech Lead). Established and led a <strong>global Performance Testing & Quality Assurance team (15 members)</strong>, supporting <strong>over 30 global-scale</strong> large system test automation projects and saving the company <strong>over $500,000</strong> in direct operational costs.</li>
+                <li data-en="Top Professional Endorsements: The founder holds over 16 international professional certifications, including top-tier certifications in the automation testing field like ISTQB (International Software Testing Qualifications Board)." data-zh="頂尖專業背書：創辦人具備深厚的專業底蘊，持有 16 張以上的國際專業認證，其中特別包含國際軟體測試認證委員會核發的 ISTQB (International Software Testing Qualifications Board) 等多項自動化測試領域最高指標證照。"><strong>Top Professional Endorsements:</strong> The founder holds <strong>over 16 international professional certifications</strong>, including <strong>ISTQB</strong> (International Software Testing Qualifications Board).</li>
+            </ul>
+            <p data-en="It is precisely because of the founder's 'tri-sector' background—understanding development, testing, and management—that AiScripto can break away from traditional tool thinking and create this ultimate automated testing solution that combines deep technical expertise with high-level business ROI." data-zh="正是因為創辦人「懂開發、懂測試、懂管理」的三棲背景，AiScripto 才能夠跳脫傳統工具的思維，從工程師的實際痛點出發，淬鍊出這套兼具底層深度與高階商業 ROI 的自動化測試終極解方。">It is precisely because of the founder's <strong>'tri-sector' background—understanding development, testing, and management</strong>—that AiScripto can create this <strong>ultimate automated testing solution</strong> that combines deep technical expertise with high-level business ROI.</p>
+        </section>
+
+        <section>
+            <h2 data-en="1. Executive Summary & Market Pain Points" data-zh="1. 執行摘要 & 市場痛點">1. Executive Summary & Market Pain Points</h2>
+            <p data-en="In today's fast-paced software development lifecycle, quality assurance (QA) is a significant bottleneck. Even with dedicated QA/TAE (Test Automation Engineer) teams, mid-to-large enterprises face three core pain points:" data-zh="在當今快節奏的軟體開發生命週期中，品質保證（QA）仍是顯著的瓶頸。中大型企業內部自行開發與維護 Web-based 系統，即便已建立專屬的 QA/TAE（Test Automation Engineer）團隊，仍深受三大核心痛點所苦：">In today's fast-paced software development lifecycle, quality assurance (QA) is a <strong>significant bottleneck</strong>. Even with dedicated <strong>QA/TAE (Test Automation Engineer)</strong> teams, mid-to-large enterprises face <strong>three core pain points</strong>:</p>
+            <ol>
+                <li data-en="'Massive manual testing is time-consuming and error-prone' - Large regression tests with thousands of cases are slow and prone to human error." data-zh="「海量手動測試耗時且易錯」——面對動輒上千個測試案例的大型回歸測試，純靠 QA 手動點擊不僅耗費龐大時間成本，更會因長時間疲勞導致人為漏測或誤判，測試準確度隨之驟降。"><strong>"Massive manual testing is time-consuming and error-prone"</strong> - <strong>Thousands of test cases</strong> are slow and prone to human error.</li>
+                <li data-en="'Automation scripts are written too slowly' - A moderately complex test case can take a full day (about 10 hours) to script." data-zh="「自動化腳本寫得太慢」——一個中等複雜度的測試案例，從理解需求到完成腳本編寫，往往需要一整天（約 10 小時）的工時。"><strong>"Automation scripts are written too slowly"</strong> - <strong>~10 hours</strong> per moderately complex test case.</li>
+                <li data-en="'Scripts break daily with UI changes' - Teams get stuck in an endless cycle of fixing scripts instead of testing quality." data-zh="「UI 改變時腳本天天壞掉」——每次前端迭代後，大量回歸測試腳本失效，團隊陷入「修腳本」而非「測品質」的無盡循環。"><strong>"Scripts break daily with UI changes"</strong> - Teams get stuck in an <strong>endless cycle</strong> of fixing rather than testing.</li>
+            </ol>
+            <h3 data-en="💡 AiScripto Solution: An AI QA Agent That 'Reads Human Language' and 'Self-Heals'" data-zh="💡 AiScripto 解決方案：會「讀人話」與「自動修復」的 AI QA 代理">💡 AiScripto Solution: An AI QA Agent That 'Reads Human Language' and 'Self-Heals'</h3>
+            <p data-en="AiScripto is an enterprise-grade AI automated testing platform that combines Large Language Models (LLM) and micro-frontend control technology to solve these problems at their root. It has three core 'superpowers':" data-zh="AiScripto 是一個企業級的 AI 自動化測試平台，它巧妙結合了大語言模型（LLM）與微前端控制技術，直接從根本解決上述痛點。簡而言之，它具備三大「核心超能力」：">AiScripto is an <strong>enterprise-grade AI automated testing platform</strong> that combines <strong>Large Language Models (LLM)</strong> and <strong>micro-frontend control technology</strong> to solve these problems at their root. It has <strong>three core 'superpowers'</strong>:</p>
+            <ul>
+                <li data-en="Turns 'Human Language' Directly into Scripts (Natural Language to Code): QA engineers simply write test steps in plain language, and AiScripto generates high-quality Playwright code in minutes." data-zh="把「人話」直接變腳本 (Natural Language to Code)：QA 只需要用白話文寫下測試步驟（例如：「點擊購物車，並確認總金額」），AiScripto 的 AI 引擎就能像人類一樣看懂網頁，並自動生成高品質的 Playwright 自動化測試程式碼。將原本需要一整天的腳本撰寫時間，壓縮至「短短幾分鐘」。"><strong>Turns 'Human Language' Directly into Scripts:</strong> QA engineers write test steps in plain language → AiScripto generates <strong>high-quality Playwright code in minutes</strong> (down from <strong>~10 hours</strong>, <strong>-80% reduction</strong>).</li>
+                <li data-en="An Unbeatable 'Self-Healing' Mechanism (Self-Healing Framework): When a UI element changes, AiScripto uses visual and logical reasoning to find the new element and complete the test, ending the nightmare of fixing scripts." data-zh="打不死的「自我修復」機制 (Self-Healing Framework)：當網頁按鈕換了位置或改了名字，傳統腳本必定報錯停擺。而 AiScripto 具有「視覺與邏輯推理」能力，它會自動在畫面上尋找新的按鈕並完成操作，甚至在日誌裡告訴開發者：「我發現按鈕搬家了，但我已經幫你點擊並修復了測試」。這徹底終結了「修腳本」的惡夢。"><strong>An Unbeatable 'Self-Healing' Mechanism:</strong> When UI elements change, AiScripto uses <strong>visual and logical reasoning</strong> to auto-repair. <strong>92% self-healing success rate</strong> eliminates script maintenance.</li>
+                <li data-en="🔥 [Enterprise-Exclusive Brain] Deep Integration with Internal Knowledge Base: AiScripto connects to your company's internal documentation, SOPs, and issue logs to become an AI agent that truly understands your business, producing 100% accurate tests." data-zh="🔥 【企業專屬大腦】深度整合內部 Knowledge Base：AiScripto 最大的價值在於「基於企業內部的 Knowledge Base 作為 AI 模型的重要參考依據與無縫整合」。我們深知每家企業都有其獨特的業務邏輯與領域知識。透過串接企業內部的規格文件、SOP 流程或歷史 Issue 庫，AiScripto 不僅是「懂測試」的工具，更是「懂你們公司業務」的 AI 代理，能產出 100% 貼合企業真實場景的精準測試與修復決策！">🔥 <strong>[Enterprise-Exclusive Brain] Deep Knowledge Base Integration:</strong> Connects to <strong>internal documentation, SOPs, and issue logs</strong> → becomes an AI agent that <strong>truly understands your business</strong> → produces <strong>100% accurate tests</strong>.</li>
+            </ul>
         </section>
         
-                <!-- Multi-Channel Architecture -->
         <section>
-            <h2>📱 Multi-Channel Interactive Architecture</h2>
-            <p>
-                AiScripto supports three major interaction channels, allowing different user groups to interact with the system in the most suitable way:
-            </p>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h4>💻 TUI (Terminal UI)</h4>
-                    <ul class="tech-list" style="margin-top: 15px;">
-                        <li><strong>Environment:</strong> <span class="description">Local Python Textual App</span></li>
-                        <li><strong>Best for:</strong> <span class="description">Developers & QA for rapid local iteration</span></li>
-                        <li><strong>Features:</strong> <span class="description">Full command set, synchronous execution, offline support</span></li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <h4>💬 Telegram Bot</h4>
-                    <ul class="tech-list" style="margin-top: 15px;">
-                        <li><strong>Environment:</strong> <span class="description">Remote Messaging App</span></li>
-                        <li><strong>Best for:</strong> <span class="description">Mobile access & asynchronous communication</span></li>
-                        <li><strong>Features:</strong> <span class="description">Real-time push notifications, low bandwidth</span></li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <h4>🌐 Web UI (REST API)</h4>
-                    <ul class="tech-list" style="margin-top: 15px;">
-                        <li><strong>Environment:</strong> <span class="description">Modern Web Browser</span></li>
-                        <li><strong>Best for:</strong> <span class="description">Cross-department collaboration & management</span></li>
-                        <li><strong>Features:</strong> <span class="description">Graphical interface, comprehensive reports, team sharing</span></li>
-                    </ul>
-                </div>
-            </div>
+            <h2 data-en="🏆 Validated Market Traction" data-zh="🏆 已驗證的市場吸引力">🏆 Validated Market Traction</h2>
+            <ul>
+                <li data-en="Funded by Two Major International Cloud Start-up Programs: Officially approved for AWS Activate Credits (Activate Founders tier) and Google for Startups Cloud (Start tier), signifying endorsement from top cloud giants." data-zh="獲兩大國際公有雲新創資助——專案深具商業潛力與技術成熟度，已正式獲批 AWS Activate Credits (Activate Founders 層級) 與 Google for Startups Cloud (Start 層級)。這不僅代表取得實質的雲端基礎設施資金贊助，更意味著國際頂尖雲端巨頭認可 AiScripto 解決方案的技術前瞻性與龐大的潛在市場價值。"><strong>✅ AWS Activate Credits & Google for Startups Cloud</strong> - Officially approved by both cloud giants, validating <strong>technical innovation</strong> and <strong>market potential</strong>.</li>
+                <li data-en="Third Place in a Global Corporate Innovation Competition: The concept stood out among numerous AI/automation solutions, validating its forward-thinking technology and market value." data-zh="全球知名公司創新競賽第三名——此創意發想在國際知名公司內的創新競賽中脫穎而出，於眾多 AI/自動化解決方案中獲得第三名殊榮，驗證了技術的前瞻性與市場價值。"><strong>✅ 3rd Place in Global Innovation Competition</strong> - Outperformed <strong>numerous AI/automation solutions</strong>.</li>
+                <li data-en="Enterprise-Level PoC Validation: In a PoC with a large manufacturing (MES system), AiScripto successfully saved the company over $1.2M USD annually in test automation and maintenance costs." data-zh="企業級 PoC 驗證——在某大型製造業（MES 系統）實際導入中，成功為企業年省超過 120 萬美元（USD $1.2M）的測試自動化與維護成本，ROI 數據極具說服力。"><strong>✅ Enterprise PoC: $1.2M USD Annual Savings</strong> - Real, verified ROI with <strong>large manufacturing client</strong>.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 data-en="2. Target Market & Size" data-zh="2. 目標市場 & 規模">2. Target Market & Size - TAM / SAM / SOM Analysis</h2>
+            <h3 data-en="Total Addressable Market (TAM)" data-zh="總潛在市場（TAM）">Total Addressable Market (TAM)</h3>
+            <p data-en="The global software testing market size in 2026 is projected to be between $54.4 billion and $60 billion USD." data-zh="2026 年全球軟體測試市場規模約為 544 億至 600 億美元。">Global software testing market size in 2026: <strong>$54.4B - $60B USD</strong> (based on Mordor Intelligence & Research and Markets reports)</p>
             
-            <div class="flexibility-box">
-                <h4>🔌 Flexible Deployment</h4>
-                <p>Run the <strong>TUI locally</strong> with direct SDK access, or deploy the <strong>FastAPI Server</strong> to handle Web UI and Telegram Bot requests remotely with built-in task queues and event streaming.</p>
+            <h3 data-en="Serviceable Addressable Market (SAM)" data-zh="可服務市場（SAM）">Serviceable Addressable Market (SAM)</h3>
+            <p data-en="Global mid-to-large enterprise spending on software/services for web functional and regression automation testing is approximately $10 billion USD." data-zh="全球中大型企業在 Web 功能與回歸自動化測試上的軟體/服務支出，約為 100 億美元左右。"><strong>B2B Web Automation Testing Expenditure:</strong> <strong>~$10B USD</strong> (87% B2B sector, 42% automation focus, 50% functional/regression testing)</p>
+            
+            <h3 data-en="Serviceable Obtainable Market (SOM) - Focusing on APAC/Taiwan" data-zh="可獲得市場（SOM）- 聚焦亞太/台灣華人市場">Serviceable Obtainable Market (SOM) - Focusing on APAC/Taiwan</h3>
+            <p data-en="In the next 3 years, we aim to acquire 150 key enterprise customers in Taiwan and the Chinese-speaking regions of Asia, generating approximately $3M to $5.25M USD in local revenue." data-zh="在未來 3 年內，針對台灣與亞洲華人圈，目標獲取 150 家指標性企業客戶，創造約 300 萬至 525 萬美元（約新台幣 1 億至 1.68 億元） 的在地營收。"><strong>3-Year Goal: 150 Enterprise Customers</strong> → <strong>$3M - $5.25M USD</strong> annual revenue (Taiwan & APAC Chinese-speaking markets)</p>
+            
+            <div class="mermaid">
+            flowchart TD
+                classDef tam fill:#f0f4ff,stroke:#0055ff,stroke-width:2px,color:#000
+                classDef sam fill:#d9e6ff,stroke:#0055ff,stroke-width:2px,color:#000
+                classDef som fill:#b3ccff,stroke:#0055ff,stroke-width:2px,color:#000
+            
+                TAM["🌍 TAM<br/>Global Software Testing<br/>$54.4B - $60B USD"]:::tam
+                SAM["🌎 SAM<br/>B2B Web Automation Testing<br/>$10B - $10.9B USD"]:::sam
+                SOM["🏢 SOM (Taiwan/APAC Focus)<br/>150 Enterprise Clients in 3 Years<br/>Revenue Goal: $3M - $5.25M USD"]:::som
+            
+                TAM --> SAM
+                SAM --> SOM
             </div>
         </section>
 
-        <!-- Core Technology Stack & Architecture -->
         <section>
-            <h2>Core Technology Stack & Architecture</h2>
-            
-            <h3>🔄 Multi-Phase Agentic Pipeline</h3>
-            <p>Driven by advanced foundation models via <strong>Claude Code SDK</strong> to seamlessly orchestrate the testing pipeline:</p>
-            <div class="badge-group">
-                <span class="service-badge aws">/import</span>
-                <span class="service-badge">/validate</span>
-                <span class="service-badge azure">/convert</span>
-                <span class="service-badge gcp">/verify</span>
-                <span class="service-badge">/parameterize</span>
-                <span class="service-badge">/walkthrough</span>
+            <h2 data-en="3. Ideal Customer Profile (ICP)" data-zh="3. 目標客群 (ICP)">3. Ideal Customer Profile (ICP)</h2>
+            <p data-en="Focusing on mid-to-large enterprises in Taiwan and the APAC Chinese-speaking region, especially those deeply affected by the shortage of high-end TAE talent and script maintenance technical debt in three core industries:" data-zh="聚焦台灣與亞太華人區的中大型企業，特別是深陷「高階 TAE 人才短缺」與「腳本維護技術債」的以下三大核心產業：">Focusing on <strong>mid-to-large enterprises</strong> with <strong>10-50 person QA teams</strong> facing <strong>high TAE talent shortage</strong> and <strong>script maintenance debt</strong> in three core industries:</p>
+            <ol>
+                <li><strong>🏭 Semiconductor & High-Tech Manufacturing:</strong> Complex cross-border web systems (MES, ERP), extreme stability requirements, strict enterprise security standards.</li>
+                <li><strong>🏦 FinTech & Traditional Banking Digital Transformation:</strong> Frequent UI changes due to regulations and marketing, high-frequency automated regression testing requirements.</li>
+                <li><strong>💻 Mid-to-Large Internet & Software Providers:</strong> Existing QA/TAE teams, high development efficiency demands, need AI tools to scale senior engineers' productivity.</li>
+            </ol>
+        </section>
+        
+        <section>
+            <h2 data-en="4. AiScripto Solution & Value Proposition" data-zh="4. AiScripto 解決方案 & 價值主張">4. AiScripto Solution & Proven Business Impact</h2>
+            <h3 data-en="💰 Proven Case: MES System Saves $1.2M Annually" data-zh="💰 實證案例：MES 系統年省 $1.2M">💰 QUANTIFIED ROI: MES Customer Case Study</h3>
+            <p data-en="In a Proof of Concept (PoC) for a large manufacturing client's MES, AiScripto produced the following quantifiable results:" data-zh="在大型製造業客戶的 MES（Manufacturing Execution System）PoC 導入中，AiScripto 產出以下量化成效："><strong>Enterprise PoC Results (Large Manufacturing Company):</strong></p>
+            <table>
+              <tr>
+                <th data-en="Metric" data-zh="指標"><strong>Metric</strong></th>
+                <th data-en="Before" data-zh="導入前"><strong>Before</strong></th>
+                <th data-en="After" data-zh="導入後"><strong>After</strong></th>
+                <th data-en="Improvement" data-zh="改善幅度"><strong>Improvement</strong></th>
+              </tr>
+              <tr>
+                <td><strong>Scripting Time/Case</strong></td>
+                <td><strong>~10 hours</strong></td>
+                <td><strong>&lt;2 hours</strong></td>
+                <td><strong style="color: #2e7d32; font-size: 18px;">-80% ⬇️</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Monthly Regression Maintenance</strong></td>
+                <td><strong>320 man-hours</strong></td>
+                <td><strong>80 man-hours</strong></td>
+                <td><strong style="color: #2e7d32; font-size: 18px;">-75% ⬇️</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Annual QA Labor Cost</strong></td>
+                <td><strong>~$1.6M</strong></td>
+                <td><strong>~$0.4M</strong></td>
+                <td><strong style="color: #2e7d32; font-size: 18px;">💰 SAVE $1.2M/year</strong></td>
+              </tr>
+               <tr>
+                <td><strong>Script Self-Healing Success Rate</strong></td>
+                <td><strong>N/A</strong></td>
+                <td><strong>92%</strong></td>
+                <td><strong style="color: #2e7d32; font-size: 18px;">✅ Elite Performance</strong></td>
+              </tr>
+            </table>
+            <div class="mermaid">
+                xychart-beta
+                    title "Annual QA Labor Cost Comparison: $1.2M Direct Savings"
+                    x-axis ["Before", "After"]
+                    y-axis "Cost (USD $M)" 0.0 --> 2.0
+                    bar [1.6, 0.4]
             </div>
-            <p style="margin-top: 15px; font-size: 14px; color: #666;">Execute intelligent context analysis, real-time UI exploration, and generate optimized test specifications.</p>
+            <p data-en="This PoC directly proves that AiScripto brings not just efficiency gains, but million-dollar direct cost savings—a quantifiable and verifiable ROI for investors." data-zh="此 PoC 成果直接證明：AiScripto 為企業帶來的不只是效率提升，更是 百萬美元級的直接成本節省——這是投資人可量化、可驗證的 ROI。"><strong style="color: #d32f2f; font-size: 18px;">💎 KEY INSIGHT: This is REAL, VERIFIED, QUANTIFIABLE ROI — not theoretical projections.</strong></p>
+        </section>
+
+        <section>
+            <h2 data-en="5. Technical Moat & Competitive Advantage" data-zh="5. 技術護城河 & 競爭優勢">5. Technical Moat & Competitive Advantage</h2>
             
-            <h3>🧠 AI Orchestration & Knowledge Base</h3>
-            <p>Our architecture combines powerful AI agents with contextual knowledge:</p>
-            <ul class="tech-list">
-                <li>
-                    <strong>Claude Code SDK:</strong>
-                    <div class="description">
-                        Core AI agent framework used to orchestrate complex multi-step workflows, UI discovery, and Playwright code generation.
-                    </div>
-                </li>
-                <li>
-                    <strong>AWS Bedrock:</strong>
-                    <div class="description">
-                        Knowledge base queries for business logic constraints and page documentation.
-                    </div>
-                </li>
+            <h3>A. Omni-Channel Architecture</h3>
+             <div class="mermaid">
+                graph TD
+                    A["<strong>AiScripto Core<br/>AI Engine</strong>"] --> B["<strong>🌐 Web UI</strong><br/>Full Lifecycle Management"];
+                    A --> C["<strong>💬 Telegram Bot</strong><br/>Mobile Agile Triggers"];
+                    A --> D["<strong>⌨️ CLI/TUI</strong><br/>Developer Terminal"];
+
+                    style A fill:#1976D2,stroke:#0D47A1,stroke-width:3px,color:#fff
+                    style B fill:#4CAF50,stroke:#388E3C,stroke-width:2px,color:#fff
+                    style C fill:#03A9F4,stroke:#0288D1,stroke-width:2px,color:#fff
+                    style D fill:#607D8B,stroke:#455A64,stroke-width:2px,color:#fff
+            </div>
+            
+            <h3>B. Self-Healing Test Automation</h3>
+            <p><strong>Competitive Advantage:</strong> Advanced AI judgment based on <strong>enterprise Knowledge Base</strong> + <strong>LLM element recognition</strong> = <strong>Self-Healing Tests</strong></p>
+            <p><strong>Business Impact:</strong> <strong>ROI exceeding 76% in cost savings</strong> vs. traditional tools. <strong>92% auto-repair success rate</strong> eliminates script maintenance hell.</p>
+            
+            <h3>C. Multi-Cloud FinOps Containerized Architecture</h3>
+            <p><strong>Competitive Advantage:</strong> Built on <strong>multi-cloud containerized architecture</strong> with <strong>FinOps core</strong> + <strong>dual-layer logging</strong> + <strong>dynamic Token tracking</strong></p>
+            <p><strong>Business Impact:</strong> <strong>Single operation costs only $1-3 USD</strong> — transparent, controllable, predictable. Eliminates the \"AI cost explosion\" problem.</p>
+
+            <h3>D. Head-to-Head Competitor Comparison</h3>
+            <table>
+              <tr>
+                <th>Dimension</th>
+                <th>Selenium + Manual</th>
+                <th>Mabl (AI-assisted)</th>
+                <th><strong style="color: #0055ff;">🏆 AiScripto</strong></th>
+              </tr>
+              <tr>
+                <td><strong>Script Generation</strong></td>
+                <td>Fully Manual ❌</td>
+                <td>Low-code + AI Suggestions ⚠️</td>
+                <td><strong style="color: #2e7d32;">✅ Fully AI-Generated (NL→Code)</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Self-Healing Capability</strong></td>
+                <td>None ❌</td>
+                <td>Limited (locator only) ⚠️</td>
+                <td><strong style="color: #2e7d32;">✅ Deep (CV + LLM, 92% success)</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Maintenance Cost</strong></td>
+                <td>Extremely High 📈</td>
+                <td>Medium 📊</td>
+                <td><strong style="color: #2e7d32;">✅ Extremely Low (-75% maintenance)</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Cost Transparency</strong></td>
+                <td>Hidden (labor) 🤐</td>
+                <td>Fixed subscription (opaque) 🤐</td>
+                <td><strong style="color: #2e7d32;">✅ FinOps Token Tracking (transparent)</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Time to Deploy</strong></td>
+                <td>Weeks-Months ⏳</td>
+                <td>Days 📅</td>
+                <td><strong style="color: #2e7d32;">✅ Hours ⚡</strong></td>
+              </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2 data-en="6. Why Now? Why Us?" data-zh="6. 為何現在？為何是我們？">6. Why Now? Why Us?</h2>
+            <ul>
+                <li><strong>✅ 17 Years Deep Industry Experience:</strong> Founder has lived the pain points. Not a lab project.</li>
+                <li><strong>✅ Market is Ripe:</strong> <strong>$25B+ automation testing market</strong> in 2026, enterprise AI adoption mainstream.</li>
+                <li><strong>✅ Deep Technical Moat:</strong> <strong>Self-Healing + FinOps + CV/LLM</strong> combination is hard to replicate.</li>
+                <li><strong>✅ Validated by Global Giants:</strong> <strong>AWS + Google</strong> + global innovation competition (3rd place).</li>
+                <li><strong>✅ Proven Enterprise Success:</strong> <strong>$1.2M annual verified savings</strong> — not projections.</li>
             </ul>
-            
-            <h3>🛠️ AI Self-Healing Intelligence</h3>
-            <p>Powered by a localized, persistent <strong>Locator Cache & Memory</strong> that intercepts execution failures, automatically identifies updated element locators via real browser exploration, and auto-repairs broken POMs and test specifications at runtime.</p>
         </section>
-        
-                <!-- Command Execution Layer -->
+
         <section>
-            <h2>🚀 Command Execution Workflow</h2>
-            <p>AiScripto provides specialized slash commands mapped to internal agents for precise orchestration:</p>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h4>/import</h4>
-                    <ul class="tech-list" style="margin-top: 12px;">
-                        <li><span class="description">Ingest from Azure DevOps</span></li>
-                        <li><span class="description">Extract constraints via Bedrock</span></li>
-                        <li><span class="description">Format pre-conditions</span></li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <h4>/convert</h4>
-                    <ul class="tech-list" style="margin-top: 12px;">
-                        <li><span class="description">Syntax validation</span></li>
-                        <li><span class="description">Real browser UI exploration</span></li>
-                        <li><span class="description">TypeScript + POM generation</span></li>
-                        <li><span class="description">Self-healing execution</span></li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <h4>/parameterize & /verify</h4>
-                    <ul class="tech-list" style="margin-top: 12px;">
-                        <li><span class="description">Extract data to JSON files</span></li>
-                        <li><span class="description">Enable data-driven testing</span></li>
-                        <li><span class="description">Human-in-the-loop repair verification</span></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        
-                <!-- Test Case Storage & Source Control -->
-        <section>
-            <h2>📁 Artifact Synchronization & Version Control</h2>
-            <p>Maintain your codebase efficiently with integrated version control mechanisms:</p>
-            <ul class="tech-list">
-                <li>
-                    <strong>Git Worktree Sync:</strong>
-                    <div class="description">
-                        Utilizes a `.artifacts-sync/` directory to manage shared code mirrors (e.g., `src/pages/`) preventing merge conflicts on shared Page Object Models.
-                    </div>
-                </li>
-                <li>
-                    <strong>Test Case Inputs:</strong>
-                    <div class="description">
-                        Ingest human-authored manual testing intent from plain text (`.txt`) or markdown (`.md`) files directly into the testing pipeline.
-                    </div>
-                </li>
-                <li>
-                    <strong>Knowledge Cache:</strong>
-                    <div class="description">
-                        Locators and page layouts are cached in `knowledge/locator-cache/` to accelerate subsequent test generation and prevent redundant exploration.
-                    </div>
-                </li>
+            <h2 data-en="7. Revenue Model: Hybrid SaaS + Usage-Based" data-zh="7. 營收模式：SaaS + Usage-Based 混合定價">7. Revenue Model: Hybrid SaaS + Usage-Based (Attractive Unit Economics)</h2>
+             <p data-en="AiScripto uses an attractive hybrid recurring revenue model, combining a stable base with growth elasticity." data-zh="AiScripto 採用對投資人極具吸引力的混合型經常性營收模式，兼具穩定基礎與成長彈性：">Hybrid model provides <strong>stable recurring revenue + growth elasticity</strong>:</p>
+            <ul>
+                <li><strong>Platform Fee (SaaS Base):</strong> Monthly/annual fixed subscription → <strong>Predictable MRR/ARR base</strong></li>
+                <li><strong>Usage Fee (Pay-as-you-go):</strong> Billed per AI script generation/execution → <strong>Net Dollar Retention > 120%</strong></li>
+                <li><strong>Enterprise Tier (Custom):</strong> Custom support + hybrid deployment → <strong>Higher ARPU, increased stickiness</strong></li>
             </ul>
         </section>
-        
-        <!-- Security & Governance -->
+
         <section>
-            <h2>Authentication & Environment Configuration</h2>
-            <p>
-                AiScripto provides flexible session management and environment configuration to seamlessly interact with authenticated applications:
-            </p>
-            <div class="flexibility-box">
-                <h4>🔐 Supported Authentication Methods</h4>
-                <p>Configure credentials securely via `.env` files. AiScripto supports:</p>
-                <ul style="margin-left: 20px; font-size: 14px; color: #333;">
-                    <li><strong>Okta SSO Integration</strong> (`BASE_URL` setup)</li>
-                    <li><strong>Standard Form Login</strong> (`LOGIN_URL` setup)</li>
-                </ul>
-                <p style="margin-top: 10px;">Session states are automatically cached in `.auth/storageState.json` to bypass repetitive logins during execution.</p>
-            </div>
+            <h2 data-en="8. Go-To-Market: Bottom-Up PLG Strategy" data-zh="8. Go-To-Market 策略：Bottom-Up">8. Go-To-Market: Bottom-Up Product-Led Growth (PLG)</h2>
+            <p data-en="AiScripto adopts a proven Bottom-Up Product-Led Growth (PLG) strategy for low-CAC, efficient customer acquisition." data-zh="AiScripto 採取經過驗證的 Bottom-Up PLG（Product-Led Growth）策略，實現低 CAC 高效獲客："><strong>Strategy:</strong> Get QA engineers hooked on product → organic expansion through org → reach decision-makers</p>
+            <h4 data-en="Key Milestones" data-zh="關鍵里程碑">Key Milestones</h4>
+            <ul>
+                <li><strong>Q3-Q4 2026:</strong> Free trial launch + <strong>first 10 paying customers</strong> (Goal: Validate PMF, <strong>>$50K MRR</strong>)</li>
+                <li><strong>H1 2027:</strong> Expand to <strong>30 paying customers</strong> across Taiwan (Goal: <strong>30% CAC reduction</strong>)</li>
+                <li><strong>H2 2027:</strong> Expand to <strong>50 paying customers</strong>, reach APAC (Goal: <strong>$2M ARR</strong>)</li>
+                <li><strong>2028:</strong> Enterprise direct sales team (Goal: <strong>$100K+ ARR clients, NRR > 130%</strong>)</li>
+            </ul>
         </section>
-        
-                <!-- Deployment Models -->
+
         <section>
-            <h2>Deployment Models</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h4>Local Developer Setup</h4>
-                    <p>Run the Python Textual TUI locally with direct Playwright execution and full offline support (except Bedrock queries).</p>
-                </div>
-                <div class="feature-card">
-                    <h4>Remote TestAgent Server</h4>
-                    <p>Deploy the FastAPI server with job queues to handle requests from the Telegram Bot and REST API clients.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>Artifact Synchronization</h4>
-                    <p>Utilize Git worktrees (`.artifacts-sync/`) for artifact synchronization to prevent merge conflicts on shared Page Object Models.</p>
-                </div>
-            </div>
+            <h2 data-en="9. Why Invest in AiScripto?" data-zh="9. 為何投資 AiScripto？">9. 🎯 Why Invest in AiScripto? Investment Highlights</h2>
+            <ul>
+                <li><strong style="color: #d32f2f;">🏆 Validated by Cloud Giants & Competitions:</strong> <strong>AWS Activate + Google for Startups</strong> (both official approvals) + <strong>3rd place global innovation competition</strong> + <strong>$1.2M verified enterprise savings</strong>.</li>
+                <li><strong style="color: #d32f2f;">💰 Excellent Unit Economics:</strong> <strong>Hybrid SaaS + Usage-based</strong> model, cloud subsidies, <strong>NRR > 120% potential</strong>.</li>
+                <li><strong style="color: #d32f2f;">🏰 Deep Technical Moat:</strong> <strong>Self-Healing + FinOps + CV/LLM</strong> combination creates strong competitive barrier.</li>
+                <li><strong style="color: #d32f2f;">📈 Focused Market Opportunity:</strong> Taiwan & APAC tech/finance sectors, <strong>150 customers in 3 years</strong> → <strong>>$100M TWD annual SOM</strong>.</li>
+                <li><strong style="color: #d32f2f;">🚀 Ready to Scale:</strong> Proven product-market fit, low-CAC PLG strategy, cloud infrastructure partnerships.</li>
+            </ul>
+             <p style="margin-top: 40px; font-size: 18px;"><em><strong>AiScripto — Transforming QA from \"script maintainers\" to \"quality strategists.\" We've proven the value. Now it's time to scale.</strong></em></p>
         </section>
     </div>
-    
+
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3 data-en="Product" data-zh="產品">Product</h3>
-                    <ul>
-                        <li><a href="features.html" data-en="Features" data-zh="功能">Features</a></li>
-                        <li style="display: none;"><a href="architecture.html" data-en="Architecture" data-zh="架構">Architecture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3 data-en="Company" data-zh="公司">Company</h3>
-                    <ul>
-                        <li><a href="contact.html" data-en="Contact Us" data-zh="聯絡我們">Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 AiScripto.APP Inc. All rights reserved.</p>
-            </div>
+            <p>&copy; 2026 AiScripto.APP Inc. All rights reserved.</p>
         </div>
     </footer>
+    <script>
+        mermaid.initialize({startOnLoad:true});
+    </script>
 </body>
-</html>
 </html>

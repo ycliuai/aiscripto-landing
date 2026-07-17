@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AiScripto - The Intelligent Multimodal Agentic Layer for Autonomous Software Quality Engineering. Transform manual test cases into executable Playwright TypeScript suites with AI-powered self-healing capabilities.">
+    <meta name="keywords" content="AI testing, test automation, Playwright, TypeScript, Bedrock, Azure AI, Vertex AI, quality assurance">
+    <meta property="og:title" content="AiScripto - Autonomous Testing Platform">
+    <meta property="og:description" content="AI-powered end-to-end test automation platform with multi-cloud and multi-model support.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aiscripto.app">
+    
+    <title>AiScripto - Autonomous Testing Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="language.js"></script>
+    <style>
+        body {
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .badge {
+            display: inline-block;
+            background-color: #ff9900;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            color: #a0a0a0;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        
+        .divider {
+            height: 3px;
+            background-color: #ff9900;
+            width: 200px;
+            margin: 30px auto;
+        }
+        
+        .divider-dark {
+            height: 2px;
+            background-color: #1a1a1a;
+            width: 100%;
+            margin: 40px 0;
+        }
+        
+        section {
+            background: white;
+            margin: 40px 0;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        h2 {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ff9900;
+            padding-bottom: 15px;
+        }
+        
+        h3 {
+            font-size: 20px;
+            color: #1a1a1a;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: #f5f5f5;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #ff9900;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .feature-card h4 {
+            color: #1a1a1a;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .feature-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .tech-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .tech-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .tech-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .tech-list strong {
+            color: #1a1a1a;
+            min-width: 180px;
+            font-weight: 600;
+        }
+        
+        .tech-list .description {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .service-badge {
+            display: inline-block;
+            background-color: #e8f4f8;
+            color: #0066cc;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1px solid #b3d9e8;
+        }
+        
+        .service-badge.aws {
+            background-color: #fff3cd;
+            color: #856404;
+            border-color: #ffeaa7;
+        }
+        
+        .service-badge.gcp {
+            background-color: #e3f2fd;
+            color: #1565c0;
+            border-color: #bbdefb;
+        }
+        
+        .service-badge.azure {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border-color: #c8e6c9;
+        }
+        
+        .flexibility-box {
+            background: #f0f7ff;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .flexibility-box h4 {
+            color: #0066cc;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .flexibility-box p {
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            background: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 30px;
+            font-size: 14px;
+            margin-top: 60px;
+        }
+        
+        .contact-link {
+            color: #ff9900;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            section {
+                padding: 25px;
+                margin: 30px 0;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+                        <a href="index.html" class="logo">Ai<span>Scripto</span></a>
+                        <ul>
+                <li><a href="investor.html" data-en="Investor" data-zh="投資者">Investor</a></li>
+                <li><a href="features.html" data-en="Features" data-zh="功能">Features</a></li>
+                <li><a href="demo.html" data-en="Demo" data-zh="演示">Demo</a></li>
+                <li><a href="about-us.html" data-en="About Us" data-zh="關於我們">About Us</a></li>
+                <li style="display: none;"><a href="index.html" class="active" data-en="Home" data-zh="首頁">Home</a></li>
+                <li style="display: none;"><a href="workflow.html" data-en="Workflow" data-zh="工作流程">Workflow</a></li>
+                <li style="display: none;"><a href="architecture.html" data-en="Architecture" data-zh="架構">Architecture</a></li>
+                <li style="display: none;"><a href="getting-started.html" data-en="Getting Started" data-zh="快速開始">Getting Started</a></li>
+                <li style="display: none;"><a href="contact.html" data-en="Contact" data-zh="聯絡">Contact</a></li>
+            </ul>
+            <div class="language-switcher">
+                <button id="lang-en" class="active" onclick="setLanguage('en')">EN</button>
+                <button id="lang-zh" onclick="setLanguage('zh')">中文</button>
+            </div>
+        </div>
+    </nav>
+    
+    <header>
+            <div class="container">
+            
+                <h1>AiScripto</h1>
+                <p class="subtitle" data-en="The Intelligent Multimodal Agentic Layer for Autonomous Software Quality Engineering." data-zh="智慧多模態代理層，用於自主軟件品質工程。">The Intelligent Multimodal Agentic Layer for Autonomous Software Quality Engineering.</p>
+            </div>
+        </header>
+    
+    <div class="container">
+        <!-- Enterprise Autonomous Testing Platform -->
+        <section>
+            <div class="divider-dark"></div>
+            <h2>Enterprise Autonomous Testing Platform</h2>
+                        <p>
+                AiScripto is an <strong>enterprise-grade, AI-powered end-to-end test automation orchestration platform</strong> designed to eliminate the brittle coding and maintenance bottlenecks for Quality Assurance (QA) organizations. By translating human-written, plain-text manual test cases into production-ready executable <strong>Playwright TypeScript</strong> test suites and reusable <strong>Page Object Models (POM)</strong>, AiScripto compresses software regression development cycles.
+            </p>
+            <p style="margin-top: 15px; font-size: 14px; color: #666;">
+                Our platform is built on a <strong>multi-channel architecture</strong> including a Local TUI, a Telegram Bot, and a Web UI, integrating with <strong>Claude Code SDK</strong> and <strong>AWS Bedrock</strong> to automatically discover UI elements and generate highly maintainable code.
+            </p>
+        </section>
+        
+                <!-- Multi-Channel Architecture -->
+        <section>
+            <h2>📱 Multi-Channel Interactive Architecture</h2>
+            <p>
+                AiScripto supports three major interaction channels, allowing different user groups to interact with the system in the most suitable way:
+            </p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>💻 TUI (Terminal UI)</h4>
+                    <ul class="tech-list" style="margin-top: 15px;">
+                        <li><strong>Environment:</strong> <span class="description">Local Python Textual App</span></li>
+                        <li><strong>Best for:</strong> <span class="description">Developers & QA for rapid local iteration</span></li>
+                        <li><strong>Features:</strong> <span class="description">Full command set, synchronous execution, offline support</span></li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>💬 Telegram Bot</h4>
+                    <ul class="tech-list" style="margin-top: 15px;">
+                        <li><strong>Environment:</strong> <span class="description">Remote Messaging App</span></li>
+                        <li><strong>Best for:</strong> <span class="description">Mobile access & asynchronous communication</span></li>
+                        <li><strong>Features:</strong> <span class="description">Real-time push notifications, low bandwidth</span></li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🌐 Web UI (REST API)</h4>
+                    <ul class="tech-list" style="margin-top: 15px;">
+                        <li><strong>Environment:</strong> <span class="description">Modern Web Browser</span></li>
+                        <li><strong>Best for:</strong> <span class="description">Cross-department collaboration & management</span></li>
+                        <li><strong>Features:</strong> <span class="description">Graphical interface, comprehensive reports, team sharing</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="flexibility-box">
+                <h4>🔌 Flexible Deployment</h4>
+                <p>Run the <strong>TUI locally</strong> with direct SDK access, or deploy the <strong>FastAPI Server</strong> to handle Web UI and Telegram Bot requests remotely with built-in task queues and event streaming.</p>
+            </div>
+        </section>
+
+        <!-- Core Technology Stack & Architecture -->
+        <section>
+            <h2>Core Technology Stack & Architecture</h2>
+            
+            <h3>🔄 Multi-Phase Agentic Pipeline</h3>
+            <p>Driven by advanced foundation models via <strong>Claude Code SDK</strong> to seamlessly orchestrate the testing pipeline:</p>
+            <div class="badge-group">
+                <span class="service-badge aws">/import</span>
+                <span class="service-badge">/validate</span>
+                <span class="service-badge azure">/convert</span>
+                <span class="service-badge gcp">/verify</span>
+                <span class="service-badge">/parameterize</span>
+                <span class="service-badge">/walkthrough</span>
+            </div>
+            <p style="margin-top: 15px; font-size: 14px; color: #666;">Execute intelligent context analysis, real-time UI exploration, and generate optimized test specifications.</p>
+            
+            <h3>🧠 AI Orchestration & Knowledge Base</h3>
+            <p>Our architecture combines powerful AI agents with contextual knowledge:</p>
+            <ul class="tech-list">
+                <li>
+                    <strong>Claude Code SDK:</strong>
+                    <div class="description">
+                        Core AI agent framework used to orchestrate complex multi-step workflows, UI discovery, and Playwright code generation.
+                    </div>
+                </li>
+                <li>
+                    <strong>AWS Bedrock:</strong>
+                    <div class="description">
+                        Knowledge base queries for business logic constraints and page documentation.
+                    </div>
+                </li>
+            </ul>
+            
+            <h3>🛠️ AI Self-Healing Intelligence</h3>
+            <p>Powered by a localized, persistent <strong>Locator Cache & Memory</strong> that intercepts execution failures, automatically identifies updated element locators via real browser exploration, and auto-repairs broken POMs and test specifications at runtime.</p>
+        </section>
+        
+                <!-- Command Execution Layer -->
+        <section>
+            <h2>🚀 Command Execution Workflow</h2>
+            <p>AiScripto provides specialized slash commands mapped to internal agents for precise orchestration:</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>/import</h4>
+                    <ul class="tech-list" style="margin-top: 12px;">
+                        <li><span class="description">Ingest from Azure DevOps</span></li>
+                        <li><span class="description">Extract constraints via Bedrock</span></li>
+                        <li><span class="description">Format pre-conditions</span></li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>/convert</h4>
+                    <ul class="tech-list" style="margin-top: 12px;">
+                        <li><span class="description">Syntax validation</span></li>
+                        <li><span class="description">Real browser UI exploration</span></li>
+                        <li><span class="description">TypeScript + POM generation</span></li>
+                        <li><span class="description">Self-healing execution</span></li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>/parameterize & /verify</h4>
+                    <ul class="tech-list" style="margin-top: 12px;">
+                        <li><span class="description">Extract data to JSON files</span></li>
+                        <li><span class="description">Enable data-driven testing</span></li>
+                        <li><span class="description">Human-in-the-loop repair verification</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+                <!-- Test Case Storage & Source Control -->
+        <section>
+            <h2>📁 Artifact Synchronization & Version Control</h2>
+            <p>Maintain your codebase efficiently with integrated version control mechanisms:</p>
+            <ul class="tech-list">
+                <li>
+                    <strong>Git Worktree Sync:</strong>
+                    <div class="description">
+                        Utilizes a `.artifacts-sync/` directory to manage shared code mirrors (e.g., `src/pages/`) preventing merge conflicts on shared Page Object Models.
+                    </div>
+                </li>
+                <li>
+                    <strong>Test Case Inputs:</strong>
+                    <div class="description">
+                        Ingest human-authored manual testing intent from plain text (`.txt`) or markdown (`.md`) files directly into the testing pipeline.
+                    </div>
+                </li>
+                <li>
+                    <strong>Knowledge Cache:</strong>
+                    <div class="description">
+                        Locators and page layouts are cached in `knowledge/locator-cache/` to accelerate subsequent test generation and prevent redundant exploration.
+                    </div>
+                </li>
+            </ul>
+        </section>
+        
+        <!-- Security & Governance -->
+        <section>
+            <h2>Authentication & Environment Configuration</h2>
+            <p>
+                AiScripto provides flexible session management and environment configuration to seamlessly interact with authenticated applications:
+            </p>
+            <div class="flexibility-box">
+                <h4>🔐 Supported Authentication Methods</h4>
+                <p>Configure credentials securely via `.env` files. AiScripto supports:</p>
+                <ul style="margin-left: 20px; font-size: 14px; color: #333;">
+                    <li><strong>Okta SSO Integration</strong> (`BASE_URL` setup)</li>
+                    <li><strong>Standard Form Login</strong> (`LOGIN_URL` setup)</li>
+                </ul>
+                <p style="margin-top: 10px;">Session states are automatically cached in `.auth/storageState.json` to bypass repetitive logins during execution.</p>
+            </div>
+        </section>
+        
+                <!-- Deployment Models -->
+        <section>
+            <h2>Deployment Models</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Local Developer Setup</h4>
+                    <p>Run the Python Textual TUI locally with direct Playwright execution and full offline support (except Bedrock queries).</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Remote TestAgent Server</h4>
+                    <p>Deploy the FastAPI server with job queues to handle requests from the Telegram Bot and REST API clients.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Artifact Synchronization</h4>
+                    <p>Utilize Git worktrees (`.artifacts-sync/`) for artifact synchronization to prevent merge conflicts on shared Page Object Models.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 data-en="Product" data-zh="產品">Product</h3>
+                    <ul>
+                        <li><a href="features.html" data-en="Features" data-zh="功能">Features</a></li>
+                        <li style="display: none;"><a href="architecture.html" data-en="Architecture" data-zh="架構">Architecture</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 data-en="Company" data-zh="公司">Company</h3>
+                    <ul>
+                        <li><a href="contact.html" data-en="Contact Us" data-zh="聯絡我們">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AiScripto.APP Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+</html>
