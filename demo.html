@@ -1654,9 +1654,10 @@
                 <!-- Command Selection -->
                 <div class="form-group">
                     <label for="command">Command Type</label>
-                    <select id="command" onchange="updateCommandInfo()">
+                                        <select id="command" onchange="updateCommandInfo()">
                         <option value="validate">✓ Validate Test Case</option>
                         <option value="convert">→ Convert to Playwright Script</option>
+                        <option value="convertPT">⚡ Convert to Performance Testing Script</option>
                         <!-- Hidden: <option value="import">⬇ Import Test Case</option> -->
                         <option value="verify">✔ Verify Execution</option>
                         <option value="parameterize">⚙ Parameterize Test</option>
@@ -1936,9 +1937,13 @@
                                 <strong style="color: var(--primary);">✓ Validate Test Case</strong>
                                 <p style="margin: 8px 0 0 0; color: #666; font-size: 13px;">Check test case syntax, structure, and compatibility with the system.</p>
                             </div>
-                            <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; border-left: 4px solid var(--accent);">
+                                                        <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; border-left: 4px solid var(--accent);">
                                 <strong style="color: var(--primary);">→ Convert to Playwright Script</strong>
                                 <p style="margin: 8px 0 0 0; color: #666; font-size: 13px;">Generate TypeScript Playwright scripts from test case. This is the main conversion function.</p>
+                            </div>
+                            <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; border-left: 4px solid var(--accent);">
+                                <strong style="color: var(--primary);">⚡ Convert to Performance Testing Script</strong>
+                                <p style="margin: 8px 0 0 0; color: #666; font-size: 13px;">Generate performance testing scripts with load profiles, stress configurations, and monitoring setup for load testing and performance benchmarking.</p>
                             </div>
                             <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; border-left: 4px solid var(--accent);">
                                 <strong style="color: var(--primary);">✔ Verify Execution</strong>
@@ -2269,9 +2274,10 @@
             pollInterval: 2000, // 2 seconds polling interval
             maxRetries: 3,
             connectionTimeout: 5000,
-            commandHelp: {
+                        commandHelp: {
                 validate: '✓ Validate test case syntax, structure, and compatibility',
                 convert: '→ Generate Playwright TypeScript test script from test case',
+                convertPT: '⚡ Convert to Performance Testing Script with load and stress configurations',
                 import: '⬇ Import and execute test case with step-by-step walkthrough',
                 verify: '✔ Execute test case verification and generate report',
                 parameterize: '⚙ Extract and parameterize test data for data-driven testing'
